@@ -1,0 +1,13 @@
+{
+    "version": "https://jsonfeed.org/version/1",
+    "title": "Carlos Johnson Professional Web Page",
+    "description": "",
+    "home_page_url": "https://pablo-johnson.github.io/carlosjohnson.github.io",
+    "feed_url": "https://pablo-johnson.github.io/carlosjohnson.github.io/feed.json",
+    "user_comment": "",
+    "author": {
+        "name": "Pablo Johnson"
+    },
+    "items": [
+    ]
+}
