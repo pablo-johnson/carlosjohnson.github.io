@@ -49,5 +49,17 @@
                 hreflang="de-DE"
                 href="http://localhost:1313/carlosjohnson.github.io/tags/"
                 />
+  </url><url>
+    <loc>http://localhost:1313/carlosjohnson.github.io/videos/</loc>
+    <xhtml:link
+                rel="alternate"
+                hreflang="es"
+                href="http://localhost:1313/carlosjohnson.github.io/es/videos/"
+                />
+    <xhtml:link
+                rel="alternate"
+                hreflang="de-DE"
+                href="http://localhost:1313/carlosjohnson.github.io/videos/"
+                />
   </url>
 </urlset>

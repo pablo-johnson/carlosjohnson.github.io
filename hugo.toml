@@ -8,23 +8,46 @@ canonifyURLs = true
 defaultContentLanguage = 'de'
 
 [languages]
-  # --- ALEMÁN (Idioma Principal - Cargará primero) ---
+  # --- ALEMÁN ---
   [languages.de]
     languageName = 'Deutsch'
     weight = 1
     title = 'Carlos Johnson'
     [languages.de.params]
       description = 'Klassischer Geiger und Dozent'
+      # Configuración de portada en Alemán
+      [languages.de.params.profileMode]
+        enabled = true
+        title = "Carlos Johnson"
+        subtitle = "Klassischer Geiger | Erster Konzertmeister | Dozent"
+        imageUrl = "images/carlos-profile.jpg"
+        [[languages.de.params.profileMode.buttons]]
+            name = "Biografie"
+            url = "about"
+        [[languages.de.params.profileMode.buttons]]
+            name = "YouTube"
+            url = "https://www.youtube.com/channel/UCcTXVBLzRnSgENDAKnYj1-Q"
 
-  # --- ESPAÑOL (Segundo Idioma) ---
+  # --- ESPAÑOL ---
   [languages.es]
     languageName = 'Español'
     weight = 2
     title = 'Carlos Johnson'
     [languages.es.params]
       description = 'Violinista Clásico y Profesor'
+      # Configuración de portada en Español
+      [languages.es.params.profileMode]
+        enabled = true
+        title = "Carlos Johnson"
+        subtitle = "Violinista Clásico | Primer Concertino | Profesor"
+        imageUrl = "images/carlos-profile.jpg"
+        [[languages.es.params.profileMode.buttons]]
+            name = "Biografía"
+            url = "about"
+        [[languages.es.params.profileMode.buttons]]
+            name = "YouTube"
+            url = "https://www.youtube.com/channel/UCcTXVBLzRnSgENDAKnYj1-Q"
 
-# Ajustes generales del tema PaperMod
 [params]
   defaultTheme = 'light'
   ShowShareButtons = false
@@ -36,12 +59,20 @@ defaultContentLanguage = 'de'
     name = "Biografie"
     url = "about"
     weight = 1
+  [[languages.de.menu.main]]
+    name = "Videos"
+    url = "videos/"
+    weight = 2
 
 [languages.es.menu]
   [[languages.es.menu.main]]
     name = "Biografía"
     url = "about"
     weight = 1
+  [[languages.es.menu.main]]
+    name = "Videos"
+    url = "videos/"
+    weight = 2
 
 [params.profileMode]
     enabled = true
@@ -53,7 +84,7 @@ defaultContentLanguage = 'de'
     imageHeight = 150
     [[params.profileMode.buttons]]
         name = "Biografie"
-        url = "/about"
+        url = "about"
     [[params.profileMode.buttons]]
         name = "YouTube"
         url = "https://www.youtube.com/channel/UCcTXVBLzRnSgENDAKnYj1-Q"
