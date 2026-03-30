@@ -65,7 +65,16 @@
 
 <article class="{{ $class }}">
   {{- $isHidden := (.Param "cover.hiddenInList") | default (.Param "cover.hidden") | default false }}
-  {{- if and (not $isHidden) (not .Params.cover.image) .Params.youtube_id }}
+  {{- if and (not $isHidden) .Params.cover.image }}
+  {{- $coverSrc := .Params.cover.image }}
+  {{- if or (hasPrefix $coverSrc "http://") (hasPrefix $coverSrc "https://") }}
+  {{- else }}
+  {{- $coverSrc = (strings.TrimPrefix "/" $coverSrc) | relURL }}
+  {{- end }}
+  <figure class="entry-cover">
+    <img loading="lazy" src="{{ $coverSrc }}" alt="{{ .Title | plainify }}">
+  </figure>
+  {{- else if and (not $isHidden) .Params.youtube_id }}
   <figure class="entry-cover">
     <img loading="lazy" src="https://i.ytimg.com/vi/{{ .Params.youtube_id }}/hqdefault.jpg" alt="{{ .Title | plainify }}">
   </figure>
