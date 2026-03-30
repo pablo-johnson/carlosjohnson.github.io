@@ -20,7 +20,7 @@ collections:
     files:
       - label: "Biografía"
         name: "about"
-        file: "content/about.md" # Sveltia will detect automatically the .md extension and use the markdown widget
+        file: "content/about.md" 
         i18n: true
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }
