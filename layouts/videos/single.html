@@ -1,6 +1,9 @@
 {{ define "main" }}
 <article class="post-single">
   <header class="post-header">
+    <p style="margin-bottom: 1rem;">
+      <a href="{{ "videos/" | relLangURL }}" aria-label="{{ if eq .Site.Language.Lang "es" }}Volver a videos{{ else if eq .Site.Language.Lang "de" }}Zurück zu Videos{{ else }}Back to videos{{ end }}">&larr; {{ if eq .Site.Language.Lang "es" }}Volver a videos{{ else if eq .Site.Language.Lang "de" }}Zurück zu Videos{{ else }}Back to videos{{ end }}</a>
+    </p>
     <h1 class="post-title">{{ .Title }}</h1>
   </header>
   
