@@ -2,6 +2,7 @@
 title: "Biografie"
 slug: "biografie"
 ---
+
 Carlos Johnson (vollständiger Name: Carlos Alberto Johnson Herrera) ist ein bedeutender peruanischer Geiger, der 1967 in Lima geboren wurde. Er begann seine musikalische Ausbildung bereits in jungen Jahren und schloss 1984 sein Studium an der Nationalen Musikschule in Peru ab.
 
 Anschließend erhielt er Stipendien für Studien in Bulgarien und den USA. 1985 wurde er an der Hochschule für Musik Detmold (Deutschland) aufgenommen, wo er sein Studium mit Auszeichnung als Konzertgeiger abschloss.

@@ -16,10 +16,11 @@ i18n:
 collections:
   - name: "pages"
     label: "Pages (Biography, etc.)"
+    i18n: true
     files:
       - label: "Biografía"
         name: "about"
-        file: "content/about.md" # Sveltia detectará automáticamente el .es.md por el i18n
+        file: "content/about.md" # Sveltia will detect automatically the .md extension and use the markdown widget
         i18n: true
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }

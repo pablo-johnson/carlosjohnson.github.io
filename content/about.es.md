@@ -2,6 +2,7 @@
 title: "Biografía"
 slug: "biografia"
 ---
+
 Carlos Johnson (nombre completo: Carlos Alberto Johnson Herrera) es un destacado violinista peruano nacido en Lima en 1967. Inició su formación musical a temprana edad y se graduó en la Escuela Nacional de Música del Perú en 1984.
 
 Posteriormente, obtuvo becas para continuar sus estudios en Bulgaria y Estados Unidos, y en 1985 ingresó a la Escuela Superior de Música de Detmold (Alemania), donde se graduó con honores como concertista.
