@@ -1,4 +1,4 @@
 ---
-title: "Videos"
-subtitle: "Esto es una descripcion opcional en espanol"
+title: Videos
+subtitle: Esto es una descripcion opcional en espanol
 ---
