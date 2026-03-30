@@ -1,6 +1,6 @@
 ---
   title: Biografie
-  slug: biografie
+  slug: about
 ---
 
 Esto es aleman

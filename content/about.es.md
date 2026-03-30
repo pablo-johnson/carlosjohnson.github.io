@@ -1,6 +1,6 @@
 ---
 title: "Biografía"
-slug: "biografia"
+slug: "about"
 ---
 
 Esto es espanol
