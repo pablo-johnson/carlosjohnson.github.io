@@ -188,12 +188,12 @@
         <dd>{{ . }}</dd>
         {{- end }}
       </dl>
-      {{- if or .Params.ticket_link .Permalink }}
+      {{- if or .Params.ticket_link .RelPermalink }}
       <div class="concert-actions">
         {{- with .Params.ticket_link }}
         <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "buy_tickets" | default "Comprar Entradas" }}</a>
         {{- end }}
-        <a href="{{ .Permalink }}">{{ i18n "more_info" | default "Más Información" }}</a>
+        <a href="{{ .RelPermalink }}">{{ i18n "more_info" | default "Más Información" }}</a>
       </div>
       {{- end }}
       {{- if .PlainWords }}
@@ -229,9 +229,9 @@
         <dd>{{ . }}</dd>
         {{- end }}
       </dl>
-      {{- if .Permalink }}
+      {{- if .RelPermalink }}
       <div class="concert-actions">
-        <a href="{{ .Permalink }}">{{ i18n "more_info" | default "Más Información" }}</a>
+        <a href="{{ .RelPermalink }}">{{ i18n "more_info" | default "Más Información" }}</a>
       </div>
       {{- end }}
       {{- if .PlainWords }}
