@@ -9,9 +9,9 @@
     <atom:link href="http://localhost:1313/carlosjohnson.github.io/es/index.xml" rel="self" type="application/rss+xml" />
     <item>
       <title>Biografía</title>
-      <link>http://localhost:1313/carlosjohnson.github.io/es/about/</link>
+      <link>http://localhost:1313/carlosjohnson.github.io/es/biografia/</link>
       <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
-      <guid>http://localhost:1313/carlosjohnson.github.io/es/about/</guid>
+      <guid>http://localhost:1313/carlosjohnson.github.io/es/biografia/</guid>
       <description>&lt;p&gt;Esto es espanol Esto es espanolEsto es espanolEsto es espanolEsto es espanolEsto es espanolEsto es espanolEsto es espanol&lt;/p&gt;</description>
     </item>
   </channel>
