@@ -54,24 +54,25 @@ defaultContentLanguage = 'de'
   ShowReadingTime = false
 
 # --- MENUS ---
+# --- MENUS ---
 [languages.de.menu]
   [[languages.de.menu.main]]
     name = "Biografie"
-    url = "about"
+    pageRef = "/about"
     weight = 1
   [[languages.de.menu.main]]
     name = "Videos"
-    url = "videos/"
+    pageRef = "/videos"
     weight = 2
 
 [languages.es.menu]
   [[languages.es.menu.main]]
     name = "Biografía"
-    url = "about"
+    pageRef = "/about"
     weight = 1
   [[languages.es.menu.main]]
     name = "Videos"
-    url = "videos/"
+    pageRef = "/videos"
     weight = 2
 
 [params.profileMode]
