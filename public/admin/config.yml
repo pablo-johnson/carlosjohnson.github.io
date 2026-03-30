@@ -1,0 +1,25 @@
+backend:
+  name: github
+  repo: pablo-johnson/carlosjohnson.github.io # The repo
+  branch: main
+
+# Media files configuration
+media_folder: "static/images"
+public_folder: "/images"
+
+# i18n configuration
+i18n:
+  structure: multiple_files
+  locales: [de, es]
+  default_locale: de
+
+collections:
+  - name: "pages"
+    label: "Pages (Biography, etc.)"
+    folder: "content"
+    create: true
+    i18n: true # Allows translating the page
+    fields:
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Friendly URL (slug)", name: "slug", widget: "string", i18n: true }
+      - { label: "Content", name: "body", widget: "markdown", i18n: true }
