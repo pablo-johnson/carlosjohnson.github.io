@@ -54,25 +54,24 @@ defaultContentLanguage = 'de'
   ShowReadingTime = false
 
 # --- MENUS ---
-# --- MENUS ---
 [languages.de.menu]
   [[languages.de.menu.main]]
     name = "Biografie"
-    pageRef = "/about"
+    url = "/carlosjohnson.github.io/about/"
     weight = 1
   [[languages.de.menu.main]]
     name = "Videos"
-    pageRef = "/videos"
+    url = "/carlosjohnson.github.io/videos/"
     weight = 2
 
 [languages.es.menu]
   [[languages.es.menu.main]]
     name = "Biografía"
-    pageRef = "/about"
+    url = "/carlosjohnson.github.io/es/about/"
     weight = 1
   [[languages.es.menu.main]]
     name = "Videos"
-    pageRef = "/videos"
+    url = "/carlosjohnson.github.io/es/videos/"
     weight = 2
 
 [params.profileMode]
