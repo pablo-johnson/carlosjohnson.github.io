@@ -12,6 +12,7 @@ i18n:
   structure: multiple_files
   locales: [de, es]
   default_locale: de
+  omit_default_locale_from_filename : true
 
 collections:
   - name: "pages"
