@@ -2,16 +2,16 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
-    <loc>http://localhost:1313/carlosjohnson.github.io/es/biografia/</loc>
+    <loc>http://localhost:1313/carlosjohnson.github.io/es/about/</loc>
     <xhtml:link
                 rel="alternate"
                 hreflang="de-DE"
-                href="http://localhost:1313/carlosjohnson.github.io/biografie/"
+                href="http://localhost:1313/carlosjohnson.github.io/about/"
                 />
     <xhtml:link
                 rel="alternate"
                 hreflang="es"
-                href="http://localhost:1313/carlosjohnson.github.io/es/biografia/"
+                href="http://localhost:1313/carlosjohnson.github.io/es/about/"
                 />
   </url><url>
     <loc>http://localhost:1313/carlosjohnson.github.io/es/</loc>
