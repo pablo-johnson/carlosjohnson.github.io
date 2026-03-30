@@ -62,3 +62,38 @@ collections:
         fields:
           - { label: "Image", name: "image", widget: "image", required: false, i18n: duplicate }
       - { label: "Description or Concert Notes", name: "body", widget: "markdown", i18n: true }
+  - name: "concerts_list"
+    label: "Concert Schedule - List Page"
+    i18n: true
+    files:
+      - label: "Concert Schedule Settings"
+        name: "concerts_list"
+        file: "content/concerts/_index.{{locale}}.md"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
+          - { label: "Content", name: "body", widget: "markdown", i18n: true, required: false }
+  - name: "concerts"
+    label: "Concert Schedule / Events"
+    folder: "content/concerts"
+    create: true
+    slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
+    i18n: true
+    fields:
+      - { label: "Title", name: "title", widget: "string", i18n: true }
+      - { label: "Concert Date & Time", name: "date", widget: "datetime", i18n: duplicate }
+      - { label: "City", name: "city", widget: "string", i18n: duplicate }
+      - { label: "Concert Hall / Venue", name: "venue", widget: "string", i18n: duplicate }
+      - { label: "Repertoire", name: "repertoire", widget: "string", i18n: true }
+      - { label: "Flyer Image (optional)", name: "flyer", widget: "image", required: false, i18n: duplicate }
+      - { label: "Ticket Link (optional)", name: "ticket_link", widget: "string", required: false, i18n: duplicate, hint: "URL to purchase tickets (e.g., https://example.com/tickets)" }
+      - label: "Contact Information (optional)"
+        name: "contact"
+        widget: "object"
+        required: false
+        i18n: duplicate
+        fields:
+          - { label: "Email", name: "email", widget: "string", required: false, i18n: duplicate }
+          - { label: "Phone", name: "phone", widget: "string", required: false, i18n: duplicate }
+      - { label: "Additional Notes", name: "body", widget: "markdown", i18n: true, required: false }

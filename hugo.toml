@@ -3,6 +3,7 @@ languageCode = 'de-DE'
 title = 'Carlos Johnson | Geiger'
 theme = 'PaperMod'
 canonifyURLs = true
+buildFuture = true
 
 # Configuracion Multilingue: Alemán por defecto
 defaultContentLanguage = 'de'
@@ -59,6 +60,10 @@ defaultContentLanguage = 'de'
     name = "Videos"
     url = "/carlosjohnson.github.io/videos/"
     weight = 2
+  [[languages.de.menu.main]]
+    name = "Konzerte"
+    url = "/carlosjohnson.github.io/concerts/"
+    weight = 3
 
 [languages.es.menu]
   [[languages.es.menu.main]]
@@ -69,6 +74,10 @@ defaultContentLanguage = 'de'
     name = "Videos"
     url = "/carlosjohnson.github.io/es/videos/"
     weight = 2
+  [[languages.es.menu.main]]
+    name = "Conciertos"
+    url = "/carlosjohnson.github.io/es/concerts/"
+    weight = 3
 
 [params.profileMode]
     enabled = true
