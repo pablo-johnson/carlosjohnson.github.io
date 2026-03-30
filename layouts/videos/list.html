@@ -22,6 +22,11 @@
     {{- end }}
     {{- end }}
   </h1>
+  {{- if .Params.subtitle }}
+  <p class="post-subtitle">
+    {{ .Params.subtitle }}
+  </p>
+  {{- end }}
   {{- if .Description }}
   <div class="post-description">
     {{ .Description | markdownify }}

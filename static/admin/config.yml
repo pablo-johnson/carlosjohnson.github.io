@@ -32,6 +32,18 @@ collections:
               i18n: true,
             }
           - { label: "Content", name: "body", widget: "markdown", i18n: true }
+  - name: "videos_list"
+    label: "Videos / Concerts - List Page"
+    i18n: true
+    files:
+      - label: "Videos List Settings"
+        name: "videos_list"
+        file: "content/videos/_index.{{locale}}.md"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
+          - { label: "Content", name: "body", widget: "markdown", i18n: true, required: false }
   - name: "videos"
     label: "Videos / Concerts"
     folder: "content/videos"
