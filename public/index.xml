@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Carlos Johnson</title>
+    <link>http://localhost:1313/carlosjohnson.github.io/</link>
+    <description>Recent content on Carlos Johnson</description>
+    <generator>Hugo</generator>
+    <language>de-DE</language>
+    <atom:link href="http://localhost:1313/carlosjohnson.github.io/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Biografie</title>
+      <link>http://localhost:1313/carlosjohnson.github.io/biografie/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/carlosjohnson.github.io/biografie/</guid>
+      <description>&lt;p&gt;Carlos Johnson (vollständiger Name: Carlos Alberto Johnson Herrera) ist ein bedeutender peruanischer Geiger, der 1967 in Lima geboren wurde. Er begann seine musikalische Ausbildung bereits in jungen Jahren und schloss 1984 sein Studium an der Nationalen Musikschule in Peru ab.&lt;/p&gt;
+&lt;p&gt;Anschließend erhielt er Stipendien für Studien in Bulgarien und den USA. 1985 wurde er an der Hochschule für Musik Detmold (Deutschland) aufgenommen, wo er sein Studium mit Auszeichnung als Konzertgeiger abschloss.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

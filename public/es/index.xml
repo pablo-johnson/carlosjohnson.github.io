@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8" standalone="yes"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom" xmlns:content="http://purl.org/rss/1.0/modules/content/">
+  <channel>
+    <title>Carlos Johnson</title>
+    <link>http://localhost:1313/carlosjohnson.github.io/es/</link>
+    <description>Recent content on Carlos Johnson</description>
+    <generator>Hugo</generator>
+    <language>es</language>
+    <atom:link href="http://localhost:1313/carlosjohnson.github.io/es/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Biografía</title>
+      <link>http://localhost:1313/carlosjohnson.github.io/es/biografia/</link>
+      <pubDate>Mon, 01 Jan 0001 00:00:00 +0000</pubDate>
+      <guid>http://localhost:1313/carlosjohnson.github.io/es/biografia/</guid>
+      <description>&lt;p&gt;Carlos Johnson (nombre completo: Carlos Alberto Johnson Herrera) es un destacado violinista peruano nacido en Lima en 1967. Inició su formación musical a temprana edad y se graduó en la Escuela Nacional de Música del Perú en 1984.&lt;/p&gt;
+&lt;p&gt;Posteriormente, obtuvo becas para continuar sus estudios en Bulgaria y Estados Unidos, y en 1985 ingresó a la Escuela Superior de Música de Detmold (Alemania), donde se graduó con honores como concertista.&lt;/p&gt;</description>
+    </item>
+  </channel>
+</rss>

@@ -1,0 +1,43 @@
+baseURL = 'https://pablo-johnson.github.io/carlosjohnson.github.io/'
+languageCode = 'de-DE'
+title = 'Carlos Johnson | Geiger'
+theme = 'PaperMod'
+
+# Configuracion Multilingue: Alemán por defecto
+defaultContentLanguage = 'de'
+
+[languages]
+  # --- ALEMÁN (Idioma Principal - Cargará primero) ---
+  [languages.de]
+    languageName = 'Deutsch'
+    weight = 1
+    title = 'Carlos Johnson'
+    [languages.de.params]
+      description = 'Klassischer Geiger und Dozent'
+
+  # --- ESPAÑOL (Segundo Idioma) ---
+  [languages.es]
+    languageName = 'Español'
+    weight = 2
+    title = 'Carlos Johnson'
+    [languages.es.params]
+      description = 'Violinista Clásico y Profesor'
+
+# Ajustes generales del tema PaperMod
+[params]
+  defaultTheme = 'light'
+  ShowShareButtons = false
+  ShowReadingTime = false
+
+# --- MENUS ---
+[languages.de.menu]
+  [[languages.de.menu.main]]
+    name = "Biografie"
+    pageRef = "/about"
+    weight = 1
+
+[languages.es.menu]
+  [[languages.es.menu.main]]
+    name = "Biografía"
+    pageRef = "/about"
+    weight = 1
