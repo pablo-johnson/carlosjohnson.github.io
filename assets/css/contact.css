@@ -63,6 +63,11 @@
   opacity: 0.9;
 }
 
+.contact-booking-submit:disabled {
+  opacity: 0.75;
+  cursor: wait;
+}
+
 [data-theme="dark"] .contact-booking-submit {
   background: var(--code-bg);
   color: var(--content);
@@ -73,6 +78,28 @@
   background: var(--primary);
   color: var(--primary-light-text, #fff);
   opacity: 1;
+}
+
+.contact-booking-status {
+  min-height: 1.5rem;
+  margin: 0;
+  font-size: 0.95rem;
+}
+
+.contact-booking-status.is-success {
+  color: #1f7a3d;
+}
+
+.contact-booking-status.is-error {
+  color: #c0392b;
+}
+
+[data-theme="dark"] .contact-booking-status.is-success {
+  color: #77d38a;
+}
+
+[data-theme="dark"] .contact-booking-status.is-error {
+  color: #ff8d80;
 }
 
 .contact-booking-warning {

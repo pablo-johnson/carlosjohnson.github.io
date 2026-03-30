@@ -45,3 +45,12 @@
 
 - id: contact_form_intro
   translation: "Für Konzertanfragen und Booking senden Sie bitte eine Nachricht:"
+
+- id: contact_form_sending
+  translation: "Wird gesendet..."
+
+- id: contact_form_success
+  translation: "Ihre Nachricht wurde erfolgreich gesendet."
+
+- id: contact_form_error
+  translation: "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."

@@ -45,3 +45,12 @@
 
 - id: contact_form_intro
   translation: "Para consultas y contratación, envía tu mensaje aquí:"
+
+- id: contact_form_sending
+  translation: "Enviando..."
+
+- id: contact_form_success
+  translation: "Tu mensaje fue enviado correctamente."
+
+- id: contact_form_error
+  translation: "No se pudo enviar el mensaje. Inténtalo de nuevo."
