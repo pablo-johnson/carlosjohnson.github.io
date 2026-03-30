@@ -15,6 +15,19 @@ i18n:
   omit_default_locale_from_filename : true
 
 collections:
+  - name: "site_settings"
+    label: "Site Settings"
+    files:
+      - label: "General Contact Settings"
+        name: "general_contact_settings"
+        file: "data/site_settings.yml"
+        fields:
+          - {
+              label: "Booking Destination Email",
+              name: "booking_email",
+              widget: "string",
+              hint: "Messages from Contact/Booking form will be sent to this email",
+            }
   - name: "pages"
     label: "Pages (Biography, etc.)"
     i18n: true

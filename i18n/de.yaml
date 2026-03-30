@@ -27,3 +27,21 @@
 
 - id: phone
   translation: "Telefon"
+
+- id: contact_form_name
+  translation: "Name"
+
+- id: contact_form_phone
+  translation: "Telefon"
+
+- id: contact_form_message
+  translation: "Nachricht"
+
+- id: contact_form_submit
+  translation: "Nachricht senden"
+
+- id: contact_form_missing_email
+  translation: "Booking-E-Mail ist noch nicht konfiguriert. Bitte später erneut versuchen."
+
+- id: contact_form_intro
+  translation: "Für Konzertanfragen und Booking senden Sie bitte eine Nachricht:"

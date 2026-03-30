@@ -64,6 +64,10 @@ defaultContentLanguage = 'de'
     name = "Konzerte"
     url = "concerts/"
     weight = 3
+  [[languages.de.menu.main]]
+    name = "Kontakt"
+    url = "contact/"
+    weight = 4
 
 [languages.es.menu]
   [[languages.es.menu.main]]
@@ -78,6 +82,10 @@ defaultContentLanguage = 'de'
     name = "Conciertos"
     url = "concerts/"
     weight = 3
+  [[languages.es.menu.main]]
+    name = "Contacto"
+    url = "contact/"
+    weight = 4
 
 [params.profileMode]
     enabled = true

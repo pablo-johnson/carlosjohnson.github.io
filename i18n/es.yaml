@@ -27,3 +27,21 @@
 
 - id: phone
   translation: "Teléfono"
+
+- id: contact_form_name
+  translation: "Nombre"
+
+- id: contact_form_phone
+  translation: "Teléfono"
+
+- id: contact_form_message
+  translation: "Mensaje"
+
+- id: contact_form_submit
+  translation: "Enviar mensaje"
+
+- id: contact_form_missing_email
+  translation: "El correo de booking todavía no está configurado. Inténtalo de nuevo más tarde."
+
+- id: contact_form_intro
+  translation: "Para consultas y contratación, envía tu mensaje aquí:"

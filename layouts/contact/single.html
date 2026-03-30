@@ -1,0 +1,54 @@
+{{- define "main" }}
+<article class="post-single">
+  <header class="post-header">
+    {{- partial "breadcrumbs.html" . }}
+    <h1 class="post-title">{{ .Title }}</h1>
+  </header>
+
+  <div class="post-content contact-booking-wrap">
+    {{- $styles := resources.Get "css/contact.css" }}
+    {{- if $styles }}
+      {{- $styles = $styles | minify }}
+      <style>{{ $styles.Content | safeCSS }}</style>
+    {{- end }}
+
+    {{- if .Content }}
+      {{ .Content }}
+    {{- end }}
+
+    <p class="contact-booking-intro">{{ i18n "contact_form_intro" | default "For booking inquiries, send your message here:" }}</p>
+
+    {{- $bookingEmail := hugo.Data.site_settings.booking_email | default "" }}
+    {{- if $bookingEmail }}
+      <form class="contact-booking-form" action="https://formsubmit.co/{{ $bookingEmail }}" method="POST">
+        <input type="hidden" name="_subject" value="New booking/contact message from website">
+        <input type="hidden" name="_captcha" value="false">
+        <input type="hidden" name="_template" value="table">
+
+        <label for="name">
+          {{ i18n "contact_form_name" | default "Name" }}
+          <input id="name" name="name" type="text" required>
+        </label>
+
+        <label for="phone">
+          {{ i18n "contact_form_phone" | default "Phone" }}
+          <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+()\-\s]{6,}" oninput="this.value=this.value.replace(/[^0-9+()\-\s]/g,'')" required>
+        </label>
+
+        <label for="message">
+          {{ i18n "contact_form_message" | default "Message" }}
+          <textarea id="message" name="message" rows="6" required></textarea>
+        </label>
+
+        <button class="contact-booking-submit" type="submit">
+          {{ i18n "contact_form_submit" | default "Send message" }}
+        </button>
+      </form>
+    {{- else }}
+      <div class="contact-booking-warning">
+        {{ i18n "contact_form_missing_email" | default "Booking email is not configured yet. Please try again later." }}
+      </div>
+    {{- end }}
+  </div>
+</article>
+{{- end }}
