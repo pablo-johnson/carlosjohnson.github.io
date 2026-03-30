@@ -66,8 +66,8 @@
 
             submitButton.disabled = true;
             submitButton.textContent = status.dataset.sendingLabel;
-            status.className = 'contact-booking-status';
-            status.textContent = '';
+            status.className = 'contact-booking-status is-visible is-pending';
+            status.textContent = status.dataset.sendingLabel;
 
             fetch(ajaxAction, {
               method: 'POST',
@@ -85,11 +85,11 @@
               })
               .then(function () {
                 form.reset();
-                status.className = 'contact-booking-status is-success';
+                status.className = 'contact-booking-status is-visible is-success';
                 status.textContent = status.dataset.successMessage;
               })
               .catch(function () {
-                status.className = 'contact-booking-status is-error';
+                status.className = 'contact-booking-status is-visible is-error';
                 status.textContent = status.dataset.errorMessage;
               })
               .finally(function () {
