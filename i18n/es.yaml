@@ -1,0 +1,29 @@
+- id: upcoming_events
+  translation: "Próximos Eventos"
+
+- id: past_events
+  translation: "Eventos Pasados"
+
+- id: city
+  translation: "Ciudad"
+
+- id: venue
+  translation: "Sala de Conciertos"
+
+- id: repertoire
+  translation: "Repertorio"
+
+- id: buy_tickets
+  translation: "Comprar Entradas"
+
+- id: more_info
+  translation: "Más Información"
+
+- id: contact_info
+  translation: "Información de Contacto"
+
+- id: email
+  translation: "Correo"
+
+- id: phone
+  translation: "Teléfono"
