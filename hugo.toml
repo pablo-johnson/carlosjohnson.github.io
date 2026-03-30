@@ -8,14 +8,12 @@ canonifyURLs = true
 defaultContentLanguage = 'de'
 
 [languages]
-  # --- ALEMÁN ---
   [languages.de]
     languageName = 'Deutsch'
     weight = 1
     title = 'Carlos Johnson'
     [languages.de.params]
       description = 'Klassischer Geiger und Dozent'
-      # Configuración de portada en Alemán
       [languages.de.params.profileMode]
         enabled = true
         title = "Carlos Johnson"
@@ -28,14 +26,12 @@ defaultContentLanguage = 'de'
             name = "YouTube"
             url = "https://www.youtube.com/channel/UCcTXVBLzRnSgENDAKnYj1-Q"
 
-  # --- ESPAÑOL ---
   [languages.es]
     languageName = 'Español'
     weight = 2
     title = 'Carlos Johnson'
     [languages.es.params]
       description = 'Violinista Clásico y Profesor'
-      # Configuración de portada en Español
       [languages.es.params.profileMode]
         enabled = true
         title = "Carlos Johnson"

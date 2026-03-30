@@ -1,5 +1,5 @@
 ---
-title: 'Duett für Violine und Klavier: I. Leise'
+title: 'Duett für Violine und Klavier: I. Leise · Carlos Johnson · Rieko Yoshizumi'
 date: 2026-03-30T13:41:00
 youtube_id: wGrppHaTygM
 ---
