@@ -24,6 +24,14 @@
   color: var(--title);
 }
 
+.contact-booking-honeypot {
+  position: absolute;
+  left: -9999px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
 .contact-booking-form input,
 .contact-booking-form textarea {
   width: 100%;

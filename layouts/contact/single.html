@@ -24,8 +24,12 @@
       {{- $submitAjaxEndpoint := printf "https://formsubmit.co/ajax/%s" $bookingEmail }}
       <form class="contact-booking-form" action="{{ $submitEndpoint }}" method="POST" data-ajax-action="{{ $submitAjaxEndpoint }}">
         <input type="hidden" name="_subject" value="New booking/contact message from website">
-        <input type="hidden" name="_captcha" value="false">
         <input type="hidden" name="_template" value="table">
+
+        <label class="contact-booking-honeypot" for="website" aria-hidden="true">
+          Website
+          <input id="website" name="_honey" type="text" tabindex="-1" autocomplete="off">
+        </label>
 
         <label for="name">
           {{ i18n "contact_form_name" | default "Name" }}
