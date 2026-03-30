@@ -16,10 +16,17 @@ i18n:
 collections:
   - name: "pages"
     label: "Pages (Biography, etc.)"
-    folder: "content"
-    create: true
-    i18n: true # Allows translating the page
-    fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Friendly URL (slug)", name: "slug", widget: "string", i18n: true }
-      - { label: "Content", name: "body", widget: "markdown", i18n: true }
+    files:
+      - label: "Biografía"
+        name: "about"
+        file: "content/about.md" # Sveltia detectará automáticamente el .es.md por el i18n
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - {
+              label: "Friendly URL (slug)",
+              name: "slug",
+              widget: "string",
+              i18n: true,
+            }
+          - { label: "Content", name: "body", widget: "markdown", i18n: true }
