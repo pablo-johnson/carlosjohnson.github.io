@@ -65,9 +65,13 @@ defaultContentLanguage = 'de'
     url = "concerts/"
     weight = 3
   [[languages.de.menu.main]]
+    name = "Lehre"
+    url = "teaching/"
+    weight = 4
+  [[languages.de.menu.main]]
     name = "Kontakt"
     url = "contact/"
-    weight = 4
+    weight = 5
 
 [languages.es.menu]
   [[languages.es.menu.main]]
@@ -83,9 +87,13 @@ defaultContentLanguage = 'de'
     url = "concerts/"
     weight = 3
   [[languages.es.menu.main]]
+    name = "Docencia"
+    url = "teaching/"
+    weight = 4
+  [[languages.es.menu.main]]
     name = "Contacto"
     url = "contact/"
-    weight = 4
+    weight = 5
 
 [params.profileMode]
     enabled = true

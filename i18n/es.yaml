@@ -54,3 +54,45 @@
 
 - id: contact_form_error
   translation: "No se pudo enviar el mensaje. Inténtalo de nuevo."
+
+- id: teaching_germany_chair
+  translation: "Cátedra en Alemania"
+
+- id: teaching_peru_chair
+  translation: "Cátedra en Perú"
+
+- id: teaching_masterclasses
+  translation: "Clases Magistrales"
+
+- id: teaching_resources
+  translation: "Recursos para Estudiantes"
+
+- id: teaching_admissions
+  translation: "Admisión"
+
+- id: teaching_auditions
+  translation: "Audiciones"
+
+- id: teaching_projects
+  translation: "Desarrollo de talento"
+
+- id: teaching_calendar
+  translation: "Calendario"
+
+- id: teaching_private_area
+  translation: "Área privada"
+
+- id: teaching_institution_website
+  translation: "Visitar institución"
+
+- id: teaching_available_soon
+  translation: "Más detalles próximamente."
+
+- id: teaching_date
+  translation: "Fecha"
+
+- id: teaching_location
+  translation: "Lugar"
+
+- id: teaching_access_note
+  translation: "Acceso"

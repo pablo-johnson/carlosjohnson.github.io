@@ -1,0 +1,187 @@
+{{- define "main" }}
+{{- $styles := resources.Get "css/teaching.css" }}
+{{- if $styles }}
+{{- $styles = $styles | minify }}
+<style>{{ $styles.Content | safeCSS }}</style>
+{{- end }}
+
+<section class="teaching-page">
+  <header class="page-header teaching-hero">
+    {{- partial "breadcrumbs.html" . }}
+    <h1>{{ .Title }}</h1>
+    {{- with .Params.subtitle }}
+    <p class="teaching-subtitle">{{ . }}</p>
+    {{- end }}
+    {{- if .Content }}
+    <div class="post-content teaching-intro">{{ .Content }}</div>
+    {{- end }}
+  </header>
+
+  <div class="teaching-grid">
+    {{- with .Params.germany_chair }}
+    <article class="teaching-card">
+      <div class="teaching-card-header">
+        <div>
+          <span class="teaching-badge">{{ i18n "teaching_germany_chair" }}</span>
+          <h2>{{ .university_name }}</h2>
+          {{- with .appointment_title }}
+          <span class="teaching-kicker">{{ . }}</span>
+          {{- end }}
+        </div>
+        {{- with .university_url }}
+        <a class="teaching-link" href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "teaching_institution_website" }}</a>
+        {{- end }}
+      </div>
+
+      {{- with .description }}
+      <p>{{ . }}</p>
+      {{- end }}
+
+      <div class="teaching-columns">
+        <div>
+          <h3>{{ i18n "teaching_admissions" }}</h3>
+          {{- with .admissions }}
+          <ul class="teaching-list">
+            {{- range . }}
+            <li>{{ . }}</li>
+            {{- end }}
+          </ul>
+          {{- else }}
+          <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
+          {{- end }}
+        </div>
+        <div>
+          <h3>{{ i18n "teaching_auditions" }}</h3>
+          {{- with .auditions }}
+          <ul class="teaching-list">
+            {{- range . }}
+            <li>{{ . }}</li>
+            {{- end }}
+          </ul>
+          {{- else }}
+          <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
+          {{- end }}
+        </div>
+      </div>
+    </article>
+    {{- end }}
+
+    {{- with .Params.peru_chair }}
+    <article class="teaching-card">
+      <div class="teaching-card-header">
+        <div>
+          <span class="teaching-badge">{{ i18n "teaching_peru_chair" }}</span>
+          <h2>{{ .institution_name }}</h2>
+          {{- with .appointment_title }}
+          <span class="teaching-kicker">{{ . }}</span>
+          {{- end }}
+        </div>
+        {{- with .institution_url }}
+        <a class="teaching-link" href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "teaching_institution_website" }}</a>
+        {{- end }}
+      </div>
+
+      {{- with .description }}
+      <p>{{ . }}</p>
+      {{- end }}
+
+      <h3>{{ i18n "teaching_projects" }}</h3>
+      {{- with .initiatives }}
+      <ul class="teaching-list">
+        {{- range . }}
+        <li>{{ . }}</li>
+        {{- end }}
+      </ul>
+      {{- else }}
+      <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
+      {{- end }}
+    </article>
+    {{- end }}
+
+    {{- with .Params.masterclasses }}
+    <article class="teaching-card teaching-card--wide">
+      <div class="teaching-card-header">
+        <div>
+          <span class="teaching-badge">{{ i18n "teaching_masterclasses" }}</span>
+          <h2>{{ i18n "teaching_calendar" }}</h2>
+        </div>
+      </div>
+
+      {{- with .description }}
+      <p>{{ . }}</p>
+      {{- end }}
+
+      {{- with .events }}
+      <ul class="teaching-event-list">
+        {{- range . }}
+        <li class="teaching-event">
+          <h3>{{ .title }}</h3>
+          <div class="teaching-meta">
+            {{- with .date }}
+            <span><strong>{{ i18n "teaching_date" }}:</strong> {{ . }}</span>
+            {{- end }}
+            {{- with .location }}
+            <span><strong>{{ i18n "teaching_location" }}:</strong> {{ . }}</span>
+            {{- end }}
+          </div>
+          {{- with .details }}
+          <p>{{ . }}</p>
+          {{- end }}
+          {{- with .link }}
+          <a class="teaching-link" href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "more_info" }}</a>
+          {{- end }}
+        </li>
+        {{- end }}
+      </ul>
+      {{- else }}
+      <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
+      {{- end }}
+    </article>
+    {{- end }}
+
+    {{- with .Params.resources }}
+    {{- if .enabled }}
+    <article class="teaching-card teaching-card--wide">
+      <div class="teaching-card-header">
+        <div>
+          <span class="teaching-badge">{{ i18n "teaching_resources" }}</span>
+          <h2>{{ i18n "teaching_resources" }}</h2>
+        </div>
+        {{- if .private_area }}
+        <span class="teaching-badge">{{ i18n "teaching_private_area" }}</span>
+        {{- end }}
+      </div>
+
+      {{- with .description }}
+      <p>{{ . }}</p>
+      {{- end }}
+
+      {{- with .items }}
+      <ul class="teaching-resource-list">
+        {{- range . }}
+        <li class="teaching-resource">
+          <h3>{{ .title }}</h3>
+          {{- with .description }}
+          <p>{{ . }}</p>
+          {{- end }}
+          {{- with .link }}
+          <a class="teaching-link" href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "more_info" }}</a>
+          {{- end }}
+        </li>
+        {{- end }}
+      </ul>
+      {{- else }}
+      <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
+      {{- end }}
+
+      {{- with .access_note }}
+      <div class="teaching-private">
+        <strong>{{ i18n "teaching_access_note" }}:</strong> {{ . }}
+      </div>
+      {{- end }}
+    </article>
+    {{- end }}
+    {{- end }}
+  </div>
+</section>
+{{- end }}
