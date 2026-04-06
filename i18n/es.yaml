@@ -19,6 +19,9 @@
 - id: more_info
   translation: "Más Información"
 
+- id: view_all_events
+  translation: "Ver todos los eventos"
+
 - id: contact_info
   translation: "Información de Contacto"
 

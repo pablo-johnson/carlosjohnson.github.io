@@ -11,6 +11,9 @@
 {{- $autoplayMs := mul $autoplaySeconds 1000 -}}
 {{- $rootURL := urls.Parse ((index site.Sites 0).Home.Permalink) -}}
 {{- $rootPath := $rootURL.Path -}}
+{{- $concertPages := where .Site.RegularPages "Section" "concerts" -}}
+{{- $upcomingEvents := where $concertPages "Date" ">=" now -}}
+{{- $concertsListPage := .Site.GetPage "section" "concerts" -}}
 
 <section class="home-hero" data-home-carousel data-interval-ms="{{ $autoplayMs }}">
     <div class="home-hero__backdrop"></div>
@@ -56,6 +59,50 @@
         {{- end }}
     </div>
 </section>
+
+{{- if gt (len $upcomingEvents) 0 }}
+<section class="home-events" aria-labelledby="home-events-title">
+    <div class="home-events__header">
+        <h2 id="home-events-title" class="home-events__title">{{ i18n "upcoming_events" | default "Próximos Eventos" }}</h2>
+    </div>
+
+    <div class="home-events__grid">
+        {{- range first 3 ($upcomingEvents.ByDate) }}
+        <article class="home-event-card">
+            <p class="home-event-card__date">{{ .Date.Format "02.01.2006" }}{{ if ne (.Date.Format "15:04") "00:00" }} · {{ .Date.Format "15:04" }}{{ end }}</p>
+            <h3 class="home-event-card__title">{{ .Title }}</h3>
+
+            <dl class="home-event-card__meta">
+                {{- with .Params.city }}
+                <div>
+                    <dt>{{ i18n "city" | default "Ciudad" }}</dt>
+                    <dd>{{ . }}</dd>
+                </div>
+                {{- end }}
+                {{- with .Params.venue }}
+                <div>
+                    <dt>{{ i18n "venue" | default "Sala" }}</dt>
+                    <dd>{{ . }}</dd>
+                </div>
+                {{- end }}
+            </dl>
+
+            {{- if .Summary }}
+            <p class="home-event-card__summary">{{ .Summary | plainify | truncate 110 }}</p>
+            {{- end }}
+
+            <a class="home-event-card__link" href="{{ .RelPermalink }}">{{ i18n "more_info" | default "Más Información" }}</a>
+        </article>
+        {{- end }}
+    </div>
+
+    {{- with $concertsListPage }}
+    <div class="home-events__actions">
+        <a class="home-events__link" href="{{ .RelPermalink }}">{{ i18n "view_all_events" | default "Ver todos los eventos" }}</a>
+    </div>
+    {{- end }}
+</section>
+{{- end }}
 
 {{- if gt (len $slides) 1 }}
 <script>
