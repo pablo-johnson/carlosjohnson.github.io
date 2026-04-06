@@ -103,7 +103,7 @@
             {{- end }}
             <li{{ if $has_children }} class="menu-dropdown"{{ end }}>
                 {{- if $has_children }}
-                <details{{ if $has_active_child }} open{{ end }}>
+                <details>
                     <summary title="{{ .Title | default .Name }}">
                         <span {{- if or $is_active $has_active_child }} class="active" {{- end }}>
                             {{- .Pre }}
