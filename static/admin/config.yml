@@ -28,6 +28,66 @@ collections:
               widget: "string",
               hint: "Messages from Contact/Booking form will be sent to this email",
             }
+  - name: "homepage"
+    label: "Homepage"
+    i18n: true
+    files:
+      - label: "Homepage Hero"
+        name: "homepage"
+        file: "content/_index.{{locale}}.md"
+        i18n: true
+        fields:
+          - {
+              label: "Internal Title",
+              name: "title",
+              widget: "string",
+              i18n: true,
+              required: false,
+              hint: "Internal page title. It is not displayed in the hero.",
+            }
+          - {
+              label: "Hide Footer",
+              name: "hideFooter",
+              widget: "hidden",
+              default: true,
+              i18n: duplicate,
+            }
+          - label: "Hero"
+            name: "home_hero"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true, required: false }
+              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+              - {
+                  label: "Autoplay Seconds",
+                  name: "autoplay_seconds",
+                  widget: "number",
+                  value_type: "int",
+                  min: 3,
+                  max: 5,
+                  step: 1,
+                  default: 4,
+                  i18n: duplicate,
+                }
+              - label: "Slides"
+                name: "slides"
+                widget: "list"
+                i18n: true
+                min: 3
+                fields:
+                  - { label: "Image", name: "image", widget: "image", i18n: duplicate }
+                  - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false }
+              - label: "Profile Briefs"
+                name: "profiles"
+                widget: "list"
+                i18n: true
+                min: 3
+                max: 3
+                fields:
+                  - { label: "Title", name: "title", widget: "string", i18n: true }
+                  - { label: "Brief", name: "brief", widget: "text", i18n: true }
   - name: "pages"
     label: "Pages (Biography, etc.)"
     i18n: true

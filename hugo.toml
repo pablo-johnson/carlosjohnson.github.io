@@ -17,15 +17,6 @@ defaultContentLanguage = 'de'
       description = 'Klassischer Geiger und Dozent'
       [languages.de.params.profileMode]
         enabled = true
-        title = "Carlos Johnson"
-        subtitle = "Klassischer Geiger | Erster Konzertmeister | Dozent"
-        imageUrl = "images/carlos-profile.jpg"
-        [[languages.de.params.profileMode.buttons]]
-            name = "Biografie"
-            url = "about"
-        [[languages.de.params.profileMode.buttons]]
-            name = "YouTube"
-            url = "https://www.youtube.com/channel/UCcTXVBLzRnSgENDAKnYj1-Q"
 
   [languages.es]
     languageName = 'Español'
@@ -35,15 +26,6 @@ defaultContentLanguage = 'de'
       description = 'Violinista Clásico y Profesor'
       [languages.es.params.profileMode]
         enabled = true
-        title = "Carlos Johnson"
-        subtitle = "Violinista Clásico | Primer Concertino | Profesor"
-        imageUrl = "images/carlos-profile.jpg"
-        [[languages.es.params.profileMode.buttons]]
-            name = "Biografía"
-            url = "about"
-        [[languages.es.params.profileMode.buttons]]
-            name = "YouTube"
-            url = "https://www.youtube.com/channel/UCcTXVBLzRnSgENDAKnYj1-Q"
 
 [params]
   defaultTheme = 'light'
@@ -97,15 +79,3 @@ defaultContentLanguage = 'de'
 
 [params.profileMode]
     enabled = true
-    title = "Carlos Johnson"
-    subtitle = "Klassischer Geiger | Erster Konzertmeister | Dozent"
-    imageUrl = "images/carlos-profile.jpg"
-    imageTitle = "Carlos Johnson"
-    imageWidth = 150
-    imageHeight = 150
-    [[params.profileMode.buttons]]
-        name = "Biografie"
-        url = "about"
-    [[params.profileMode.buttons]]
-        name = "YouTube"
-        url = "https://www.youtube.com/channel/UCcTXVBLzRnSgENDAKnYj1-Q"
