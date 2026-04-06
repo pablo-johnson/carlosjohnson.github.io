@@ -2,7 +2,7 @@
 title: ''
 hideFooter: true
 home_hero:
-  eyebrow: ''
+  eyebrow: Eyebro Aleman
   title: Ou Yeah Aleman
   subtitle: Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle Ou yeahh subtitle
   autoplay_seconds: 4
