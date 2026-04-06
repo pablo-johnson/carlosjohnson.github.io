@@ -9,7 +9,7 @@ home_hero:
   slides:
     - image: /images/cj-violin.jpg
     - image: /images/cj-direktor.jpg
-    - image: /images/cj-professor.jpg
+    - image: /images/cj-professor-1.jpg
   profiles:
     - title: Violin
       brief: profile violin espanol

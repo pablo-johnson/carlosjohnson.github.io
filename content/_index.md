@@ -11,7 +11,7 @@ home_hero:
       alt: Violin
     - image: /images/cj-direktor.jpg
       alt: Director
-    - image: /images/cj-professor.jpg
+    - image: /images/cj-professor-1.jpg
       alt: Profesor
   profiles:
     - title: Violin
