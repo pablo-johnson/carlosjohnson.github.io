@@ -9,26 +9,37 @@
 {{- $profiles := $hero.profiles | default (slice) -}}
 {{- $autoplaySeconds := $hero.autoplay_seconds | default 4 -}}
 {{- $autoplayMs := mul $autoplaySeconds 1000 -}}
+{{- $rootURL := urls.Parse ((index site.Sites 0).Home.Permalink) -}}
+{{- $rootPath := $rootURL.Path -}}
 
 <section class="home-hero" data-home-carousel data-interval-ms="{{ $autoplayMs }}">
-    <div class="home-hero__slides" aria-hidden="true">
-        {{- range $index, $slide := $slides }}
-        <figure class="home-hero__slide{{ if eq $index 0 }} is-active{{ end }}" data-slide>
-            <img src="{{ $slide.image | relURL }}" alt="{{ $slide.alt | default site.Title }}">
-        </figure>
-        {{- end }}
-    </div>
     <div class="home-hero__backdrop"></div>
     <div class="home-hero__overlay"></div>
 
     <div class="home-hero__content">
-        <div class="home-hero__intro">
-            {{- with $hero.eyebrow }}
-            <p class="home-hero__eyebrow">{{ . }}</p>
-            {{- end }}
-            <h1 class="home-hero__title">{{ $hero.title | default site.Title }}</h1>
-            {{- with $hero.subtitle }}
-            <p class="home-hero__subtitle">{{ . }}</p>
+        <div class="home-hero__top">
+            <div class="home-hero__intro">
+                {{- with $hero.eyebrow }}
+                <p class="home-hero__eyebrow">{{ . }}</p>
+                {{- end }}
+                <h1 class="home-hero__title">{{ $hero.title | default site.Title }}</h1>
+                {{- with $hero.subtitle }}
+                <p class="home-hero__subtitle">{{ . }}</p>
+                {{- end }}
+            </div>
+
+            {{- if gt (len $slides) 0 }}
+            <div class="home-hero__media">
+                <div class="home-hero__slides" aria-hidden="true">
+                    {{- range $index, $slide := $slides }}
+                    {{- $slidePath := strings.TrimPrefix "/" $slide.image }}
+                    {{- $slideURL := printf "%s%s" $rootPath $slidePath }}
+                    <figure class="home-hero__slide{{ if eq $index 0 }} is-active{{ end }}" data-slide>
+                        <img src="{{ $slideURL }}" alt="{{ $slide.alt | default site.Title }}">
+                    </figure>
+                    {{- end }}
+                </div>
+            </div>
             {{- end }}
         </div>
 
