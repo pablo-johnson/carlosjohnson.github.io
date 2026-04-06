@@ -85,15 +85,55 @@
             </div>
         </div>
         {{- $currentPage := . }}
+        {{- $page_url:= $currentPage.RelPermalink }}
         <ul id="menu">
             {{- range site.Menus.main }}
             {{- $menu_item_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | relLangURL }}
-            {{- $page_url:= $currentPage.RelPermalink }}
             {{- $is_search := eq (site.GetPage .KeyName).Layout `search` }}
-            <li>
+            {{- $is_active := or (eq $menu_item_url $page_url) (and (ne $menu_item_url "/") (hasPrefix $page_url $menu_item_url)) }}
+            {{- $has_children := gt (len .Children) 0 }}
+            {{- $has_active_child := false }}
+            {{- if $has_children }}
+                {{- range .Children }}
+                    {{- $child_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | relLangURL }}
+                    {{- if or (eq $child_url $page_url) (and (ne $child_url "/") (hasPrefix $page_url $child_url)) }}
+                        {{- $has_active_child = true }}
+                    {{- end }}
+                {{- end }}
+            {{- end }}
+            <li{{ if $has_children }} class="menu-dropdown"{{ end }}>
+                {{- if $has_children }}
+                <details{{ if $has_active_child }} open{{ end }}>
+                    <summary title="{{ .Title | default .Name }}">
+                        <span {{- if or $is_active $has_active_child }} class="active" {{- end }}>
+                            {{- .Pre }}
+                            {{- .Name -}}
+                            {{ .Post -}}
+                        </span>
+                        <svg class="submenu-caret" viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M6 9l6 6 6-6" />
+                        </svg>
+                    </summary>
+                    <ul class="submenu">
+                        {{- range .Children }}
+                        {{- $child_url := (cond (strings.HasSuffix .URL "/") .URL (printf "%s/" .URL) ) | relLangURL }}
+                        {{- $child_active := or (eq $child_url $page_url) (and (ne $child_url "/") (hasPrefix $page_url $child_url)) }}
+                        <li>
+                            <a href="{{ .URL | relLangURL }}" title="{{ .Title | default .Name }}">
+                                <span {{- if $child_active }} class="active" {{- end }}>
+                                    {{- .Pre }}
+                                    {{- .Name -}}
+                                    {{ .Post -}}
+                                </span>
+                            </a>
+                        </li>
+                        {{- end }}
+                    </ul>
+                </details>
+                {{- else }}
                 <a href="{{ .URL | relLangURL }}" title="{{ .Title | default .Name }} {{- cond $is_search (" (Alt + /)" | safeHTMLAttr) ("" | safeHTMLAttr ) }}"
                 {{- cond $is_search (" accesskey=/" | safeHTMLAttr) ("" | safeHTMLAttr ) }}>
-                    <span {{- if eq $menu_item_url $page_url }} class="active" {{- end }}>
+                    <span {{- if $is_active }} class="active" {{- end }}>
                         {{- .Pre }}
                         {{- .Name -}}
                         {{ .Post -}}
@@ -107,8 +147,95 @@
                     </svg>
                     {{- end }}
                 </a>
+                {{- end }}
             </li>
             {{- end }}
         </ul>
     </nav>
 </header>
+<script>
+    (() => {
+        const dropdowns = document.querySelectorAll('#menu .menu-dropdown details');
+        const desktopHover = window.matchMedia('(hover: hover) and (pointer: fine)');
+        const closeTimers = new WeakMap();
+
+        if (dropdowns.length === 0) {
+            return;
+        }
+
+        const clearCloseTimer = (dropdown) => {
+            const timer = closeTimers.get(dropdown);
+            if (timer) {
+                window.clearTimeout(timer);
+                closeTimers.delete(dropdown);
+            }
+        };
+
+        const closeDropdown = (dropdown) => {
+            clearCloseTimer(dropdown);
+            dropdown.removeAttribute('open');
+        };
+
+        const openDropdown = (dropdown) => {
+            clearCloseTimer(dropdown);
+            dropdown.setAttribute('open', 'open');
+        };
+
+        const scheduleClose = (dropdown) => {
+            clearCloseTimer(dropdown);
+            const timer = window.setTimeout(() => {
+                dropdown.removeAttribute('open');
+                closeTimers.delete(dropdown);
+            }, 180);
+            closeTimers.set(dropdown, timer);
+        };
+
+        const bindHoverBehavior = () => {
+            dropdowns.forEach((dropdown) => {
+                const container = dropdown.closest('.menu-dropdown');
+
+                if (!container || container.dataset.hoverBound === 'true') {
+                    return;
+                }
+
+                container.dataset.hoverBound = 'true';
+
+                container.addEventListener('mouseenter', () => {
+                    if (!desktopHover.matches) {
+                        return;
+                    }
+
+                    openDropdown(dropdown);
+                });
+
+                container.addEventListener('mouseleave', () => {
+                    if (!desktopHover.matches) {
+                        return;
+                    }
+
+                    scheduleClose(dropdown);
+                });
+            });
+        };
+
+        bindHoverBehavior();
+
+        document.addEventListener('click', (event) => {
+            dropdowns.forEach((dropdown) => {
+                if (!dropdown.contains(event.target)) {
+                    closeDropdown(dropdown);
+                }
+            });
+        });
+
+        document.addEventListener('keydown', (event) => {
+            if (event.key !== 'Escape') {
+                return;
+            }
+
+            dropdowns.forEach((dropdown) => {
+                closeDropdown(dropdown);
+            });
+        });
+    })();
+</script>

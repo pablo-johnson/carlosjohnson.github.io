@@ -1,0 +1,110 @@
+{{ define "main" }}
+{{- $styles := resources.Get "css/images.css" -}}
+{{- if $styles -}}
+{{- $styles = $styles | minify -}}
+<style>{{ $styles.Content | safeCSS }}</style>
+{{- end -}}
+
+{{- if not .IsHome | and .Title }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Params.subtitle }}
+  <p class="post-subtitle">{{ .Params.subtitle }}</p>
+  {{- end }}
+  {{- if .Description }}
+  <div class="post-description">{{ .Description | markdownify }}</div>
+  {{- end }}
+</header>
+{{- end }}
+
+{{- if .Content }}
+<div class="post-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</div>
+{{- end }}
+
+{{- $gallery := slice -}}
+{{- range readDir "static/images" }}
+  {{- if not .IsDir }}
+    {{- $name := .Name -}}
+    {{- $lower := lower $name -}}
+    {{- if or (hasSuffix $lower ".jpg") (hasSuffix $lower ".jpeg") (hasSuffix $lower ".png") (hasSuffix $lower ".webp") }}
+      {{- $gallery = $gallery | append $name -}}
+    {{- end }}
+  {{- end }}
+{{- end }}
+
+{{- if gt (len $gallery) 0 }}
+<section class="image-gallery">
+  {{- range sort $gallery }}
+  {{- $src := printf "images/%s" . | relURL -}}
+  {{- $ext := path.Ext . -}}
+  {{- $base := strings.TrimSuffix $ext . -}}
+  {{- $label := replaceRE "[-_]+" " " $base | title -}}
+  <figure class="gallery-card">
+    <button class="gallery-lightbox-trigger" type="button" data-lightbox-src="{{ $src }}" data-lightbox-alt="{{ $label }}">
+      <img src="{{ $src }}" alt="{{ $label }}" loading="lazy">
+    </button>
+    <figcaption>{{ $label }}</figcaption>
+  </figure>
+  {{- end }}
+</section>
+<dialog class="image-lightbox" id="image-lightbox" aria-label="{{ if eq .Site.Language.Lang "es" }}Vista ampliada de imagen{{ else }}Vergrösserte Bildansicht{{ end }}">
+  <form method="dialog" class="image-lightbox-close-row">
+    <button class="image-lightbox-close" type="submit" aria-label="{{ if eq .Site.Language.Lang "es" }}Cerrar imagen{{ else }}Bild schliessen{{ end }}">&times;</button>
+  </form>
+  <div class="image-lightbox-frame">
+    <img id="image-lightbox-preview" src="" alt="">
+    <p id="image-lightbox-caption"></p>
+  </div>
+</dialog>
+<script>
+  (() => {
+    const dialog = document.getElementById('image-lightbox');
+    const preview = document.getElementById('image-lightbox-preview');
+    const caption = document.getElementById('image-lightbox-caption');
+    const triggers = document.querySelectorAll('.gallery-lightbox-trigger');
+
+    if (!dialog || !preview || !caption || triggers.length === 0 || typeof dialog.showModal !== 'function') {
+      return;
+    }
+
+    triggers.forEach((trigger) => {
+      trigger.addEventListener('click', () => {
+        const src = trigger.dataset.lightboxSrc;
+        const alt = trigger.dataset.lightboxAlt || '';
+
+        if (!src) {
+          return;
+        }
+
+        preview.src = src;
+        preview.alt = alt;
+        caption.textContent = alt;
+        dialog.showModal();
+      });
+    });
+
+    dialog.addEventListener('click', (event) => {
+      const frame = dialog.querySelector('.image-lightbox-frame');
+      if (frame && !frame.contains(event.target)) {
+        dialog.close();
+      }
+    });
+
+    dialog.addEventListener('close', () => {
+      preview.src = '';
+      preview.alt = '';
+      caption.textContent = '';
+    });
+  })();
+</script>
+{{- else }}
+<section class="media-empty-state">
+  <p>{{ if eq .Site.Language.Lang "es" }}Todavía no hay imágenes publicadas en esta galería.{{ else }}In dieser Galerie sind noch keine Bilder veröffentlicht.{{ end }}</p>
+</section>
+{{- end }}
+{{ end }}

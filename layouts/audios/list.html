@@ -1,0 +1,72 @@
+{{ define "main" }}
+{{- $styles := resources.Get "css/audios.css" -}}
+{{- if $styles -}}
+{{- $styles = $styles | minify -}}
+<style>{{ $styles.Content | safeCSS }}</style>
+{{- end -}}
+
+{{- if not .IsHome | and .Title }}
+<header class="page-header">
+  {{- partial "breadcrumbs.html" . }}
+  <h1>{{ .Title }}</h1>
+  {{- if .Params.subtitle }}
+  <p class="post-subtitle">{{ .Params.subtitle }}</p>
+  {{- end }}
+  {{- if .Description }}
+  <div class="post-description">{{ .Description | markdownify }}</div>
+  {{- end }}
+</header>
+{{- end }}
+
+{{- if .Content }}
+<div class="post-content">
+  {{- if not (.Param "disableAnchoredHeadings") }}
+  {{- partial "anchored_headings.html" .Content -}}
+  {{- else }}{{ .Content }}{{ end }}
+</div>
+{{- end }}
+
+{{- $videosSection := site.GetPage "section" "videos" -}}
+{{- $recordings := slice -}}
+{{- with $videosSection }}
+  {{- $recordings = .RegularPages.ByDate.Reverse -}}
+{{- end }}
+
+<section class="audio-intro-grid">
+  <article class="audio-intro-card">
+    <h2>{{ if eq .Site.Language.Lang "es" }}Escucha destacada{{ else }}Empfohlene Aufnahmen{{ end }}</h2>
+    <p>{{ if eq .Site.Language.Lang "es" }}Mientras se publican pistas dedicadas, esta biblioteca reúne interpretaciones disponibles para escucha inmediata desde el archivo audiovisual existente.{{ else }}Bis eigenständige Audios veröffentlicht werden, bündelt diese Bibliothek bereits verfügbare Interpretationen aus dem bestehenden Medienarchiv.{{ end }}</p>
+  </article>
+  <article class="audio-intro-card">
+    <h2>{{ if eq .Site.Language.Lang "es" }}Formato{{ else }}Format{{ end }}</h2>
+    <p>{{ if eq .Site.Language.Lang "es" }}Cada ficha enlaza a la grabación publicada y a la página completa de la obra para ampliar información.{{ else }}Jeder Eintrag verlinkt auf die veröffentlichte Aufnahme und auf die vollständige Werkseite mit weiteren Details.{{ end }}</p>
+  </article>
+</section>
+
+{{- if gt (len $recordings) 0 }}
+<section class="audio-library">
+  {{- range $recordings }}
+  {{- $external := cond .Params.youtube_id (printf "https://www.youtube.com/watch?v=%s" .Params.youtube_id) .RelPermalink -}}
+  <article class="audio-card">
+    <div class="audio-card-body">
+      <p class="audio-card-kicker">{{ if eq $.Site.Language.Lang "es" }}Grabación publicada{{ else }}Veröffentlichte Aufnahme{{ end }}</p>
+      <h2>{{ .Title }}</h2>
+      {{- if .Summary }}
+      <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
+      {{- else }}
+      <p>{{ .Plain | truncate 180 }}</p>
+      {{- end }}
+      <div class="audio-card-actions">
+        <a class="button-like" href="{{ $external }}" {{ if .Params.youtube_id }}target="_blank" rel="noopener"{{ end }}>{{ if eq $.Site.Language.Lang "es" }}Escuchar{{ else }}Anhören{{ end }}</a>
+        <a href="{{ .RelPermalink }}">{{ if eq $.Site.Language.Lang "es" }}Ver ficha{{ else }}Zur Werkseite{{ end }}</a>
+      </div>
+    </div>
+  </article>
+  {{- end }}
+</section>
+{{- else }}
+<section class="media-empty-state">
+  <p>{{ if eq .Site.Language.Lang "es" }}Todavía no hay grabaciones disponibles.{{ else }}Derzeit sind noch keine Aufnahmen verfügbar.{{ end }}</p>
+</section>
+{{- end }}
+{{ end }}

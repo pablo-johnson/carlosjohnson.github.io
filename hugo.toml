@@ -39,9 +39,24 @@ defaultContentLanguage = 'de'
     url = "about/"
     weight = 1
   [[languages.de.menu.main]]
+    identifier = "multimedia"
+    name = "Multimedia"
+    weight = 4
+  [[languages.de.menu.main]]
+    name = "Imágenes"
+    url = "images/"
+    parent = "multimedia"
+    weight = 1
+  [[languages.de.menu.main]]
     name = "Videos"
     url = "videos/"
-    weight = 4
+    parent = "multimedia"
+    weight = 2
+  [[languages.de.menu.main]]
+    name = "Audios"
+    url = "audios/"
+    parent = "multimedia"
+    weight = 3
   [[languages.de.menu.main]]
     name = "Konzerte"
     url = "concerts/"
@@ -61,9 +76,24 @@ defaultContentLanguage = 'de'
     url = "about/"
     weight = 1
   [[languages.es.menu.main]]
+    identifier = "multimedia"
+    name = "Multimedia"
+    weight = 4
+  [[languages.es.menu.main]]
+    name = "Imágenes"
+    url = "images/"
+    parent = "multimedia"
+    weight = 1
+  [[languages.es.menu.main]]
     name = "Videos"
     url = "videos/"
-    weight = 4
+    parent = "multimedia"
+    weight = 2
+  [[languages.es.menu.main]]
+    name = "Audios"
+    url = "audios/"
+    parent = "multimedia"
+    weight = 3
   [[languages.es.menu.main]]
     name = "Conciertos"
     url = "concerts/"
