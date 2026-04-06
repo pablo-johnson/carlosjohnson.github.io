@@ -161,8 +161,9 @@
 </style>
 
 {{- $now := now }}
-{{- $futureEvents := where .Pages "Date" ">=" $now }}
-{{- $pastEvents := where .Pages "Date" "<" $now }}
+{{- $concertPages := where .Site.RegularPages "Section" "concerts" }}
+{{- $futureEvents := where $concertPages "Date" ">=" $now }}
+{{- $pastEvents := where $concertPages "Date" "<" $now }}
 
 {{- if $futureEvents }}
 <div class="concert-section-title">{{ i18n "upcoming_events" | default "Próximos Eventos" }}</div>
