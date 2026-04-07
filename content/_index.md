@@ -1,5 +1,5 @@
 ---
-title: ''
+title: homepage
 hideFooter: true
 home_hero:
   eyebrow: Eyebrow Aleman
