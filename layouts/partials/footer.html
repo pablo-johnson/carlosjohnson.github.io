@@ -3,8 +3,104 @@
 {{- $privacyPage = site.GetPage "privacy" -}}
 {{- end -}}
 
+{{- $currentPage := . -}}
+{{- $siteSettings := site.Data.site_settings -}}
+{{- $socialLinks := dict
+    "facebook" ($siteSettings.social_links.facebook | default "#")
+    "instagram" ($siteSettings.social_links.instagram | default "#")
+    "youtube" ($siteSettings.social_links.youtube | default "#")
+-}}
+{{- $footerNavLabel := cond (eq .Lang "es") "Navegación del pie" "Fußnavigation" -}}
+{{- $socialLabel := cond (eq .Lang "es") "Redes sociales" "Soziale Netzwerke" -}}
+
 <footer class="footer">
-    <span>&copy; Carlos Johnson {{ now.Year }} · {{ i18n "developed_by" }} <a href="https://github.com/pablo-johnson" rel="noopener noreferrer" target="_blank">Pablo Johnson</a>{{ with $privacyPage }} · <a href="{{ .RelPermalink }}">{{ i18n "privacy_page_link" | default "Privacy" }}</a>{{ end }}</span>
+    <div class="footer-inner">
+        <nav class="footer-nav" aria-label="{{ $footerNavLabel }}">
+            <ul class="footer-menu">
+                {{- range site.Menus.main }}
+                {{- $isActive := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+                {{- $visibleChildren := slice }}
+                {{- if gt (len .Children) 0 }}
+                    {{- range .Children }}
+                        {{- $sectionName := strings.TrimPrefix "/" (strings.TrimSuffix "/" .URL) }}
+                        {{- $childPage := site.GetPage "section" $sectionName }}
+                        {{- $childVisible := true }}
+                        {{- with $childPage }}
+                            {{- $childVisible = .Params.show_page | default true }}
+                        {{- end }}
+                        {{- if $childVisible }}
+                            {{- $visibleChildren = $visibleChildren | append . }}
+                        {{- end }}
+                    {{- end }}
+                {{- end }}
+                {{- $hasChildren := gt (len $visibleChildren) 0 }}
+                {{- $hasActiveChild := false }}
+                {{- if $hasChildren }}
+                    {{- range $visibleChildren }}
+                        {{- if or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+                            {{- $hasActiveChild = true }}
+                        {{- end }}
+                    {{- end }}
+                {{- end }}
+                {{- if or (eq (len .Children) 0) $hasChildren }}
+                <li>
+                    {{- if $hasChildren }}
+                    <details>
+                        <summary title="{{ .Title | default .Name }}">
+                            <span{{ if or $isActive $hasActiveChild }} class="active"{{ end }}>{{ .Name }}</span>
+                            <svg class="footer-caret" viewBox="0 0 24 24" aria-hidden="true">
+                                <path d="M6 9l6 6 6-6" />
+                            </svg>
+                        </summary>
+                        <ul class="footer-submenu">
+                            {{- range $visibleChildren }}
+                            {{- $childActive := or ($currentPage.IsMenuCurrent "main" .) ($currentPage.HasMenuCurrent "main" .) }}
+                            <li>
+                                <a href="{{ .URL | relLangURL }}" title="{{ .Title | default .Name }}">
+                                    <span{{ if $childActive }} class="active"{{ end }}>{{ .Name }}</span>
+                                </a>
+                            </li>
+                            {{- end }}
+                        </ul>
+                    </details>
+                    {{- else }}
+                    <a href="{{ .URL | relLangURL }}" title="{{ .Title | default .Name }}">
+                        <span{{ if $isActive }} class="active"{{ end }}>{{ .Name }}</span>
+                    </a>
+                    {{- end }}
+                </li>
+                {{- end }}
+                {{- end }}
+            </ul>
+
+            <ul class="footer-social" aria-label="{{ $socialLabel }}">
+                <li>
+                    <a href="{{ index $socialLinks "facebook" }}" aria-label="Facebook" title="Facebook" rel="noopener noreferrer" target="_blank">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M13.5 22v-8.2h2.8l.4-3.2h-3.2V8.6c0-.9.3-1.6 1.6-1.6H17V4.1c-.3 0-1.3-.1-2.5-.1-2.4 0-4.1 1.5-4.1 4.3v2.4H7.6v3.2h2.8V22h3.1z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ index $socialLinks "instagram" }}" aria-label="Instagram" title="Instagram" rel="noopener noreferrer" target="_blank">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M7.5 2h9A5.5 5.5 0 0 1 22 7.5v9A5.5 5.5 0 0 1 16.5 22h-9A5.5 5.5 0 0 1 2 16.5v-9A5.5 5.5 0 0 1 7.5 2zm0 1.8A3.7 3.7 0 0 0 3.8 7.5v9a3.7 3.7 0 0 0 3.7 3.7h9a3.7 3.7 0 0 0 3.7-3.7v-9a3.7 3.7 0 0 0-3.7-3.7h-9zm9.7 1.4a1.1 1.1 0 1 1 0 2.2 1.1 1.1 0 0 1 0-2.2zM12 7a5 5 0 1 1 0 10 5 5 0 0 1 0-10zm0 1.8a3.2 3.2 0 1 0 0 6.4 3.2 3.2 0 0 0 0-6.4z" />
+                        </svg>
+                    </a>
+                </li>
+                <li>
+                    <a href="{{ index $socialLinks "youtube" }}" aria-label="YouTube" title="YouTube" rel="noopener noreferrer" target="_blank">
+                        <svg viewBox="0 0 24 24" aria-hidden="true">
+                            <path d="M21.6 7.2a2.8 2.8 0 0 0-2-2C17.8 4.7 12 4.7 12 4.7s-5.8 0-7.6.5a2.8 2.8 0 0 0-2 2C2 9 2 12 2 12s0 3 .4 4.8a2.8 2.8 0 0 0 2 2c1.8.5 7.6.5 7.6.5s5.8 0 7.6-.5a2.8 2.8 0 0 0 2-2c.4-1.8.4-4.8.4-4.8s0-3-.4-4.8zM9.7 15.1V8.9l5.4 3.1-5.4 3.1z" />
+                        </svg>
+                    </a>
+                </li>
+            </ul>
+        </nav>
+        <div class="footer-meta">
+            <span>&copy; Carlos Johnson {{ now.Year }} · {{ i18n "developed_by" }} <a href="https://github.com/pablo-johnson" rel="noopener noreferrer" target="_blank">Pablo Johnson</a>{{ with $privacyPage }} · <a href="{{ .RelPermalink }}">{{ i18n "privacy_page_link" | default "Privacy" }}</a>{{ end }}</span>
+        </div>
+    </div>
 </footer>
 
 {{- if (not site.Params.disableScrollToTop) }}
@@ -30,6 +126,64 @@
             localStorage.setItem("menu-scroll-position", menu.scrollLeft);
         }
     }
+
+    (() => {
+        const footerMenu = document.querySelector('.footer-menu');
+        if (!footerMenu) {
+            return;
+        }
+
+        const normalizePath = (value) => {
+            if (!value) {
+                return '';
+            }
+
+            const url = new URL(value, window.location.origin);
+            const normalized = url.pathname.replace(/\/+$/, '');
+            return normalized || '/';
+        };
+
+        const currentPath = normalizePath(window.location.pathname);
+        const isCurrentPath = (targetPath) => {
+            if (!targetPath) {
+                return false;
+            }
+
+            return currentPath === targetPath || (targetPath !== '/' && currentPath.startsWith(`${targetPath}/`));
+        };
+
+        footerMenu.querySelectorAll('.active').forEach((element) => {
+            element.classList.remove('active');
+        });
+
+        footerMenu.querySelectorAll('[aria-current="page"]').forEach((element) => {
+            element.removeAttribute('aria-current');
+        });
+
+        Array.from(footerMenu.children).forEach((item) => {
+            const directLink = Array.from(item.children).find((element) => element.tagName === 'A');
+            if (!directLink) {
+                return;
+            }
+
+            if (isCurrentPath(normalizePath(directLink.getAttribute('href')))) {
+                directLink.setAttribute('aria-current', 'page');
+                directLink.querySelector('span')?.classList.add('active');
+            }
+        });
+
+        footerMenu.querySelectorAll('.footer-submenu a').forEach((link) => {
+            if (!isCurrentPath(normalizePath(link.getAttribute('href')))) {
+                return;
+            }
+
+            link.setAttribute('aria-current', 'page');
+            link.querySelector('span')?.classList.add('active');
+
+            const parentDetails = link.closest('details');
+            parentDetails?.querySelector('summary span')?.classList.add('active');
+        });
+    })();
 
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {
         anchor.addEventListener("click", function (e) {

@@ -28,6 +28,31 @@ collections:
               widget: "string",
               hint: "Messages from Contact/Booking form will be sent to this email",
             }
+          - label: "Social Links"
+            name: "social_links"
+            widget: "object"
+            fields:
+              - {
+                  label: "Facebook URL",
+                  name: "facebook",
+                  widget: "string",
+                  required: false,
+                  hint: "Full URL to the Facebook profile or page",
+                }
+              - {
+                  label: "Instagram URL",
+                  name: "instagram",
+                  widget: "string",
+                  required: false,
+                  hint: "Full URL to the Instagram profile",
+                }
+              - {
+                  label: "YouTube URL",
+                  name: "youtube",
+                  widget: "string",
+                  required: false,
+                  hint: "Full URL to the YouTube channel or profile",
+                }
   - name: "homepage"
     label: "Homepage"
     i18n: true
