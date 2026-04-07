@@ -29,6 +29,9 @@ gallery_items:
     description: Retrato de carácter para programas, notas de prensa y anuncios de conciertos.
     alt: Carlos Johnson en un retrato artístico.
   - image: /images/wolf.jpg
+    title: Imagen de Lobo
+    description: descripcion de lobo
+    alt: Imagen de Lobo
 ---
 
 Aquí encontrarás una selección de imágenes de perfil y material visual reciente.
