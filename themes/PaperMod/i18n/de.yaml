@@ -56,6 +56,9 @@
 - id: view_all_events
   translation: "Alle Ereignisse ansehen"
 
+- id: back_to_concerts
+  translation: "Zurück zu Konzerten"
+
 - id: contact_info
   translation: "Kontaktinformationen"
 
@@ -67,6 +70,9 @@
 
 - id: contact_form_name
   translation: "Name"
+
+- id: contact_form_website
+  translation: "Webseite"
 
 - id: contact_form_phone
   translation: "Telefon"

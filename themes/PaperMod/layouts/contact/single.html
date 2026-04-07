@@ -16,7 +16,7 @@
       {{ .Content }}
     {{- end }}
 
-    <p class="contact-booking-intro">{{ i18n "contact_form_intro" | default "For booking inquiries, send your message here:" }}</p>
+    <p class="contact-booking-intro">{{ i18n "contact_form_intro" }}</p>
 
     {{- $bookingEmail := hugo.Data.site_settings.booking_email | default "" }}
     {{- if $bookingEmail }}
@@ -27,30 +27,30 @@
         <input type="hidden" name="_template" value="table">
 
         <label class="contact-booking-honeypot" for="website" aria-hidden="true">
-          Website
+          {{ i18n "contact_form_website" }}
           <input id="website" name="_honey" type="text" tabindex="-1" autocomplete="off">
         </label>
 
         <label for="name">
-          {{ i18n "contact_form_name" | default "Name" }}
+          {{ i18n "contact_form_name" }}
           <input id="name" name="name" type="text" required>
         </label>
 
         <label for="phone">
-          {{ i18n "contact_form_phone" | default "Phone" }}
+          {{ i18n "contact_form_phone" }}
           <input id="phone" name="phone" type="tel" inputmode="tel" autocomplete="tel" pattern="[0-9+()\-\s]{6,}" oninput="this.value=this.value.replace(/[^0-9+()\-\s]/g,'')" required>
         </label>
 
         <label for="message">
-          {{ i18n "contact_form_message" | default "Message" }}
+          {{ i18n "contact_form_message" }}
           <textarea id="message" name="message" rows="6" required></textarea>
         </label>
 
         <button class="contact-booking-submit" type="submit">
-          {{ i18n "contact_form_submit" | default "Send message" }}
+          {{ i18n "contact_form_submit" }}
         </button>
 
-        <p class="contact-booking-status" data-idle-label="{{ i18n "contact_form_submit" | default "Send message" }}" data-sending-label="{{ i18n "contact_form_sending" | default "Sending..." }}" data-success-message="{{ i18n "contact_form_success" | default "Your message was sent successfully." }}" data-error-message="{{ i18n "contact_form_error" | default "The message could not be sent. Please try again." }}" aria-live="polite"></p>
+        <p class="contact-booking-status" data-idle-label="{{ i18n "contact_form_submit" }}" data-sending-label="{{ i18n "contact_form_sending" }}" data-success-message="{{ i18n "contact_form_success" }}" data-error-message="{{ i18n "contact_form_error" }}" aria-live="polite"></p>
       </form>
       <script>
         (function () {
@@ -105,7 +105,7 @@
       </script>
     {{- else }}
       <div class="contact-booking-warning">
-        {{ i18n "contact_form_missing_email" | default "Booking email is not configured yet. Please try again later." }}
+        {{ i18n "contact_form_missing_email" }}
       </div>
     {{- end }}
   </div>

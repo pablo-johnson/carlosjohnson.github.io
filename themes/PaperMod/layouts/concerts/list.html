@@ -165,7 +165,7 @@
 {{- $pastEvents := where $concertPages "Date" "<" $now }}
 
 {{- if $futureEvents }}
-<div class="concert-section-title">{{ i18n "upcoming_events" | default "Próximos Eventos" }}</div>
+<div class="concert-section-title">{{ i18n "upcoming_events" }}</div>
 {{- range $futureEvents.ByDate }}
 <div class="concert-item">
   <div class="concert-item-header">
@@ -178,24 +178,24 @@
       <div class="concert-date">{{ .Date.Format "02.01.2006 15:04" }} {{ with .Params.city }}– {{ . }}{{ end }}</div>
       <dl class="concert-details">
         {{- with .Params.city }}
-        <dt>{{ i18n "city" | default "Ciudad" }}:</dt>
+        <dt>{{ i18n "city" }}:</dt>
         <dd>{{ . }}</dd>
         {{- end }}
         {{- with .Params.venue }}
-        <dt>{{ i18n "venue" | default "Sala" }}:</dt>
+        <dt>{{ i18n "venue" }}:</dt>
         <dd>{{ . }}</dd>
         {{- end }}
         {{- with .Params.repertoire }}
-        <dt>{{ i18n "repertoire" | default "Repertorio" }}:</dt>
+        <dt>{{ i18n "repertoire" }}:</dt>
         <dd>{{ . }}</dd>
         {{- end }}
       </dl>
       {{- if or .Params.ticket_link .RelPermalink }}
       <div class="concert-actions">
         {{- with .Params.ticket_link }}
-        <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "buy_tickets" | default "Comprar Entradas" }}</a>
+        <a href="{{ . }}" target="_blank" rel="noopener noreferrer">{{ i18n "buy_tickets" }}</a>
         {{- end }}
-        <a href="{{ .RelPermalink }}">{{ i18n "more_info" | default "Más Información" }}</a>
+        <a href="{{ .RelPermalink }}">{{ i18n "more_info" }}</a>
       </div>
       {{- end }}
       {{- if .PlainWords }}
@@ -208,7 +208,7 @@
 {{- end }}
 
 {{- if $pastEvents }}
-<div class="concert-section-title">{{ i18n "past_events" | default "Eventos Pasados" }}</div>
+<div class="concert-section-title">{{ i18n "past_events" }}</div>
 {{- range $pastEvents.Reverse.ByDate }}
 <div class="concert-item">
   <div class="concert-item-header">
@@ -221,21 +221,21 @@
       <div class="concert-date">{{ .Date.Format "02.01.2006 15:04" }} {{ with .Params.city }}– {{ . }}{{ end }}</div>
       <dl class="concert-details">
         {{- with .Params.city }}
-        <dt>{{ i18n "city" | default "Ciudad" }}:</dt>
+        <dt>{{ i18n "city" }}:</dt>
         <dd>{{ . }}</dd>
         {{- end }}
         {{- with .Params.venue }}
-        <dt>{{ i18n "venue" | default "Sala" }}:</dt>
+        <dt>{{ i18n "venue" }}:</dt>
         <dd>{{ . }}</dd>
         {{- end }}
         {{- with .Params.repertoire }}
-        <dt>{{ i18n "repertoire" | default "Repertorio" }}:</dt>
+        <dt>{{ i18n "repertoire" }}:</dt>
         <dd>{{ . }}</dd>
         {{- end }}
       </dl>
       {{- if .RelPermalink }}
       <div class="concert-actions">
-        <a href="{{ .RelPermalink }}">{{ i18n "more_info" | default "Más Información" }}</a>
+        <a href="{{ .RelPermalink }}">{{ i18n "more_info" }}</a>
       </div>
       {{- end }}
       {{- if .PlainWords }}

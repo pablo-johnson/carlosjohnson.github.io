@@ -1,4 +1,4 @@
 ---
-title: "Concertos - Calendario de Conciertos"
-subtitle: "Próximos Eventos"
+title: "Konzerte – Konzertkalender"
+subtitle: "Bevorstehende Veranstaltungen"
 ---
