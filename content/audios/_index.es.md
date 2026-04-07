@@ -1,10 +1,10 @@
 ---
-show_page: true
+show_page: false
 title: Audios
 subtitle: Grabaciones, repertorio y escuchas destacadas.
 gallery_audios:
   - enabled: true
-    title: "D`Ambrosio - Canzonetta op.6 - Carlos Johnson - violin"
+    title: D`Ambrosio - Canzonetta op.6 - Carlos Johnson - violin
     date: 2026-03-30T04:39:00
     youtube_id: MGreSb1NjtA
     body: |-
@@ -20,7 +20,7 @@ gallery_audios:
 
       Lukas Paulenz
   - enabled: true
-    title: "Duo para violín y piano: I. Sigilosamente · Carlos Johnson · Rieko Yoshizumi"
+    title: 'Duo para violín y piano: I. Sigilosamente · Carlos Johnson · Rieko Yoshizumi'
     date: 2024-03-30T13:41:00
     youtube_id: wGrppHaTygM
     body: |-
