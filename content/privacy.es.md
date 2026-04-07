@@ -17,7 +17,9 @@ La analítica solo se activa cuando aceptas expresamente desde el aviso de conse
 
 ## Cómo cambiar tu decisión
 
-Puedes volver a abrir la configuración de privacidad desde el botón de privacidad disponible en el sitio.
+Puedes volver a abrir tu elección aquí:
+
+{{< analytics-consent-manage >}}Abrir configuración de privacidad{{< /analytics-consent-manage >}}
 
 ## Nota
 

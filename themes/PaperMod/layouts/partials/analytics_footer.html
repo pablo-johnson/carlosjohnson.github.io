@@ -22,18 +22,14 @@
     </div>
 </div>
 
-<button type="button" class="analytics-consent__manage" data-analytics-manage hidden>
-    {{ i18n "analytics_consent_manage" | default "Privacy settings" }}
-</button>
-
 <script>
     (function () {
         var consentBanner = document.querySelector('[data-analytics-consent]');
-        var manageButton = document.querySelector('[data-analytics-manage]');
+        var manageButtons = document.querySelectorAll('[data-analytics-manage]');
         var analytics = window.paperModAnalytics;
         var language = '{{ site.Language.Lang }}';
 
-        if (!consentBanner || !manageButton || !analytics) {
+        if (!consentBanner || !analytics) {
             return;
         }
 
@@ -43,12 +39,10 @@
 
         function showBanner() {
             consentBanner.hidden = false;
-            manageButton.hidden = true;
         }
 
         function hideBanner() {
             consentBanner.hidden = true;
-            manageButton.hidden = false;
         }
 
         if (analytics.getConsentState()) {
@@ -70,8 +64,10 @@
             hideBanner();
         });
 
-        manageButton.addEventListener('click', function () {
-            showBanner();
+        manageButtons.forEach(function (manageButton) {
+            manageButton.addEventListener('click', function () {
+                showBanner();
+            });
         });
 
         function trackDatasetEvent(element) {

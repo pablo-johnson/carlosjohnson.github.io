@@ -17,7 +17,9 @@ Analytics wird erst aktiviert, wenn Sie im Hinweisfenster ausdrücklich zustimme
 
 ## Zustimmung ändern
 
-Über die Schaltfläche für Datenschutzeinstellungen auf der Website können Sie Ihre Entscheidung erneut aufrufen.
+Sie können Ihre Auswahl hier erneut öffnen:
+
+{{< analytics-consent-manage >}}Datenschutzeinstellungen öffnen{{< /analytics-consent-manage >}}
 
 ## Hinweis
 

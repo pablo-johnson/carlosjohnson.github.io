@@ -82,15 +82,15 @@
 }
 
 .analytics-consent__manage {
-  position: fixed;
-  left: 20px;
-  bottom: 20px;
-  z-index: 110;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-top: 12px;
   padding: 10px 14px;
-  background: color-mix(in srgb, var(--theme) 92%, white 8%);
+  background: transparent;
   border-color: var(--border);
   color: var(--primary);
-  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.12);
+  box-shadow: none;
 }
 
 @media (max-width: 640px) {
@@ -108,13 +108,9 @@
   }
 
   .analytics-consent__button,
-  .analytics-consent__link {
+  .analytics-consent__link,
+  .analytics-consent__manage {
     width: 100%;
     text-align: center;
-  }
-
-  .analytics-consent__manage {
-    left: 16px;
-    bottom: 16px;
   }
 }
