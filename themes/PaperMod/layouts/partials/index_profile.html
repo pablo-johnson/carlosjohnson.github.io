@@ -14,6 +14,13 @@
 {{- $concertPages := where .Site.RegularPages "Section" "concerts" -}}
 {{- $upcomingEvents := where $concertPages "Date" ">=" now -}}
 {{- $concertsListPage := .Site.GetPage "section" "concerts" -}}
+{{- $subtitle := "" -}}
+{{- with $hero.subtitle -}}
+{{- $subtitle = . | plainify | chomp -}}
+{{- if gt (len $subtitle) 500 -}}
+{{- $subtitle = slicestr $subtitle 0 500 -}}
+{{- end -}}
+{{- end -}}
 
 <section class="home-hero" data-home-carousel data-interval-ms="{{ $autoplayMs }}">
     <div class="home-hero__backdrop"></div>
@@ -26,7 +33,7 @@
                 <p class="home-hero__eyebrow">{{ . }}</p>
                 {{- end }}
                 <h1 class="home-hero__title">{{ $hero.title | default site.Title }}</h1>
-                {{- with $hero.subtitle }}
+                {{- with $subtitle }}
                 <p class="home-hero__subtitle">{{ . }}</p>
                 {{- end }}
             </div>

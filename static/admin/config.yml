@@ -59,7 +59,15 @@ collections:
             fields:
               - { label: "Eyebrow", name: "eyebrow", widget: "string", i18n: true, required: false }
               - { label: "Title", name: "title", widget: "string", i18n: true }
-              - { label: "Subtitle", name: "subtitle", widget: "text", i18n: true, required: false }
+              - {
+                  label: "Subtitle",
+                  name: "subtitle",
+                  widget: "text",
+                  i18n: true,
+                  required: false,
+                  hint: "Max 500 characters.",
+                  pattern: ["^[\\s\\S]{0,500}$", "Must be 500 characters or fewer."],
+                }
               - {
                   label: "Autoplay Seconds",
                   name: "autoplay_seconds",
