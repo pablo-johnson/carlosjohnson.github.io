@@ -33,28 +33,29 @@
       <p class="video-detail-date">{{ time.Format ":date_medium" . }}</p>
       {{- end }}
       {{- if $video.youtube_id }}
-      <div class="video-detail-player">
-        <iframe src="https://www.youtube-nocookie.com/embed/{{ $video.youtube_id }}?rel=0"
-                loading="lazy"
-                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                referrerpolicy="strict-origin-when-cross-origin"
-                allowfullscreen
-                title="{{ $video.title | plainify }}"></iframe>
+      <div class="video-detail-player-frame">
+        <div class="video-detail-player">
+          <iframe src="https://www.youtube-nocookie.com/embed/{{ $video.youtube_id }}?rel=0"
+                  loading="lazy"
+                  allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                  referrerpolicy="strict-origin-when-cross-origin"
+                  allowfullscreen
+                  title="{{ $video.title | plainify }}"></iframe>
+        </div>
       </div>
       {{- else if $coverSrc }}
-      <figure class="video-detail-cover">
-        <img loading="lazy" src="{{ $coverSrc }}" alt="{{ $video.title | plainify }}">
-      </figure>
-      {{- end }}
-      {{- with $video.body }}
-      <div class="post-content video-detail-body">
-        {{ . | markdownify }}
+      <div class="video-detail-player-frame">
+        <figure class="video-detail-cover">
+          <img loading="lazy" src="{{ $coverSrc }}" alt="{{ $video.title | plainify }}">
+        </figure>
       </div>
       {{- end }}
-      {{- if $video.youtube_id }}
-      <p class="video-detail-link-wrap">
-        <a class="video-detail-link" href="{{ printf "https://www.youtube.com/watch?v=%s" $video.youtube_id }}" target="_blank" rel="noopener noreferrer">{{ if eq $.Site.Language.Lang "es" }}Abrir en YouTube{{ else }}Auf YouTube ansehen{{ end }}</a>
-      </p>
+      {{- with $video.body }}
+      <div class="video-detail-body-frame">
+        <div class="post-content video-detail-body">
+          {{ . | markdownify }}
+        </div>
+      </div>
       {{- end }}
     </section>
     {{- end }}
