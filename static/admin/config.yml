@@ -297,7 +297,7 @@ collections:
             i18n: true
             summary: "{{fields.title}}"
             required: false
-            hint: "Reorder the list to control the gallery sequence. Disable a video to hide it without deleting it."
+            hint: "Reorder the list to control the gallery sequence. Each video opens on a separate detail page. Disable a video to hide it without deleting it."
             fields:
               - { label: "Show in Gallery", name: "enabled", widget: "boolean", default: true, i18n: duplicate }
               - { label: "Title", name: "title", widget: "string", i18n: true }

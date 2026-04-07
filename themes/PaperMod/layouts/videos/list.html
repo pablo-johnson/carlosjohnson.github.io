@@ -51,10 +51,7 @@
 
 {{- $videos := where (.Params.gallery_videos | default (slice)) "enabled" "!=" false -}}
 {{- range $index, $video := $videos }}
-{{- $youtubeURL := "" -}}
-{{- with $video.youtube_id }}
-  {{- $youtubeURL = printf "https://www.youtube.com/watch?v=%s" . -}}
-{{- end -}}
+{{- $videoID := $video.youtube_id | default (printf "video-%d" $index) -}}
 {{- $coverSrc := "" -}}
 {{- with $video.cover.image }}
   {{- $coverSrc = . -}}
@@ -75,23 +72,22 @@
     {{- end }}
     <div class="video-content">
       <header class="entry-header">
-        <h2 class="entry-hint-parent">{{- $video.title -}}</h2>
+        <h2 class="entry-hint-parent">{{ $video.title }}</h2>
       </header>
       {{- if $summary }}
       <div class="entry-content">
         <p>{{ $summary | truncate 220 }}</p>
       </div>
       {{- end }}
-      {{- with $video.date }}
       <footer class="entry-footer">
+        {{- with $video.date }}
         <span>{{ time.Format ":date_medium" . }}</span>
+        {{- end }}
       </footer>
-      {{- end }}
+      <span class="video-entry-cta">{{ if eq $.Site.Language.Lang "es" }}Ver detalle{{ else }}Details ansehen{{ end }}</span>
     </div>
   </div>
-  {{- if $youtubeURL }}
-  <a class="entry-link" aria-label="video link to {{ $video.title | plainify }}" href="{{ $youtubeURL }}" target="_blank" rel="noopener"></a>
-  {{- end }}
+  <a class="entry-link" aria-label="video link to {{ $video.title | plainify }}" href="{{ printf "%s?video=%s" ("videos/detail/" | relLangURL) ($videoID | urlquery) }}"></a>
 </article>
 {{- end }}
 
