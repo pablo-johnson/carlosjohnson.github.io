@@ -119,12 +119,12 @@ collections:
               i18n: true,
             }
           - { label: "Content", name: "body", widget: "markdown", i18n: true }
-  - name: "images_page"
-    label: "Images / Imágenes"
+  - name: "multimedia_resources"
+    label: "Multimedia / Resources"
     i18n: true
     files:
       - label: "Images Gallery"
-        name: "images"
+        name: "images_gallery"
         file: "content/images/_index.{{locale}}.md"
         i18n: true
         fields:
@@ -150,18 +150,60 @@ collections:
               - { label: "Title", name: "title", widget: "string", i18n: true }
               - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
               - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false }
-  - name: "videos_list"
-    label: "Videos / Concerts - List Page"
-    i18n: true
-    files:
-      - label: "Videos List Settings"
-        name: "videos_list"
+      - label: "Videos Gallery"
+        name: "videos_gallery"
         file: "content/videos/_index.{{locale}}.md"
         i18n: true
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }
           - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
-          - { label: "Content", name: "body", widget: "markdown", i18n: true, required: false }
+          - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }
+          - label: "Gallery Images"
+            name: "gallery_items"
+            widget: "list"
+            i18n: true
+            summary: "{{fields.title}}"
+            required: false
+            hint: "Reorder the list to control the gallery sequence. Disable an image to hide it without deleting it."
+            fields:
+              - { label: "Show in Gallery", name: "enabled", widget: "boolean", default: true, i18n: duplicate }
+              - {
+                  label: "Image",
+                  name: "image",
+                  widget: "image",
+                  i18n: duplicate,
+                  hint: "Recommended: 1600 px or larger on the long side.",
+                }
+              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+              - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false }
+      - label: "Audios Gallery"
+        name: "audios_gallery"
+        file: "content/audios/_index.{{locale}}.md"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
+          - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }
+          - label: "Gallery Images"
+            name: "gallery_items"
+            widget: "list"
+            i18n: true
+            summary: "{{fields.title}}"
+            required: false
+            hint: "Reorder the list to control the gallery sequence. Disable an image to hide it without deleting it."
+            fields:
+              - { label: "Show in Gallery", name: "enabled", widget: "boolean", default: true, i18n: duplicate }
+              - {
+                  label: "Image",
+                  name: "image",
+                  widget: "image",
+                  i18n: duplicate,
+                  hint: "Recommended: 1600 px or larger on the long side.",
+                }
+              - { label: "Title", name: "title", widget: "string", i18n: true }
+              - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+              - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false }
   - name: "videos"
     label: "Videos / Concerts"
     folder: "content/videos"
