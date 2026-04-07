@@ -37,6 +37,17 @@
   color: var(--secondary);
 }
 
+.gallery-card figcaption strong {
+  display: block;
+  color: var(--primary);
+  font-size: 1rem;
+}
+
+.gallery-card figcaption p {
+  margin: 0.35rem 0 0;
+  line-height: 1.5;
+}
+
 .image-lightbox {
   width: min(92vw, 1100px);
   max-width: 1100px;
@@ -70,10 +81,18 @@
 }
 
 .image-lightbox-frame {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 1rem;
+  align-items: center;
   padding: 1rem;
   background: rgba(18, 18, 18, 0.96);
   border: 1px solid rgba(255, 255, 255, 0.12);
   border-radius: 20px;
+}
+
+.image-lightbox-content {
+  min-width: 0;
 }
 
 .image-lightbox-frame img {
@@ -84,10 +103,59 @@
   border-radius: 14px;
 }
 
-.image-lightbox-frame p {
-  margin: 0.85rem 0 0;
+.image-lightbox-meta {
+  margin-top: 0.85rem;
   text-align: center;
+}
+
+.image-lightbox-counter {
+  margin: 0;
+  font-size: 0.9rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.56);
+}
+
+.image-lightbox-meta h2 {
+  margin: 0.4rem 0 0;
+  font-size: clamp(1.2rem, 2vw, 1.6rem);
+  color: #fff;
+}
+
+.image-lightbox-meta p {
+  margin: 0.65rem 0 0;
   color: rgba(255, 255, 255, 0.8);
+  line-height: 1.6;
+}
+
+.image-lightbox-nav {
+  width: 3rem;
+  height: 3rem;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  font-size: 1.75rem;
+  color: #fff;
+  background: rgba(255, 255, 255, 0.12);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.image-lightbox-nav:hover,
+.image-lightbox-nav:focus-visible,
+.image-lightbox-close:hover,
+.image-lightbox-close:focus-visible {
+  background: rgba(255, 255, 255, 0.2);
+  transform: translateY(-1px);
+}
+
+.image-lightbox-nav[disabled] {
+  opacity: 0.35;
+  cursor: default;
+  transform: none;
 }
 
 .media-empty-state {
@@ -96,4 +164,44 @@
   background: var(--entry);
   border: 1px solid var(--border);
   border-radius: 16px;
+}
+
+@media (max-width: 720px) {
+  .image-lightbox {
+    width: min(96vw, 1100px);
+  }
+
+  .image-lightbox-frame {
+    grid-template-columns: 1fr;
+    gap: 0.75rem;
+  }
+
+  .image-lightbox-content {
+    order: 1;
+  }
+
+  .image-lightbox-nav {
+    order: 2;
+    justify-self: center;
+  }
+
+  .image-lightbox-nav--next {
+    margin-top: -3.75rem;
+    justify-self: end;
+  }
+
+  .image-lightbox-nav--prev {
+    margin-top: -3.75rem;
+    justify-self: start;
+  }
+}
+
+@media (max-width: 520px) {
+  .gallery-card img {
+    height: 220px;
+  }
+
+  .image-lightbox-frame img {
+    max-height: 62vh;
+  }
 }

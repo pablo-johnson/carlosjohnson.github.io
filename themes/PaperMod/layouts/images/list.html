@@ -4,6 +4,7 @@
 {{- $styles = $styles | minify -}}
 <style>{{ $styles.Content | safeCSS }}</style>
 {{- end -}}
+{{- $galleryScript := resources.Get "js/images-gallery.js" -}}
 
 {{- if not .IsHome | and .Title }}
 <header class="page-header">
@@ -26,82 +27,62 @@
 </div>
 {{- end }}
 
-{{- $gallery := slice -}}
-{{- range readDir "static/images" }}
-  {{- if not .IsDir }}
-    {{- $name := .Name -}}
-    {{- $lower := lower $name -}}
-    {{- if or (hasSuffix $lower ".jpg") (hasSuffix $lower ".jpeg") (hasSuffix $lower ".png") (hasSuffix $lower ".webp") }}
-      {{- $gallery = $gallery | append $name -}}
-    {{- end }}
-  {{- end }}
-{{- end }}
+{{- $gallery := where (.Params.gallery_items | default (slice)) "enabled" "!=" false -}}
+{{- $pageTitle := .Title -}}
+{{- $prevLabel := cond (eq .Site.Language.Lang "es") "Imagen anterior" "Vorheriges Bild" -}}
+{{- $nextLabel := cond (eq .Site.Language.Lang "es") "Imagen siguiente" "Nächstes Bild" -}}
+{{- $closeLabel := cond (eq .Site.Language.Lang "es") "Cerrar galería" "Galerie schliessen" -}}
+{{- $counterSeparator := cond (eq .Site.Language.Lang "es") "de" "von" -}}
 
 {{- if gt (len $gallery) 0 }}
-<section class="image-gallery">
-  {{- range sort $gallery }}
-  {{- $src := printf "images/%s" . | relURL -}}
-  {{- $ext := path.Ext . -}}
-  {{- $base := strings.TrimSuffix $ext . -}}
-  {{- $label := replaceRE "[-_]+" " " $base | title -}}
+<section class="image-gallery" data-image-gallery data-counter-separator="{{ $counterSeparator }}">
+  {{- range $index, $item := $gallery }}
+  {{- $src := $item.image -}}
+  {{- if and $src (not (or (hasPrefix $src "http://") (hasPrefix $src "https://"))) -}}
+    {{- $src = (strings.TrimPrefix "/" $src) | relURL -}}
+  {{- end -}}
+  {{- $title := $item.title | default (printf "%s %d" $pageTitle (add $index 1)) -}}
+  {{- $description := $item.description | default "" -}}
+  {{- $alt := $item.alt | default $title -}}
   <figure class="gallery-card">
-    <button class="gallery-lightbox-trigger" type="button" data-lightbox-src="{{ $src }}" data-lightbox-alt="{{ $label }}">
-      <img src="{{ $src }}" alt="{{ $label }}" loading="lazy">
+    <button class="gallery-lightbox-trigger" type="button" data-lightbox-index="{{ $index }}" data-lightbox-src="{{ $src }}" data-lightbox-alt="{{ $alt }}" data-lightbox-title="{{ $title }}" data-lightbox-description="{{ $description }}">
+      <img src="{{ $src }}" alt="{{ $alt }}" loading="lazy">
     </button>
-    <figcaption>{{ $label }}</figcaption>
+    <figcaption>
+      <strong>{{ $title }}</strong>
+      {{- with $description }}
+      <p>{{ . }}</p>
+      {{- end }}
+    </figcaption>
   </figure>
   {{- end }}
 </section>
 <dialog class="image-lightbox" id="image-lightbox" aria-label="{{ if eq .Site.Language.Lang "es" }}Vista ampliada de imagen{{ else }}Vergrösserte Bildansicht{{ end }}">
   <form method="dialog" class="image-lightbox-close-row">
-    <button class="image-lightbox-close" type="submit" aria-label="{{ if eq .Site.Language.Lang "es" }}Cerrar imagen{{ else }}Bild schliessen{{ end }}">&times;</button>
+    <button class="image-lightbox-close" type="submit" aria-label="{{ $closeLabel }}">&times;</button>
   </form>
   <div class="image-lightbox-frame">
-    <img id="image-lightbox-preview" src="" alt="">
-    <p id="image-lightbox-caption"></p>
+    <button class="image-lightbox-nav image-lightbox-nav--prev" type="button" aria-label="{{ $prevLabel }}">&#10094;</button>
+    <div class="image-lightbox-content">
+      <img id="image-lightbox-preview" src="" alt="">
+      <div class="image-lightbox-meta">
+        <p id="image-lightbox-counter" class="image-lightbox-counter"></p>
+        <h2 id="image-lightbox-title"></h2>
+        <p id="image-lightbox-caption"></p>
+      </div>
+    </div>
+    <button class="image-lightbox-nav image-lightbox-nav--next" type="button" aria-label="{{ $nextLabel }}">&#10095;</button>
   </div>
 </dialog>
-<script>
-  (() => {
-    const dialog = document.getElementById('image-lightbox');
-    const preview = document.getElementById('image-lightbox-preview');
-    const caption = document.getElementById('image-lightbox-caption');
-    const triggers = document.querySelectorAll('.gallery-lightbox-trigger');
-
-    if (!dialog || !preview || !caption || triggers.length === 0 || typeof dialog.showModal !== 'function') {
-      return;
-    }
-
-    triggers.forEach((trigger) => {
-      trigger.addEventListener('click', () => {
-        const src = trigger.dataset.lightboxSrc;
-        const alt = trigger.dataset.lightboxAlt || '';
-
-        if (!src) {
-          return;
-        }
-
-        preview.src = src;
-        preview.alt = alt;
-        caption.textContent = alt;
-        dialog.showModal();
-      });
-    });
-
-    dialog.addEventListener('click', (event) => {
-      const frame = dialog.querySelector('.image-lightbox-frame');
-      if (frame && !frame.contains(event.target)) {
-        dialog.close();
-      }
-    });
-
-    dialog.addEventListener('close', () => {
-      preview.src = '';
-      preview.alt = '';
-      caption.textContent = '';
-    });
-  })();
-</script>
+{{- with $galleryScript }}
+{{- $script := . | minify -}}
+{{- if not site.Params.assets.disableFingerprinting }}
+{{- $script = $script | fingerprint }}
+<script defer crossorigin="anonymous" src="{{ $script.RelPermalink }}" integrity="{{ $script.Data.Integrity }}"></script>
+{{- else }}
+<script defer src="{{ $script.RelPermalink }}"></script>
+{{- end }}
+{{- end }}
 {{- else }}
 <section class="media-empty-state">
   <p>{{ if eq .Site.Language.Lang "es" }}Todavía no hay imágenes publicadas en esta galería.{{ else }}In dieser Galerie sind noch keine Bilder veröffentlicht.{{ end }}</p>
