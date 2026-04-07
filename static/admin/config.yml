@@ -18,7 +18,7 @@ collections:
   - name: "site_settings"
     label: "Site Settings"
     files:
-      - label: "General Contact Settings"
+      - label: "General Settings"
         name: "general_contact_settings"
         file: "data/site_settings.yml"
         fields:
