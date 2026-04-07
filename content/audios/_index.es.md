@@ -1,5 +1,5 @@
 ---
-show_page: false
+show_page: true
 title: Audios
 subtitle: Grabaciones, repertorio y escuchas destacadas.
 gallery_audios:
