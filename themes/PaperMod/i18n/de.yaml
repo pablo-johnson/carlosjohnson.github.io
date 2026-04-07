@@ -31,3 +31,105 @@
 
 - id: code_copied
   translation: "Kopiert!"
+
+- id: upcoming_events
+  translation: "Kommende Ereignisse"
+
+- id: past_events
+  translation: "Vergangene Ereignisse"
+
+- id: city
+  translation: "Stadt"
+
+- id: venue
+  translation: "Konzertsaal"
+
+- id: repertoire
+  translation: "Repertoire"
+
+- id: buy_tickets
+  translation: "Karten Kaufen"
+
+- id: more_info
+  translation: "Mehr Informationen"
+
+- id: view_all_events
+  translation: "Alle Ereignisse ansehen"
+
+- id: contact_info
+  translation: "Kontaktinformationen"
+
+- id: email
+  translation: "E-Mail"
+
+- id: phone
+  translation: "Telefon"
+
+- id: contact_form_name
+  translation: "Name"
+
+- id: contact_form_phone
+  translation: "Telefon"
+
+- id: contact_form_message
+  translation: "Nachricht"
+
+- id: contact_form_submit
+  translation: "Nachricht senden"
+
+- id: contact_form_missing_email
+  translation: "Booking-E-Mail ist noch nicht konfiguriert. Bitte später erneut versuchen."
+
+- id: contact_form_intro
+  translation: "Für Konzertanfragen und Booking senden Sie bitte eine Nachricht:"
+
+- id: contact_form_sending
+  translation: "Wird gesendet..."
+
+- id: contact_form_success
+  translation: "Ihre Nachricht wurde erfolgreich gesendet."
+
+- id: contact_form_error
+  translation: "Die Nachricht konnte nicht gesendet werden. Bitte versuchen Sie es erneut."
+
+- id: teaching_germany_chair
+  translation: "Professur in Deutschland"
+
+- id: teaching_peru_chair
+  translation: "Professur in Peru"
+
+- id: teaching_masterclasses
+  translation: "Meisterkurse"
+
+- id: teaching_resources
+  translation: "Ressourcen für Studierende"
+
+- id: teaching_admissions
+  translation: "Bewerbung"
+
+- id: teaching_auditions
+  translation: "Aufnahmeprüfungen"
+
+- id: teaching_projects
+  translation: "Talentförderung"
+
+- id: teaching_calendar
+  translation: "Kalender"
+
+- id: teaching_private_area
+  translation: "Privater Bereich"
+
+- id: teaching_institution_website
+  translation: "Institution besuchen"
+
+- id: teaching_available_soon
+  translation: "Details folgen in Kürze."
+
+- id: teaching_date
+  translation: "Termin"
+
+- id: teaching_location
+  translation: "Ort"
+
+- id: teaching_access_note
+  translation: "Zugang"
