@@ -26,11 +26,7 @@
 </div>
 {{- end }}
 
-{{- $videosSection := site.GetPage "section" "videos" -}}
-{{- $recordings := slice -}}
-{{- with $videosSection }}
-  {{- $recordings = .RegularPages.ByDate.Reverse -}}
-{{- end }}
+{{- $recordings := where (.Params.gallery_audios | default (slice)) "enabled" "!=" false -}}
 
 <section class="audio-intro-grid">
   <article class="audio-intro-card">
@@ -46,19 +42,25 @@
 {{- if gt (len $recordings) 0 }}
 <section class="audio-library">
   {{- range $recordings }}
-  {{- $external := cond .Params.youtube_id (printf "https://www.youtube.com/watch?v=%s" .Params.youtube_id) .RelPermalink -}}
+  {{- $external := .audio_url | default "" -}}
+  {{- if and (not $external) .youtube_id -}}
+    {{- $external = printf "https://www.youtube.com/watch?v=%s" .youtube_id -}}
+  {{- end -}}
+  {{- $summary := (.body | default "" | markdownify | plainify | htmlUnescape | strings.TrimSpace) -}}
   <article class="audio-card">
     <div class="audio-card-body">
       <p class="audio-card-kicker">{{ if eq $.Site.Language.Lang "es" }}Grabación publicada{{ else }}Veröffentlichte Aufnahme{{ end }}</p>
-      <h2>{{ .Title }}</h2>
-      {{- if .Summary }}
-      <p>{{ .Summary | plainify | htmlUnescape }}{{ if .Truncated }}...{{ end }}</p>
-      {{- else }}
-      <p>{{ .Plain | truncate 180 }}</p>
+      <h2>{{ .title }}</h2>
+      {{- if $summary }}
+      <p>{{ $summary | truncate 180 }}</p>
+      {{- end }}
+      {{- with .date }}
+      <p class="audio-card-kicker">{{ time.Format ":date_medium" . }}</p>
       {{- end }}
       <div class="audio-card-actions">
-        <a class="button-like" href="{{ $external }}" {{ if .Params.youtube_id }}target="_blank" rel="noopener"{{ end }}>{{ if eq $.Site.Language.Lang "es" }}Escuchar{{ else }}Anhören{{ end }}</a>
-        <a href="{{ .RelPermalink }}">{{ if eq $.Site.Language.Lang "es" }}Ver ficha{{ else }}Zur Werkseite{{ end }}</a>
+        {{- if $external }}
+        <a class="button-like" href="{{ $external }}" target="_blank" rel="noopener">{{ if eq $.Site.Language.Lang "es" }}Escuchar{{ else }}Anhören{{ end }}</a>
+        {{- end }}
       </div>
     </div>
   </article>
