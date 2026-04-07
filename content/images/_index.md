@@ -32,7 +32,7 @@ gallery_items:
     image: /images/wolf.jpg
     title: Lobo
     description: Imagen de Lobo
-    alt: ''
+    alt: Imagen de Lobo
 ---
 
 Eine Auswahl aktueller Presse- und Profilbilder steht hier gesammelt bereit.
