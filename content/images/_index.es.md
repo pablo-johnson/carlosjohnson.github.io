@@ -1,4 +1,5 @@
 ---
+show_page: true
 title: Imágenes
 subtitle: Una galería curada con retratos e imágenes de concierto.
 gallery_items:

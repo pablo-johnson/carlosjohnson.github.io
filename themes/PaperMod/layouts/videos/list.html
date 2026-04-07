@@ -4,6 +4,7 @@
 {{ $styles = $styles | minify }}
 <style>{{ $styles.Content | safeCSS }}</style>
 {{ end }}
+{{- if .Params.show_page | default true }}
 
 {{- if (and site.Params.profileMode.enabled .IsHome) }}
 {{- partial "index_profile.html" . }}
@@ -101,5 +102,6 @@
 {{- end }}
 
 {{- end }}{{/* end profileMode */}}
+{{- end }}
 
 {{- end }}{{- /* end main */ -}}

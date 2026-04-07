@@ -5,6 +5,7 @@
 <style>{{ $styles.Content | safeCSS }}</style>
 {{- end -}}
 {{- $galleryScript := resources.Get "js/images-gallery.js" -}}
+{{- if .Params.show_page | default true }}
 
 {{- if not .IsHome | and .Title }}
 <header class="page-header">
@@ -87,5 +88,6 @@
 <section class="media-empty-state">
   <p>{{ if eq .Site.Language.Lang "es" }}Todavía no hay imágenes publicadas en esta galería.{{ else }}In dieser Galerie sind noch keine Bilder veröffentlicht.{{ end }}</p>
 </section>
+{{- end }}
 {{- end }}
 {{ end }}

@@ -1,4 +1,5 @@
 ---
+show_page: true
 title: Bilder
 subtitle: Eine kuratierte Galerie mit Porträts und Konzertbildern.
 gallery_items:

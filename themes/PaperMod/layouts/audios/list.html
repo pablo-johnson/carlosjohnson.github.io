@@ -4,6 +4,7 @@
 {{- $styles = $styles | minify -}}
 <style>{{ $styles.Content | safeCSS }}</style>
 {{- end -}}
+{{- if .Params.show_page | default true }}
 
 {{- if not .IsHome | and .Title }}
 <header class="page-header">
@@ -70,5 +71,6 @@
 <section class="media-empty-state">
   <p>{{ if eq .Site.Language.Lang "es" }}Todavía no hay grabaciones disponibles.{{ else }}Derzeit sind noch keine Aufnahmen verfügbar.{{ end }}</p>
 </section>
+{{- end }}
 {{- end }}
 {{ end }}

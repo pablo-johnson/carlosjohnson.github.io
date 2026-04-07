@@ -1,4 +1,5 @@
 ---
+show_page: true
 title: Audio
 subtitle: Hörbeispiele, Repertoire und veröffentlichte Mitschnitte.
 gallery_audios:

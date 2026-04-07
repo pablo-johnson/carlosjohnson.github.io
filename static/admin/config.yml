@@ -128,6 +128,7 @@ collections:
         file: "content/images/_index.{{locale}}.md"
         i18n: true
         fields:
+          - { label: "Show Page in Submenu", name: "show_page", widget: "boolean", default: true, i18n: duplicate }
           - { label: "Title", name: "title", widget: "string", i18n: true }
           - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
           - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }
@@ -155,6 +156,7 @@ collections:
         file: "content/videos/_index.{{locale}}.md"
         i18n: true
         fields:
+          - { label: "Show Page in Submenu", name: "show_page", widget: "boolean", default: true, i18n: duplicate }
           - { label: "Title", name: "title", widget: "string", i18n: true }
           - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
           - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }
@@ -189,6 +191,7 @@ collections:
         file: "content/audios/_index.{{locale}}.md"
         i18n: true
         fields:
+          - { label: "Show Page in Submenu", name: "show_page", widget: "boolean", default: true, i18n: duplicate }
           - { label: "Title", name: "title", widget: "string", i18n: true }
           - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
           - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }

@@ -1,4 +1,5 @@
 ---
+show_page: true
 title: Videos
 subtitle: Esto es una descripcion opcional en aleman 2
 gallery_videos:
