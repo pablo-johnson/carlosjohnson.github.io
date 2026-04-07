@@ -104,14 +104,14 @@
             <p class="home-event-card__summary">{{ .Summary | plainify | truncate 110 }}</p>
             {{- end }}
 
-            <a class="home-event-card__link" href="{{ .RelPermalink }}">{{ i18n "more_info" }}</a>
+            <a class="home-event-card__link" href="{{ .RelPermalink }}" data-analytics-event="select_content" data-analytics-label="{{ .Title }}" data-analytics-location="home_events" data-analytics-type="concert">{{ i18n "more_info" }}</a>
         </article>
         {{- end }}
     </div>
 
     {{- with $concertsListPage }}
     <div class="home-events__actions">
-        <a class="home-events__link" href="{{ .RelPermalink }}">{{ i18n "view_all_events" }}</a>
+        <a class="home-events__link" href="{{ .RelPermalink }}" data-analytics-event="view_item_list" data-analytics-label="{{ .Title }}" data-analytics-location="home_events" data-analytics-type="concerts_list">{{ i18n "view_all_events" }}</a>
     </div>
     {{- end }}
 </section>

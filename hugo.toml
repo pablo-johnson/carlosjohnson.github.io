@@ -5,6 +5,10 @@ theme = 'PaperMod'
 canonifyURLs = false
 buildFuture = true
 
+[services]
+  [services.googleAnalytics]
+    id = 'G-FHH7XVEBFG'
+
 # Configuracion Multilingue: Alemán por defecto
 defaultContentLanguage = 'de'
 

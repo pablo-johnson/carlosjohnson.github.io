@@ -91,6 +91,13 @@
                 form.reset();
                 status.className = 'contact-booking-status is-visible is-success';
                 status.textContent = status.dataset.successMessage;
+
+                if (window.paperModAnalytics) {
+                  window.paperModAnalytics.track('contact_form_submit_success', {
+                    form_name: 'contact_booking',
+                    page_language: '{{ site.Language.Lang }}'
+                  });
+                }
               })
               .catch(function () {
                 status.className = 'contact-booking-status is-visible is-error';

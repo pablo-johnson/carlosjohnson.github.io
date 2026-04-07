@@ -145,3 +145,27 @@
 
 - id: teaching_access_note
   translation: "Zugang"
+
+- id: privacy_page_link
+  translation: "Datenschutz"
+
+- id: analytics_consent_eyebrow
+  translation: "Analyse"
+
+- id: analytics_consent_title
+  translation: "Diese Website verbessern"
+
+- id: analytics_consent_copy
+  translation: "Mit Google Analytics 4 verstehen wir Besuche und verbessern die Website. Die Analyse bleibt deaktiviert, bis Sie zustimmen."
+
+- id: analytics_consent_accept
+  translation: "Analyse akzeptieren"
+
+- id: analytics_consent_reject
+  translation: "Ablehnen"
+
+- id: analytics_consent_privacy
+  translation: "Datenschutzdetails"
+
+- id: analytics_consent_manage
+  translation: "Datenschutzeinstellungen"

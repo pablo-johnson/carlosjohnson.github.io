@@ -105,3 +105,42 @@ Estas recomendaciones aplican al carrusel principal de la home.
 - Formato preferido: `WebP`, aunque `JPG` también funciona
 
 Si solo sigues una regla, exporta cada imagen del hero en `1600 x 2400 px` y verifica que siga funcionando bien con recorte centrado.
+
+## Configuración de Google Analytics 4
+
+La integración de GA4 quedó implementada en el tema para que, en usos futuros, solo haya que configurar el ID.
+
+### Paso único de configuración
+
+En [hugo.toml](hugo.toml), completa este valor:
+
+```toml
+[services]
+  [services.googleAnalytics]
+    id = "G-XXXXXXXXXX"
+```
+
+Si el `id` está vacío, GA4 no se carga y el banner de consentimiento no aparece.
+
+### Qué hace la integración
+
+- Carga GA4 solo en producción.
+- No activa analítica hasta que la persona acepte.
+- Mantiene `ad_storage` desactivado y solo habilita `analytics_storage` tras consentimiento.
+- No mide `/admin`.
+- Registra automáticamente `page_view` cuando hay consentimiento.
+- Registra eventos reutilizables como clics salientes y envío correcto del formulario de contacto.
+
+### Dónde quedó implementado
+
+- Partial principal de GA4: `themes/PaperMod/layouts/partials/google_analytics.html`
+- Banner y gestión de consentimiento: `themes/PaperMod/layouts/partials/footer.html`
+- Estilos del banner: `themes/PaperMod/assets/css/extended/analytics-consent.css`
+
+### Verificación recomendada
+
+1. Configura el `id` de GA4.
+2. Levanta el sitio en producción o revisa el despliegue de GitHub Pages.
+3. Acepta la analítica en el banner.
+4. Revisa `DebugView` en GA4.
+5. Confirma que aparecen `page_view`, `outbound_click` y `contact_form_submit_success`.

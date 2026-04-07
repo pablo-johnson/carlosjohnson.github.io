@@ -1,5 +1,10 @@
+{{- $privacyPage := site.GetPage "/privacy" -}}
+{{- if not $privacyPage -}}
+{{- $privacyPage = site.GetPage "privacy" -}}
+{{- end -}}
+
 <footer class="footer">
-    <span>&copy; Carlos Johnson {{ now.Year }} · {{ i18n "developed_by" }} <a href="https://github.com/pablo-johnson" rel="noopener noreferrer" target="_blank">Pablo Johnson</a></span>
+    <span>&copy; Carlos Johnson {{ now.Year }} · {{ i18n "developed_by" }} <a href="https://github.com/pablo-johnson" rel="noopener noreferrer" target="_blank">Pablo Johnson</a>{{ with $privacyPage }} · <a href="{{ .RelPermalink }}">{{ i18n "privacy_page_link" | default "Privacy" }}</a>{{ end }}</span>
 </footer>
 
 {{- if (not site.Params.disableScrollToTop) }}
@@ -11,6 +16,7 @@
 {{- end }}
 
 {{- partial "extend_footer.html" . }}
+{{- partial "analytics_footer.html" . }}
 
 <script>
     let menu = document.getElementById('menu');
