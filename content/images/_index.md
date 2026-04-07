@@ -28,6 +28,11 @@ gallery_items:
     title: Künstlerisches Profil
     description: Charakterstarkes Porträt für Programmhefte, Presse und Veranstaltungsankündigungen.
     alt: Carlos Johnson in einem künstlerischen Porträt.
+  - enabled: true
+    image: /images/wolf.jpg
+    title: Lobo
+    description: Imagen de Lobo
+    alt: ''
 ---
 
 Eine Auswahl aktueller Presse- und Profilbilder steht hier gesammelt bereit.

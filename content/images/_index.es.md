@@ -28,6 +28,7 @@ gallery_items:
     title: Perfil artístico
     description: Retrato de carácter para programas, notas de prensa y anuncios de conciertos.
     alt: Carlos Johnson en un retrato artístico.
+  - image: /images/wolf.jpg
 ---
 
 Aquí encontrarás una selección de imágenes de perfil y material visual reciente.
