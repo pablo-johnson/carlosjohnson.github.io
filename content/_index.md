@@ -20,4 +20,15 @@ home_hero:
       brief: Profile de director
     - title: Profesor
       brief: Profile de director
+home_featured_video:
+  title: D`Ambrosio - Canzonetta op.6 - Carlos Johnson - violin
+  description: |-
+    ALFREDO D´AMBROSIO (1871-1914)
+    Canzonetta op.6
+    Carlos Johnson - Violine
+    Mitglieder der Lübecker Philharmoniker
+
+    Video und Ton:
+    Lukas Paulenz
+  youtube_id: MGreSb1NjtA
 ---

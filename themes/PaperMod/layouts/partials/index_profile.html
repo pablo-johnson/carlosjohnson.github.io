@@ -15,6 +15,11 @@
 {{- $concertPages := where .Site.RegularPages "Section" "concerts" -}}
 {{- $upcomingEvents := where $concertPages "Date" ">=" now -}}
 {{- $concertsListPage := .Site.GetPage "section" "concerts" -}}
+{{- $featuredVideo := .Params.home_featured_video -}}
+{{- $featuredVideoId := "" -}}
+{{- with $featuredVideo.youtube_id -}}
+{{- $featuredVideoId = . | strings.TrimSpace -}}
+{{- end -}}
 {{- $subtitle := "" -}}
 {{- with $hero.subtitle -}}
 {{- $subtitle = . | plainify | chomp -}}
@@ -109,6 +114,29 @@
         <a class="home-events__link" href="{{ .RelPermalink }}">{{ i18n "view_all_events" }}</a>
     </div>
     {{- end }}
+</section>
+{{- end }}
+
+{{- if $featuredVideoId }}
+<section class="home-video" aria-labelledby="home-video-title">
+    <div class="home-video__backdrop"></div>
+    <div class="home-video__overlay"></div>
+
+    <div class="home-video__content">
+        <h2 id="home-video-title" class="home-video__title">{{ $featuredVideo.title | default (i18n "featured_video") }}</h2>
+
+        <div class="home-video__frame">
+            <div class="home-video__embed">
+                <iframe
+                    src="https://www.youtube-nocookie.com/embed/{{ $featuredVideoId }}?rel=0"
+                    title="{{ $featuredVideo.title | default (i18n "featured_video") }}"
+                    loading="lazy"
+                    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                    referrerpolicy="strict-origin-when-cross-origin"
+                    allowfullscreen></iframe>
+            </div>
+        </div>
+    </div>
 </section>
 {{- end }}
 

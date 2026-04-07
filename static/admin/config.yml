@@ -102,6 +102,36 @@ collections:
                 fields:
                   - { label: "Title", name: "title", widget: "string", i18n: true }
                   - { label: "Brief", name: "brief", widget: "text", i18n: true }
+          - label: "Featured Video"
+            name: "home_featured_video"
+            widget: "object"
+            i18n: true
+            required: false
+            fields:
+              - {
+                  label: "Section Title",
+                  name: "title",
+                  widget: "string",
+                  i18n: true,
+                  required: false,
+                  hint: "Optional heading shown above the embedded video.",
+                }
+              - {
+                  label: "Description",
+                  name: "description",
+                  widget: "text",
+                  i18n: true,
+                  required: false,
+                  hint: "Short description displayed next to the video.",
+                }
+              - {
+                  label: "YouTube Video ID",
+                  name: "youtube_id",
+                  widget: "string",
+                  i18n: duplicate,
+                  required: false,
+                  hint: "Example: MGreSb1NjtA",
+                }
   - name: "pages"
     label: "Pages (Biography, etc.)"
     i18n: true

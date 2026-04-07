@@ -56,6 +56,12 @@
 - id: view_all_events
   translation: "Ver todos los eventos"
 
+- id: featured_video
+  translation: "Video destacado"
+
+- id: developed_by
+  translation: "Desarrollado por"
+
 - id: back_to_concerts
   translation: "Volver a conciertos"
 
