@@ -119,6 +119,82 @@ collections:
               i18n: true,
             }
           - { label: "Content", name: "body", widget: "markdown", i18n: true }
+      - label: "Teaching"
+        name: "teaching"
+        file: "content/teaching/_index.{{locale}}.md"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
+          - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }
+          - label: "Chair in Germany"
+            name: "germany_chair"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "University Name", name: "university_name", widget: "string", i18n: true }
+              - { label: "University URL", name: "university_url", widget: "string", required: false, i18n: duplicate }
+              - { label: "Appointment Title", name: "appointment_title", widget: "string", i18n: true }
+              - { label: "Description", name: "description", widget: "text", i18n: true }
+              - label: "Admissions Items"
+                name: "admissions"
+                widget: "list"
+                i18n: true
+                field: { label: "Admissions Item", name: "item", widget: "string", i18n: true }
+              - label: "Audition Items"
+                name: "auditions"
+                widget: "list"
+                i18n: true
+                field: { label: "Audition Item", name: "item", widget: "string", i18n: true }
+          - label: "Chair in Peru"
+            name: "peru_chair"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Institution Name", name: "institution_name", widget: "string", i18n: true }
+              - { label: "Institution URL", name: "institution_url", widget: "string", required: false, i18n: duplicate }
+              - { label: "Appointment Title", name: "appointment_title", widget: "string", i18n: true }
+              - { label: "Description", name: "description", widget: "text", i18n: true }
+              - label: "Initiatives"
+                name: "initiatives"
+                widget: "list"
+                i18n: true
+                field: { label: "Initiative", name: "item", widget: "string", i18n: true }
+          - label: "Masterclasses"
+            name: "masterclasses"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+              - label: "Events"
+                name: "events"
+                widget: "list"
+                i18n: true
+                required: false
+                fields:
+                  - { label: "Title", name: "title", widget: "string", i18n: true }
+                  - { label: "Date Label", name: "date", widget: "string", i18n: true, required: false }
+                  - { label: "Location", name: "location", widget: "string", i18n: true, required: false }
+                  - { label: "Details", name: "details", widget: "text", i18n: true, required: false }
+                  - { label: "Link", name: "link", widget: "string", i18n: duplicate, required: false }
+          - label: "Student Resources"
+            name: "resources"
+            widget: "object"
+            i18n: true
+            fields:
+              - { label: "Enabled", name: "enabled", widget: "boolean", default: true, i18n: duplicate }
+              - { label: "Private Area", name: "private_area", widget: "boolean", default: true, i18n: duplicate }
+              - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+              - { label: "Access Note", name: "access_note", widget: "string", i18n: true, required: false }
+              - label: "Resource Items"
+                name: "items"
+                widget: "list"
+                i18n: true
+                required: false
+                fields:
+                  - { label: "Title", name: "title", widget: "string", i18n: true }
+                  - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
+                  - { label: "Link", name: "link", widget: "string", i18n: duplicate, required: false }
   - name: "multimedia_resources"
     label: "Multimedia / Resources"
     i18n: true
@@ -244,83 +320,3 @@ collections:
           - { label: "Email", name: "email", widget: "string", required: false, i18n: duplicate }
           - { label: "Phone", name: "phone", widget: "string", required: false, i18n: duplicate }
       - { label: "Additional Notes", name: "body", widget: "markdown", i18n: true, required: false }
-  - name: "teaching_page"
-    label: "Teaching / Docencia"
-    i18n: true
-    files:
-      - label: "Teaching Page"
-        name: "teaching"
-        file: "content/teaching/_index.{{locale}}.md"
-        i18n: true
-        fields:
-          - { label: "Title", name: "title", widget: "string", i18n: true }
-          - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
-          - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }
-          - label: "Chair in Germany"
-            name: "germany_chair"
-            widget: "object"
-            i18n: true
-            fields:
-              - { label: "University Name", name: "university_name", widget: "string", i18n: true }
-              - { label: "University URL", name: "university_url", widget: "string", required: false, i18n: duplicate }
-              - { label: "Appointment Title", name: "appointment_title", widget: "string", i18n: true }
-              - { label: "Description", name: "description", widget: "text", i18n: true }
-              - label: "Admissions Items"
-                name: "admissions"
-                widget: "list"
-                i18n: true
-                field: { label: "Admissions Item", name: "item", widget: "string", i18n: true }
-              - label: "Audition Items"
-                name: "auditions"
-                widget: "list"
-                i18n: true
-                field: { label: "Audition Item", name: "item", widget: "string", i18n: true }
-          - label: "Chair in Peru"
-            name: "peru_chair"
-            widget: "object"
-            i18n: true
-            fields:
-              - { label: "Institution Name", name: "institution_name", widget: "string", i18n: true }
-              - { label: "Institution URL", name: "institution_url", widget: "string", required: false, i18n: duplicate }
-              - { label: "Appointment Title", name: "appointment_title", widget: "string", i18n: true }
-              - { label: "Description", name: "description", widget: "text", i18n: true }
-              - label: "Initiatives"
-                name: "initiatives"
-                widget: "list"
-                i18n: true
-                field: { label: "Initiative", name: "item", widget: "string", i18n: true }
-          - label: "Masterclasses"
-            name: "masterclasses"
-            widget: "object"
-            i18n: true
-            fields:
-              - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
-              - label: "Events"
-                name: "events"
-                widget: "list"
-                i18n: true
-                required: false
-                fields:
-                  - { label: "Title", name: "title", widget: "string", i18n: true }
-                  - { label: "Date Label", name: "date", widget: "string", i18n: true, required: false }
-                  - { label: "Location", name: "location", widget: "string", i18n: true, required: false }
-                  - { label: "Details", name: "details", widget: "text", i18n: true, required: false }
-                  - { label: "Link", name: "link", widget: "string", i18n: duplicate, required: false }
-          - label: "Student Resources"
-            name: "resources"
-            widget: "object"
-            i18n: true
-            fields:
-              - { label: "Enabled", name: "enabled", widget: "boolean", default: true, i18n: duplicate }
-              - { label: "Private Area", name: "private_area", widget: "boolean", default: true, i18n: duplicate }
-              - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
-              - { label: "Access Note", name: "access_note", widget: "string", i18n: true, required: false }
-              - label: "Resource Items"
-                name: "items"
-                widget: "list"
-                i18n: true
-                required: false
-                fields:
-                  - { label: "Title", name: "title", widget: "string", i18n: true }
-                  - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
-                  - { label: "Link", name: "link", widget: "string", i18n: duplicate, required: false }
