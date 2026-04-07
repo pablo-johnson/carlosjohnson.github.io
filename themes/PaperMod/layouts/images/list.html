@@ -32,11 +32,9 @@
 {{- $pageTitle := .Title -}}
 {{- $prevLabel := cond (eq .Site.Language.Lang "es") "Imagen anterior" "Vorheriges Bild" -}}
 {{- $nextLabel := cond (eq .Site.Language.Lang "es") "Imagen siguiente" "Nächstes Bild" -}}
-{{- $closeLabel := cond (eq .Site.Language.Lang "es") "Cerrar galería" "Galerie schliessen" -}}
-{{- $counterSeparator := cond (eq .Site.Language.Lang "es") "de" "von" -}}
 
 {{- if gt (len $gallery) 0 }}
-<section class="image-gallery" data-image-gallery data-counter-separator="{{ $counterSeparator }}">
+<section class="image-gallery" data-image-gallery>
   {{- range $index, $item := $gallery }}
   {{- $src := $item.image -}}
   {{- if and $src (not (or (hasPrefix $src "http://") (hasPrefix $src "https://"))) -}}
@@ -59,15 +57,11 @@
   {{- end }}
 </section>
 <dialog class="image-lightbox" id="image-lightbox" aria-label="{{ if eq .Site.Language.Lang "es" }}Vista ampliada de imagen{{ else }}Vergrösserte Bildansicht{{ end }}">
-  <form method="dialog" class="image-lightbox-close-row">
-    <button class="image-lightbox-close" type="submit" aria-label="{{ $closeLabel }}">&times;</button>
-  </form>
   <div class="image-lightbox-frame">
     <button class="image-lightbox-nav image-lightbox-nav--prev" type="button" aria-label="{{ $prevLabel }}">&#10094;</button>
     <div class="image-lightbox-content">
       <img id="image-lightbox-preview" src="" alt="">
       <div class="image-lightbox-meta">
-        <p id="image-lightbox-counter" class="image-lightbox-counter"></p>
         <h2 id="image-lightbox-title"></h2>
         <p id="image-lightbox-caption"></p>
       </div>

@@ -4,16 +4,14 @@
     const preview = document.getElementById('image-lightbox-preview');
     const title = document.getElementById('image-lightbox-title');
     const caption = document.getElementById('image-lightbox-caption');
-    const counter = document.getElementById('image-lightbox-counter');
     const prevButton = dialog?.querySelector('.image-lightbox-nav--prev');
     const nextButton = dialog?.querySelector('.image-lightbox-nav--next');
     const triggers = Array.from(document.querySelectorAll('.gallery-lightbox-trigger'));
 
-    if (!gallery || !dialog || !preview || !title || !caption || !counter || !prevButton || !nextButton || triggers.length === 0 || typeof dialog.showModal !== 'function') {
+    if (!gallery || !dialog || !preview || !title || !caption || !prevButton || !nextButton || triggers.length === 0 || typeof dialog.showModal !== 'function') {
         return;
     }
 
-    const separator = gallery.dataset.counterSeparator || '/';
     let currentIndex = 0;
 
     const items = triggers
@@ -45,7 +43,6 @@
         preview.alt = item.alt || item.title;
         title.textContent = item.title;
         caption.textContent = item.description;
-        counter.textContent = `${normalizedIndex + 1} ${separator} ${items.length}`;
         updateNav();
     };
 
@@ -61,7 +58,6 @@
         preview.alt = '';
         title.textContent = '';
         caption.textContent = '';
-        counter.textContent = '';
     };
 
     triggers.forEach((trigger, index) => {
