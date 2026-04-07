@@ -79,12 +79,6 @@
         <p>{{ $summary | truncate 220 }}</p>
       </div>
       {{- end }}
-      <footer class="entry-footer">
-        {{- with $video.date }}
-        <span>{{ time.Format ":date_medium" . }}</span>
-        {{- end }}
-      </footer>
-      <span class="video-entry-cta">{{ if eq $.Site.Language.Lang "es" }}Ver detalle{{ else }}Details ansehen{{ end }}</span>
     </div>
   </div>
   <a class="entry-link" aria-label="video link to {{ $video.title | plainify }}" href="{{ printf "%s?video=%s" ("videos/detail/" | relLangURL) ($videoID | urlquery) }}"></a>

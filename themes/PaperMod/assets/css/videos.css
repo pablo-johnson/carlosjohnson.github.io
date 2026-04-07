@@ -62,23 +62,6 @@
   font-size: 0.95rem;
 }
 
-.video-content .entry-footer {
-  margin-top: 0.5rem;
-  font-size: 0.85rem;
-}
-
-.video-entry-cta {
-  display: inline-flex;
-  align-self: flex-start;
-  margin-top: 1rem;
-  padding: 0.45rem 0.8rem;
-  border: 1px solid var(--border);
-  border-radius: 999px;
-  color: var(--primary);
-  font-size: 0.85rem;
-  font-weight: 500;
-}
-
 .video-detail-page {
   max-width: 920px;
 }
