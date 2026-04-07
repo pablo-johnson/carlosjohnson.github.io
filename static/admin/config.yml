@@ -211,24 +211,6 @@ collections:
               - { label: "Title", name: "title", widget: "string", i18n: true }
               - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
               - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false }
-  - name: "videos"
-    label: "Videos / Concerts"
-    folder: "content/videos"
-    create: true
-    slug: "{{year}}-{{month}}-{{slug}}"
-    i18n: true
-    fields:
-      - { label: "Title", name: "title", widget: "string", i18n: true }
-      - { label: "Publication Date", name: "date", widget: "datetime", i18n: duplicate }
-      - { label: "YouTube Video ID (e.g., dQw4w9WgXcQ)", name: "youtube_id", widget: "string", i18n: duplicate }
-      - label: "Cover Image (optional)"
-        name: "cover"
-        widget: "object"
-        required: false
-        i18n: duplicate
-        fields:
-          - { label: "Image", name: "image", widget: "image", required: false, i18n: duplicate }
-      - { label: "Description or Concert Notes", name: "body", widget: "markdown", i18n: true }
   - name: "concerts_list"
     label: "Concert Schedule - List Page"
     i18n: true
