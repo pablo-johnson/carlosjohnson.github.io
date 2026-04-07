@@ -85,7 +85,13 @@ collections:
                 i18n: true
                 min: 3
                 fields:
-                  - { label: "Image", name: "image", widget: "image", i18n: duplicate }
+                  - {
+                      label: "Image",
+                      name: "image",
+                      widget: "image",
+                      i18n: duplicate,
+                      hint: "Recommended: 1600x2400 px (2:3). Minimum: 1200x1800 px. Vertical portraits work best. Keep the subject centered or slightly to the right, with some safe margin for cover cropping on smaller screens.",
+                    }
                   - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false }
               - label: "Profile Briefs"
                 name: "profiles"
