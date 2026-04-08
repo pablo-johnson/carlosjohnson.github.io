@@ -4,7 +4,7 @@
 {{- end -}}
 
 {{- $currentPage := . -}}
-{{- $siteSettings := site.Data.site_settings -}}
+{{- $siteSettings := hugo.Data.site_settings -}}
 {{- $socialLinks := dict
     "facebook" ($siteSettings.social_links.facebook | default "#")
     "instagram" ($siteSettings.social_links.instagram | default "#")
