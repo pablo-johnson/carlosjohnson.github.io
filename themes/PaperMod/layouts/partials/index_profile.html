@@ -75,7 +75,8 @@
     </div>
 </section>
 
-{{- if gt (len $upcomingEvents) 0 }}
+{{- $concertsVisible := partial "section-visible.html" $concertsListPage }}
+{{- if and $concertsVisible (gt (len $upcomingEvents) 0) }}
 <section class="home-events" aria-labelledby="home-events-title">
     <div class="home-events__header">
         <h2 id="home-events-title" class="home-events__title">{{ i18n "upcoming_events" }}</h2>

@@ -349,6 +349,14 @@ collections:
         file: "content/concerts/_index.{{locale}}.md"
         i18n: true
         fields:
+          - {
+              label: "Show Concert Schedule",
+              name: "show_page",
+              widget: "boolean",
+              default: false,
+              i18n: duplicate,
+              hint: "Off by default. Turn it on only when there are confirmed concerts: the schedule then appears in the menu, in the footer and on the homepage. Turning it off hides it everywhere without deleting any event.",
+            }
           - { label: "Title", name: "title", widget: "string", i18n: true }
           - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
           - { label: "Content", name: "body", widget: "markdown", i18n: true, required: false }

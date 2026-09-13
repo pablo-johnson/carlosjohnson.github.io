@@ -26,10 +26,7 @@
                     {{- range .Children }}
                         {{- $sectionName := strings.TrimPrefix "/" (strings.TrimSuffix "/" .URL) }}
                         {{- $childPage := site.GetPage "section" $sectionName }}
-                        {{- $childVisible := true }}
-                        {{- with $childPage }}
-                            {{- $childVisible = .Params.show_page | default true }}
-                        {{- end }}
+                        {{- $childVisible := partial "section-visible.html" $childPage }}
                         {{- if $childVisible }}
                             {{- $visibleChildren = $visibleChildren | append . }}
                         {{- end }}
@@ -44,7 +41,12 @@
                         {{- end }}
                     {{- end }}
                 {{- end }}
-                {{- if or (eq (len .Children) 0) $hasChildren }}
+                {{- $selfVisible := true }}
+                {{- if eq (len .Children) 0 }}
+                    {{- $ownSection := strings.TrimPrefix "/" (strings.TrimSuffix "/" .URL) }}
+                    {{- $selfVisible = partial "section-visible.html" (site.GetPage "section" $ownSection) }}
+                {{- end }}
+                {{- if or (and (eq (len .Children) 0) $selfVisible) $hasChildren }}
                 <li>
                     {{- if $hasChildren }}
                     <details>

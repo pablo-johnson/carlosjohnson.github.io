@@ -103,10 +103,7 @@
                 {{- range .Children }}
                     {{- $section_name := strings.TrimPrefix "/" (strings.TrimSuffix "/" .URL) }}
                     {{- $child_page := site.GetPage "section" $section_name }}
-                    {{- $child_visible := true }}
-                    {{- with $child_page }}
-                        {{- $child_visible = .Params.show_page | default true }}
-                    {{- end }}
+                    {{- $child_visible := partial "section-visible.html" $child_page }}
                     {{- if $child_visible }}
                         {{- $visible_children = $visible_children | append . }}
                     {{- end }}
@@ -122,7 +119,12 @@
                     {{- end }}
                 {{- end }}
             {{- end }}
-            {{- if or (eq (len .Children) 0) $has_children }}
+            {{- $self_visible := true }}
+            {{- if eq (len .Children) 0 }}
+                {{- $own_section := strings.TrimPrefix "/" (strings.TrimSuffix "/" .URL) }}
+                {{- $self_visible = partial "section-visible.html" (site.GetPage "section" $own_section) }}
+            {{- end }}
+            {{- if or (and (eq (len .Children) 0) $self_visible) $has_children }}
             <li{{ if $has_children }} class="menu-dropdown"{{ end }}>
                 {{- if $has_children }}
                 <details>

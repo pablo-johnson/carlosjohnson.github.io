@@ -41,6 +41,7 @@ Forma parte del proyecto **profi-web**: páginas web para músicos con plantilla
 │   ├── partials/footer.html
 │   ├── partials/responsive-image.html   # Pipeline de imágenes (srcset + WebP)
 │   ├── partials/image-url.html          # URL de una imagen procesada
+│   ├── partials/section-visible.html    # Regla de visibilidad de secciones
 │   └── shortcodes/analytics-consent-manage.html
 ├── static/
 │   └── admin/                     # Sveltia CMS (index.html + config.yml)
@@ -87,7 +88,16 @@ Las galerías **no** son carpetas de páginas: son arrays dentro del front matte
 Dos flags recurrentes:
 
 - `enabled` (por ítem): si es `false`, el elemento no se renderiza pero se conserva.
-- `show_page` (por sección): si es `false`, la sección desaparece del menú principal y del pie **sin borrar el contenido**. Lo respetan `header.html`, `layouts/partials/footer.html` y los propios layouts de sección.
+- `show_page` (por sección): controla si la sección aparece en el menú principal, en el pie, en su propia página y en los bloques de portada que dependen de ella, **sin borrar el contenido**.
+
+La regla vive en un único sitio, `layouts/partials/section-visible.html`, para que el menú y la página no puedan contradecirse:
+
+1. Si la página de sección define `show_page`, manda ese valor.
+2. Si no lo define, las secciones **opt-in** quedan ocultas y el resto visibles.
+
+Hoy la única sección opt-in es `concerts`: **la agenda viene oculta por defecto** y solo aparece cuando el músico la activa con fechas confirmadas. Una agenda vacía o de relleno en la web de un músico es peor que no tener sección. Para hacer opt-in otra sección, añádela a `$optIn` en el partial y expón su flag en el CMS.
+
+> Ojo con `default` en Hugo: `{{ false | default true }}` devuelve `false` (los booleanos están exentos de la regla de "valor vacío"), pero el partial usa `isset` para no depender de esa sutileza.
 
 ### Conciertos
 
@@ -127,7 +137,7 @@ La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month
 | **Homepage** | Hero (eyebrow, título, subtítulo máx. 500 caracteres, carrusel con mín. 3 slides, 3 "profile briefs", segundos de autoplay 3–5) y video destacado |
 | **Pages** | Biografía y Docencia (cátedra en Alemania, cátedra en Perú, masterclasses y recursos para alumnos) |
 | **Multimedia / Resources** | Galerías de imágenes, videos y audios |
-| **Concert Schedule – List Page** | Textos de la página de agenda |
+| **Concert Schedule – List Page** | Interruptor `Show Concert Schedule` (apagado por defecto) y textos de la página de agenda |
 | **Concert Schedule / Events** | Alta y edición de conciertos (`create: true`) |
 
 > **Autenticación:** el `config.yml` no declara `base_url` ni `auth_endpoint`. Antes de replicar el setup en otro sitio conviene documentar/definir cómo se resuelve el login OAuth de GitHub (proxy propio tipo `sveltia-cms-auth`), ya que además exige que el cliente tenga cuenta de GitHub con acceso al repo.
@@ -143,7 +153,7 @@ El tema está copiado dentro del repo y **todas las customizaciones viven ahí d
 | Archivo | Función |
 |---|---|
 | `partials/index_profile.html` | Home completa: hero con carrusel, próximos 3 conciertos, video destacado |
-| `partials/header.html` | Reescrito: submenús desplegables, overflow menu, selector de idioma, soporte de `show_page` |
+| `partials/header.html` | Reescrito: submenús desplegables, overflow menu, selector de idioma, soporte de `show_page` en entradas de primer nivel y de submenú |
 | `partials/footer.html` | Menú de pie con `<details>`, iconos sociales SVG inline, créditos (**el que manda es el de `layouts/` en la raíz**) |
 | `partials/google_analytics.html` | Carga GA4 solo en producción y solo con consentimiento |
 | `partials/analytics_footer.html` | Banner de consentimiento y tracking de eventos |

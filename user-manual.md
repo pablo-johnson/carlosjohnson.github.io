@@ -105,6 +105,23 @@ Estas recomendaciones aplican al carrusel principal de la home.
 
 Si solo sigues una regla, exporta cada imagen del hero en `1600 x 2400 px` y verifica que siga funcionando bien con recorte centrado.
 
+## Cómo mostrar u ocultar la agenda de conciertos
+
+La agenda de conciertos **viene oculta**. Mientras esté oculta no aparece en el menú, ni en el pie, ni en la portada, aunque ya tengas conciertos cargados.
+
+Para mostrarla:
+
+1. Entra a `/admin`.
+2. Abre `Concert Schedule - List Page`.
+3. Activa `Show Concert Schedule`.
+4. Guarda o publica los cambios.
+
+Este interruptor es común a los dos idiomas: lo activas una vez y se aplica al alemán y al español.
+
+Para volver a ocultarla, desactívalo. **No se borra nada**: los conciertos cargados siguen guardados y vuelven a aparecer cuando la actives de nuevo.
+
+Conviene activarla solo cuando haya fechas confirmadas, y volver a ocultarla si la agenda se queda sin próximos conciertos durante una temporada.
+
 ## Configuración de Google Analytics 4
 
 La integración de GA4 quedó implementada en el tema para que, en usos futuros, solo haya que configurar el ID.

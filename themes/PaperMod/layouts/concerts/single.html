@@ -1,4 +1,5 @@
 {{- define "main" }}
+{{- if partial "section-visible.html" .CurrentSection }}
 <article class="post-single">
   <header class="post-header">
     {{- partial "breadcrumbs.html" . }}
@@ -171,4 +172,5 @@
     {{- end }}
   </footer>
 </article>
+{{- end }}{{/* section-visible */}}
 {{- end }}
