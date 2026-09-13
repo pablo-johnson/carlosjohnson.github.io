@@ -4,6 +4,11 @@
   {{- $path := strings.TrimPrefix "./" $u.Path }}
   {{- with or (.PageInner.Resources.Get $path) (resources.Get $path) -}}
     {{- $src = .RelPermalink -}}
+    {{- /* Pipeline de imagenes: redimensiona y convierte a WebP cuando se puede */ -}}
+    {{- if in (slice "image/jpeg" "image/png" "image/webp" "image/tiff" "image/bmp") .MediaType.Type -}}
+      {{- $target := cond (lt .Width 1400) .Width 1400 -}}
+      {{- $src = (.Resize (printf "%dx webp q82" $target)).RelPermalink -}}
+    {{- end -}}
     {{- with $u.RawQuery -}}
       {{- $src = printf "%s?%s" $src . -}}
     {{- end -}}

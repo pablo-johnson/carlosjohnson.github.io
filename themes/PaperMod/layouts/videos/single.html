@@ -24,9 +24,6 @@
     {{- with $video.cover.image }}
       {{- $coverSrc = . -}}
     {{- end -}}
-    {{- if and $coverSrc (not (or (hasPrefix $coverSrc "http://") (hasPrefix $coverSrc "https://"))) -}}
-      {{- $coverSrc = (strings.TrimPrefix "/" $coverSrc) | relURL -}}
-    {{- end -}}
     <section class="video-detail-item" data-video-id="{{ $videoID }}" hidden>
       <h1 class="post-title entry-hint-parent">{{ $video.title }}</h1>
       {{- with $video.date }}
@@ -46,7 +43,11 @@
       {{- else if $coverSrc }}
       <div class="video-detail-player-frame">
         <figure class="video-detail-cover">
-          <img loading="lazy" src="{{ $coverSrc }}" alt="{{ $video.title | plainify }}">
+          {{ partial "responsive-image.html" (dict
+              "src" $coverSrc
+              "alt" ($video.title | plainify)
+              "sizes" "(max-width: 900px) 100vw, 800px"
+              "widths" (slice 480 768 1024 1400)) }}
         </figure>
       </div>
       {{- end }}

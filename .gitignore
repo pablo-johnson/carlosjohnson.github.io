@@ -1,2 +1,9 @@
+# Build output
 /public
 public
+/resources/_gen
+.hugo_build.lock
+
+# macOS
+.DS_Store
+**/.DS_Store

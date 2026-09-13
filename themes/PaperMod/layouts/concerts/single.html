@@ -113,9 +113,12 @@
     </style>
 
     {{- if .Params.flyer }}
-    {{- $flyer := .Params.flyer -}}
-    {{- $flyerSrc := cond (or (hasPrefix $flyer "http://") (hasPrefix $flyer "https://")) $flyer (($flyer | strings.TrimPrefix "/") | relURL) -}}
-    <img src="{{ $flyerSrc }}" alt="{{ .Title }} Flyer" class="concert-flyer">
+    {{ partial "responsive-image.html" (dict
+        "src" .Params.flyer
+        "alt" (printf "%s Flyer" .Title)
+        "class" "concert-flyer"
+        "sizes" "(max-width: 900px) 100vw, 700px"
+        "widths" (slice 480 768 1024 1400)) }}
     {{- end }}
 
     <div class="concert-date-large">{{ .Date.Format "Monday, January 2, 2006 at 15:04" }}</div>

@@ -10,8 +10,6 @@
 {{- $autoplaySeconds := $hero.autoplay_seconds | default 4 -}}
 {{- $autoplayMs := mul $autoplaySeconds 1000 -}}
 {{- $carouselScript := resources.Get "js/homepage-carousel.js" -}}
-{{- $rootURL := urls.Parse ((index hugo.Sites 0).Home.Permalink) -}}
-{{- $rootPath := $rootURL.Path -}}
 {{- $concertPages := where .Site.RegularPages "Section" "concerts" -}}
 {{- $upcomingEvents := where $concertPages "Date" ">=" now -}}
 {{- $concertsListPage := .Site.GetPage "section" "concerts" -}}
@@ -48,10 +46,14 @@
             <div class="home-hero__media">
                 <div class="home-hero__slides" aria-hidden="true">
                     {{- range $index, $slide := $slides }}
-                    {{- $slidePath := strings.TrimPrefix "/" $slide.image }}
-                    {{- $slideURL := printf "%s%s" $rootPath $slidePath }}
                     <figure class="home-hero__slide{{ if eq $index 0 }} is-active{{ end }}" data-slide>
-                        <img src="{{ $slideURL }}" alt="{{ $slide.alt | default site.Title }}">
+                        {{ partial "responsive-image.html" (dict
+                            "src" $slide.image
+                            "alt" ($slide.alt | default site.Title)
+                            "sizes" "(max-width: 768px) 100vw, 50vw"
+                            "widths" (slice 600 900 1200 1600)
+                            "loading" (cond (eq $index 0) "eager" "lazy")
+                            "fetchpriority" (cond (eq $index 0) "high" "")) }}
                     </figure>
                     {{- end }}
                 </div>

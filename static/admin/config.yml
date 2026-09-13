@@ -4,7 +4,7 @@ backend:
   branch: main
 
 # Media files configuration
-media_folder: "static/images"
+media_folder: "assets/images"
 public_folder: "/images"
 
 # i18n configuration

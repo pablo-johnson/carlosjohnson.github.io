@@ -56,9 +56,6 @@
 {{- with $video.cover.image }}
   {{- $coverSrc = . -}}
 {{- end -}}
-{{- if and $coverSrc (not (or (hasPrefix $coverSrc "http://") (hasPrefix $coverSrc "https://"))) -}}
-  {{- $coverSrc = (strings.TrimPrefix "/" $coverSrc) | relURL -}}
-{{- end -}}
 {{- if and (not $coverSrc) $video.youtube_id -}}
   {{- $coverSrc = printf "https://i.ytimg.com/vi/%s/hqdefault.jpg" $video.youtube_id -}}
 {{- end -}}
@@ -67,7 +64,11 @@
   <div class="video-entry-container">
     {{- if $coverSrc }}
     <figure class="entry-cover video-cover">
-      <img loading="lazy" src="{{ $coverSrc }}" alt="{{ $video.title | plainify }}">
+      {{ partial "responsive-image.html" (dict
+          "src" $coverSrc
+          "alt" ($video.title | plainify)
+          "sizes" "(max-width: 700px) 100vw, 320px"
+          "widths" (slice 320 480 640 960)) }}
     </figure>
     {{- end }}
     <div class="video-content">

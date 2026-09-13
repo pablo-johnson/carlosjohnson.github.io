@@ -1,146 +1,279 @@
-# Manual para cargar imágenes y videos
+# carlosjohnson.github.io
 
-Este manual explica cómo agregar imágenes a la galería de imágenes y videos a la galería de videos desde el panel de administración del sitio.
+Sitio web bilingüe (alemán / español) del violinista **Carlos Johnson**, construido con Hugo, editable por el propio cliente a través de un CMS git-based y desplegado gratis en GitHub Pages.
 
-## Dónde se editan
+Forma parte del proyecto **profi-web**: páginas web para músicos con plantillas reutilizables y un panel de administración para que ellos mismos mantengan el contenido.
 
-- Galería de imágenes: `Multimedia / Resources` -> `Images Gallery`
-- Galería de videos: `Multimedia / Resources` -> `Videos Gallery`
+- **Producción:** https://pablo-johnson.github.io/carlosjohnson.github.io/
+- **Panel de administración:** `/admin` (por ejemplo, https://pablo-johnson.github.io/carlosjohnson.github.io/admin/)
+- **Manual para el cliente:** [user-manual.md](user-manual.md)
 
-## Antes de empezar
+---
 
-- Ten listas las imágenes optimizadas.
-- Si vas a publicar un video, ten a mano el enlace de YouTube.
-- Revisa siempre los dos idiomas. El sitio usa alemán y español, así que el título, la descripción y los textos visibles deben actualizarse en ambas versiones.
+## Stack
 
-## Cómo agregar una imagen a la galería de imágenes
+| Pieza | Tecnología | Detalle |
+|---|---|---|
+| Generador | **Hugo extended** | Versión fijada en el workflow: `0.159.1` (requiere Dart Sass) |
+| Tema | **PaperMod** | Vendorizado dentro del repo (`themes/PaperMod`), **no** es submódulo |
+| CMS | **Sveltia CMS** | `static/admin/`, backend GitHub, config compatible con Decap/Netlify CMS |
+| Hosting | **GitHub Pages** | Deploy vía GitHub Actions |
+| Formulario | **formsubmit.co** | Envío AJAX, sin backend propio |
+| Analítica | **Google Analytics 4** | Con banner de consentimiento propio (Consent Mode) |
+| Idiomas | `de` (por defecto) + `es` | `i18n.structure: multiple_files` |
 
-1. Entra a `/admin`.
-2. Abre `Multimedia / Resources`.
-3. Entra en `Images Gallery`.
-4. Edita primero una versión de idioma y luego la otra.
-5. Busca la lista `Gallery Images`.
-6. Haz clic en `Add Gallery Images` o en el botón para agregar un nuevo elemento.
-7. Completa los campos.
-8. Guarda o publica los cambios.
+---
 
-### Campos de cada imagen
+## Estructura del repositorio
 
-- `Show in Gallery`: si está activado, la imagen se muestra. Si lo desactivas, la imagen queda guardada pero oculta.
-- `Image`: sube o selecciona el archivo.
-- `Title`: título visible en la galería.
-- `Description`: texto breve opcional.
-- `Alt Text`: texto alternativo para accesibilidad y SEO.
+```
+.
+├── .github/workflows/hugo.yml     # Build + deploy a GitHub Pages
+├── hugo.toml                      # Config del sitio, idiomas y menús
+├── archetypes/                    # Plantillas de front matter (concerts.md, default.md)
+├── assets/
+│   ├── css/extended/              # CSS extra a nivel de proyecto (footer-menu.css)
+│   └── images/                    # Media del CMS (pasa por el pipeline de imágenes)
+├── content/                       # Contenido en .md, un archivo por idioma
+├── data/site_settings.yml         # Ajustes globales editables desde el CMS
+├── i18n/                          # (vacío: las traducciones viven en el tema)
+├── layouts/                       # Overrides de proyecto (ganan sobre el tema)
+│   ├── partials/footer.html
+│   ├── partials/responsive-image.html   # Pipeline de imágenes (srcset + WebP)
+│   ├── partials/image-url.html          # URL de una imagen procesada
+│   └── shortcodes/analytics-consent-manage.html
+├── static/
+│   └── admin/                     # Sveltia CMS (index.html + config.yml)
+├── themes/PaperMod/               # Tema + TODAS las customizaciones
+└── user-manual.md                 # Manual de uso para el cliente
+```
 
-### Recomendaciones para imágenes
+> **Ojo con la precedencia:** existen dos `footer.html` (uno en `layouts/partials/` y otro en `themes/PaperMod/layouts/partials/`). Hugo usa siempre el de la raíz del proyecto.
 
-- Usa imágenes de al menos `1600 px` en el lado más largo.
-- Optimiza el peso antes de subirlas.
-- Si puedes, usa nombres de archivo claros y consistentes, por ejemplo `carlos-johnson-recital-berlin.jpg`.
-- Mantén el mismo orden en alemán y en español para que ambas galerías coincidan.
+---
 
-## Cómo agregar un video a la galería de videos
+## Contenido y modelo de datos
 
-1. Entra a `/admin`.
-2. Abre `Multimedia / Resources`.
-3. Entra en `Videos Gallery`.
-4. Edita primero una versión de idioma y luego la otra.
-5. Busca la lista `Gallery Videos`.
-6. Agrega un nuevo elemento.
-7. Completa los campos.
-8. Guarda o publica los cambios.
+### Multilingüe
 
-### Campos de cada video
+Alemán es el idioma por defecto y **omite el sufijo** en el nombre de archivo; español lo lleva explícito:
 
-- `Show in Gallery`: controla si el video aparece o queda oculto.
-- `Title`: título del video.
-- `Publication Date`: fecha de publicación o de referencia.
-- `YouTube Video ID`: identificador del video en YouTube.
-- `Cover Image (optional)`: miniatura personalizada opcional.
-- `Description or Concert Notes`: descripción, programa, intérpretes o notas del concierto.
+```
+content/about.md       → alemán  (/about/)
+content/about.es.md    → español (/es/about/)
+```
 
-### Cómo obtener el `YouTube Video ID`
+Toda página nueva debe crearse en **ambos** idiomas.
 
-No copies el enlace completo. Usa solo la parte final del enlace.
+### Páginas y secciones
 
-Ejemplos:
+| Ruta | Tipo | Layout que la renderiza |
+|---|---|---|
+| `content/_index.md` | Home | `partials/index_profile.html` |
+| `content/about.md` | Biografía | `_default/single.html` |
+| `content/teaching/_index.md` | Docencia | `teaching/list.html` |
+| `content/concerts/` | Conciertos | `concerts/list.html` + `concerts/single.html` |
+| `content/images/_index.md` | Galería de imágenes | `images/list.html` |
+| `content/videos/_index.md` | Galería de videos | `videos/list.html` |
+| `content/videos/detail.md` | Detalle de video | `videos/single.html` |
+| `content/audios/_index.md` | Galería de audios | `audios/list.html` |
+| `content/contact.md` | Contacto (`type: contact`) | `contact/single.html` |
+| `content/privacy.md` | Política de privacidad | `_default/single.html` |
 
-- Si la URL es `https://www.youtube.com/watch?v=MGreSb1NjtA`, debes pegar `MGreSb1NjtA`.
-- Si la URL es `https://youtu.be/MGreSb1NjtA`, debes pegar `MGreSb1NjtA`.
+### Patrón clave: galerías como listas en el front matter
 
-### Sobre la portada del video
+Las galerías **no** son carpetas de páginas: son arrays dentro del front matter del `_index` de cada sección (`gallery_items`, `gallery_videos`, `gallery_audios`). Esto permite reordenarlas por drag & drop desde el CMS y ocultar elementos sin borrarlos.
 
-- La portada es opcional.
-- Si subes una imagen en `Cover Image`, esa imagen se usa como miniatura en la galería.
-- Si no subes portada, la galería usa automáticamente la miniatura de YouTube.
+Dos flags recurrentes:
 
-## Orden, edición y ocultación
+- `enabled` (por ítem): si es `false`, el elemento no se renderiza pero se conserva.
+- `show_page` (por sección): si es `false`, la sección desaparece del menú principal y del pie **sin borrar el contenido**. Lo respetan `header.html`, `layouts/partials/footer.html` y los propios layouts de sección.
 
-- En ambas galerías puedes reordenar los elementos desde la lista del CMS.
-- El orden de la lista es el orden en que aparecen en la página.
-- Si no quieres borrar un elemento, desactiva `Show in Gallery`.
+### Conciertos
 
-## Revisión antes de publicar
+Única colección de tipo carpeta. El layout divide automáticamente la agenda comparando `date` con `now`:
 
-Antes de cerrar el cambio, revisa esto:
+- `futureEvents` → sección "Próximos conciertos" (orden ascendente)
+- `pastEvents` → sección "Conciertos pasados" (orden descendente)
 
-- La imagen o el video aparece en la galería correcta.
-- El texto está actualizado en alemán y en español.
-- El orden de los elementos es correcto.
-- El `Alt Text` de las imágenes está completo.
-- El `YouTube Video ID` funciona.
-- La portada del video se ve bien, si se agregó una.
+La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month}}-{{day}}-{{slug}}`.
 
-## Anexo: guía rápida para imágenes del hero de inicio
+### Ajustes globales
 
-Estas recomendaciones aplican al carrusel principal de la home.
+`data/site_settings.yml` guarda el email de destino del formulario de booking y las URLs de redes sociales. Se consume desde `hugo.Data.site_settings` en `contact/single.html` y desde `site.Data.site_settings` en el footer.
 
-- Tamaño ideal: `1600 x 2400 px`
-- Tamaño mínimo: `1200 x 1800 px`
-- Proporción recomendada: `2:3`
-- Mejor resultado: retratos verticales
-- Mantén el sujeto centrado o ligeramente a la derecha
-- Deja margen de seguridad para el recorte en tablet y móvil
-- Peso recomendado: `250 KB` a `500 KB`
-- Formato preferido: `WebP`, aunque `JPG` también funciona
+---
 
-Si solo sigues una regla, exporta cada imagen del hero en `1600 x 2400 px` y verifica que siga funcionando bien con recorte centrado.
+## CMS (Sveltia)
 
-## Configuración de Google Analytics 4
+`static/admin/index.html` carga el CMS desde CDN:
 
-La integración de GA4 quedó implementada en el tema para que, en usos futuros, solo haya que configurar el ID.
+```html
+<script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+```
 
-### Paso único de configuración
+`static/admin/config.yml` (≈380 líneas) define:
 
-En [hugo.toml](hugo.toml), completa este valor:
+- **Backend:** `github`, repo `pablo-johnson/carlosjohnson.github.io`, branch `main`.
+- **Media:** se sube a `assets/images` (así pasa por el pipeline de imágenes) y se referencia como `/images/...`.
+- **i18n:** `multiple_files`, locales `[de, es]`, default `de`, omitiendo el locale por defecto del nombre de archivo.
+- Cada campo declara su comportamiento multilingüe: `i18n: true` (traducible) o `i18n: duplicate` (valor compartido entre idiomas, típico de imágenes, fechas, IDs de YouTube y URLs).
+
+### Colecciones
+
+| Colección | Qué edita |
+|---|---|
+| **Site Settings** | Email de booking + Facebook / Instagram / YouTube |
+| **Homepage** | Hero (eyebrow, título, subtítulo máx. 500 caracteres, carrusel con mín. 3 slides, 3 "profile briefs", segundos de autoplay 3–5) y video destacado |
+| **Pages** | Biografía y Docencia (cátedra en Alemania, cátedra en Perú, masterclasses y recursos para alumnos) |
+| **Multimedia / Resources** | Galerías de imágenes, videos y audios |
+| **Concert Schedule – List Page** | Textos de la página de agenda |
+| **Concert Schedule / Events** | Alta y edición de conciertos (`create: true`) |
+
+> **Autenticación:** el `config.yml` no declara `base_url` ni `auth_endpoint`. Antes de replicar el setup en otro sitio conviene documentar/definir cómo se resuelve el login OAuth de GitHub (proxy propio tipo `sveltia-cms-auth`), ya que además exige que el cliente tenga cuenta de GitHub con acceso al repo.
+
+---
+
+## Customizaciones sobre PaperMod
+
+El tema está copiado dentro del repo y **todas las customizaciones viven ahí dentro** (~3.300 líneas propias). Esto implica que actualizar PaperMod desde upstream requiere un merge manual.
+
+### Layouts propios
+
+| Archivo | Función |
+|---|---|
+| `partials/index_profile.html` | Home completa: hero con carrusel, próximos 3 conciertos, video destacado |
+| `partials/header.html` | Reescrito: submenús desplegables, overflow menu, selector de idioma, soporte de `show_page` |
+| `partials/footer.html` | Menú de pie con `<details>`, iconos sociales SVG inline, créditos (**el que manda es el de `layouts/` en la raíz**) |
+| `partials/google_analytics.html` | Carga GA4 solo en producción y solo con consentimiento |
+| `partials/analytics_footer.html` | Banner de consentimiento y tracking de eventos |
+| `images/list.html` | Galería con lightbox |
+| `videos/list.html` · `videos/single.html` | Listado de videos y página de detalle |
+| `audios/list.html` | Biblioteca de audios (YouTube o URL directa) |
+| `concerts/list.html` · `concerts/single.html` | Agenda dividida en próximos/pasados y ficha de concierto |
+| `teaching/list.html` | Página de docencia con cátedras, masterclasses y recursos |
+| `contact/single.html` | Formulario de contacto/booking |
+
+### Assets propios
+
+- **CSS por sección**, inyectado inline con `resources.Get | minify` dentro de cada layout: `homepage.css` (580 líneas), `images.css`, `videos.css`, `audios.css`, `concerts.css`, `teaching.css`, `contact.css`.
+- **CSS extendido** (se concatena automáticamente al bundle de PaperMod): `extended/navigation.css`, `extended/analytics-consent.css`, `extended/blank.css`, y a nivel de proyecto `assets/css/extended/footer-menu.css` (sticky footer).
+- **JS:** `homepage-carousel.js` (carrusel del hero) e `images-gallery.js` (lightbox).
+
+### Traducciones
+
+Las claves propias se añadieron a `themes/PaperMod/i18n/de.yaml` y `es.yaml`. El directorio `i18n/` de la raíz está vacío. Familias de claves: `contact_form_*`, `teaching_*`, `analytics_consent_*`, `upcoming_events`, `past_events`, `more_info`, `view_all_events`, `featured_video`, `developed_by`, `privacy_page_link`.
+
+> Quedan algunos textos escritos a mano (alemán/español) dentro de `videos/single.html` en lugar de pasar por i18n.
+
+---
+
+## Pipeline de imágenes
+
+El media vive en `assets/images` (no en `static/`), así que Hugo puede procesarlo en tiempo de build: redimensiona, convierte a **WebP** y genera `srcset` + `width`/`height` (esto último evita saltos de layout / CLS).
+
+Dos partials en `layouts/partials/` encapsulan todo:
+
+| Partial | Devuelve |
+|---|---|
+| `responsive-image.html` | Un `<img>` completo con `srcset`, `sizes`, dimensiones y `loading` |
+| `image-url.html` | Solo la URL de una versión procesada (para lightbox, `data-*`, backgrounds) |
+
+```go-html-template
+{{ partial "responsive-image.html" (dict
+    "src"   $item.image
+    "alt"   $alt
+    "class" "gallery-img"
+    "sizes" "(max-width: 700px) 100vw, 33vw"
+    "widths" (slice 400 600 900 1200)) }}
+
+{{ $url := partial "image-url.html" (dict "src" $item.image "width" 1800) }}
+```
+
+Parámetros de `responsive-image.html`: `src` (obligatorio), `alt`, `class`, `id`, `sizes`, `widths`, `loading`, `fetchpriority`, `decoding`, `quality`.
+
+Detalles de comportamiento:
+
+- Solo genera anchos **menores** que el original (nunca escala hacia arriba) y añade siempre el tamaño original como mayor entrada del `srcset`.
+- **Degrada con elegancia:** si la imagen es remota (p. ej. la miniatura de YouTube de un video sin portada), no existe en `assets/` o no es procesable (SVG, GIF), emite un `<img>` simple con la URL original.
+- La primera slide del hero se marca `loading="eager"` + `fetchpriority="high"`; el resto va en `lazy`.
+- Las imágenes escritas en markdown también pasan por el pipeline gracias al render hook `_default/_markup/render-image.html`.
+
+Efecto típico: `cj-violin.jpg` pesa 589 KB; un móvil ahora descarga la variante de 600 px en WebP, de ~22 KB.
+
+Consecuencia práctica: **no hace falta optimizar a mano** antes de subir una imagen desde el CMS. Lo único que sigue importando es subirla con resolución suficiente y en la proporción correcta (ver [user-manual.md](user-manual.md)).
+
+---
+
+## Formulario de contacto
+
+`contact/single.html` construye el formulario contra **formsubmit.co** usando el email de `data/site_settings.yml`:
+
+- Acción normal: `https://formsubmit.co/<email>` · Acción AJAX: `https://formsubmit.co/ajax/<email>`
+- Envío por `fetch` con estados traducidos (enviando / éxito / error) y `aria-live`.
+- Anti-spam: honeypot `_honey` oculto.
+- Al enviar con éxito dispara el evento GA4 `contact_form_submit_success`.
+- Si `booking_email` está vacío, muestra un aviso en lugar del formulario.
+
+---
+
+## Analítica y consentimiento
+
+Configurado en `hugo.toml`:
 
 ```toml
 [services]
   [services.googleAnalytics]
-    id = "G-XXXXXXXXXX"
+    id = 'G-XXXXXXXXXX'
 ```
 
-Si el `id` está vacío, GA4 no se carga y el banner de consentimiento no aparece.
+Comportamiento:
 
-### Qué hace la integración
-
-- Carga GA4 solo en producción.
-- No activa analítica hasta que la persona acepte.
-- Mantiene `ad_storage` desactivado y solo habilita `analytics_storage` tras consentimiento.
+- Sin `id`, GA4 no se carga y el banner no aparece.
+- Solo se activa en producción (`HUGO_ENVIRONMENT=production`).
+- `ad_storage` siempre desactivado; `analytics_storage` solo tras aceptar.
 - No mide `/admin`.
-- Registra automáticamente `page_view` cuando hay consentimiento.
-- Registra eventos reutilizables como clics salientes y envío correcto del formulario de contacto.
+- Eventos: `page_view`, `outbound_click`, `contact_form_submit_success`, más los `data-analytics-*` declarados en los layouts (`select_content`, `view_item_list`).
+- El usuario puede reabrir sus preferencias con el shortcode pareado `{{< analytics-consent-manage >}}Texto del botón{{< /analytics-consent-manage >}}` (usado en `content/privacy.md` y `content/privacy.es.md`).
 
-### Dónde quedó implementado
+---
 
-- Partial principal de GA4: `themes/PaperMod/layouts/partials/google_analytics.html`
-- Banner y gestión de consentimiento: `themes/PaperMod/layouts/partials/footer.html`
-- Estilos del banner: `themes/PaperMod/assets/css/extended/analytics-consent.css`
+## Desarrollo local
 
-### Verificación recomendada
+Requisitos: **Hugo extended** `0.159.x` y **Dart Sass**.
 
-1. Configura el `id` de GA4.
-2. Levanta el sitio en producción o revisa el despliegue de GitHub Pages.
-3. Acepta la analítica en el banner.
-4. Revisa `DebugView` en GA4.
-5. Confirma que aparecen `page_view`, `outbound_click` y `contact_form_submit_success`.
+```bash
+hugo server -D                 # servidor de desarrollo con drafts
+hugo server --navigateToChanged
+hugo --minify                  # build de producción en ./public
+```
+
+`public/` está en `.gitignore`: el sitio se compila en CI, nunca se commitea.
+
+Para editar contenido en local con el CMS hace falta el modo local de Sveltia (servir `/admin` sobre el sitio local); en el flujo actual la edición se hace en producción contra el repo de GitHub.
+
+---
+
+## Despliegue
+
+`.github/workflows/hugo.yml`:
+
+1. Se dispara en cada `push` a `main` (o manualmente con `workflow_dispatch`).
+2. Instala Hugo extended `0.159.1` + Dart Sass.
+3. `checkout` con `submodules: recursive` y `fetch-depth: 0`.
+4. Build con `hugo --minify --baseURL "${{ steps.pages.outputs.base_url }}/"` y `HUGO_ENVIRONMENT=production`.
+5. Publica `./public` en GitHub Pages.
+
+Cada cambio guardado desde `/admin` es un commit en `main`, así que **publicar desde el CMS dispara automáticamente el deploy** (≈1–2 minutos).
+
+El `baseURL` de `hugo.toml` apunta a la URL de project page, pero el workflow lo sobrescribe con el valor real de Pages. Para un dominio propio habría que añadir `static/CNAME` y configurar el DNS.
+
+---
+
+## Notas de mantenimiento
+
+- **Actualizar PaperMod** implica merge manual: el tema está vendorizado y modificado in situ.
+- **El detalle de video es client-side**: `videos/single.html` renderiza todos los videos ocultos y JavaScript muestra el seleccionado. No genera una URL propia por video.
+- **Los menús se definen en `hugo.toml`**, no son editables desde el CMS. El cliente solo puede ocultar secciones vía `show_page`.
+- **Datos específicos del cliente hardcodeados**: el `© Carlos Johnson` del footer y el par de idiomas `de`/`es`.
+- Al mover el media, `static/images/` quedó como carpeta vacía en el disco local: se puede borrar, git no la trackea.

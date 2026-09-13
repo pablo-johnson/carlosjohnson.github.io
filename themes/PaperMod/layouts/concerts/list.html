@@ -170,9 +170,12 @@
 <div class="concert-item">
   <div class="concert-item-header">
     {{- if .Params.flyer }}
-    {{- $flyer := .Params.flyer -}}
-    {{- $flyerSrc := cond (or (hasPrefix $flyer "http://") (hasPrefix $flyer "https://")) $flyer (($flyer | strings.TrimPrefix "/") | relURL) -}}
-    <img src="{{ $flyerSrc }}" alt="{{ .Title }}" class="concert-flyer-thumbnail">
+    {{ partial "responsive-image.html" (dict
+        "src" .Params.flyer
+        "alt" .Title
+        "class" "concert-flyer-thumbnail"
+        "sizes" "(max-width: 700px) 100vw, 200px"
+        "widths" (slice 200 300 400 600)) }}
     {{- end }}
     <div class="concert-item-content">
       <div class="concert-date">{{ .Date.Format "02.01.2006 15:04" }} {{ with .Params.city }}– {{ . }}{{ end }}</div>
@@ -213,9 +216,12 @@
 <div class="concert-item">
   <div class="concert-item-header">
     {{- if .Params.flyer }}
-    {{- $flyer := .Params.flyer -}}
-    {{- $flyerSrc := cond (or (hasPrefix $flyer "http://") (hasPrefix $flyer "https://")) $flyer (($flyer | strings.TrimPrefix "/") | relURL) -}}
-    <img src="{{ $flyerSrc }}" alt="{{ .Title }}" class="concert-flyer-thumbnail">
+    {{ partial "responsive-image.html" (dict
+        "src" .Params.flyer
+        "alt" .Title
+        "class" "concert-flyer-thumbnail"
+        "sizes" "(max-width: 700px) 100vw, 200px"
+        "widths" (slice 200 300 400 600)) }}
     {{- end }}
     <div class="concert-item-content">
       <div class="concert-date">{{ .Date.Format "02.01.2006 15:04" }} {{ with .Params.city }}– {{ . }}{{ end }}</div>
