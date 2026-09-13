@@ -4,4 +4,4 @@ slug: "contact"
 type: "contact"
 ---
 
-Usa este formulario para consultas de conciertos, invitaciones y contratación.
+Para consultas de conciertos, invitaciones, clases magistrales y contrataciones, escribe a través de este formulario.

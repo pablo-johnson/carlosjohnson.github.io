@@ -1,7 +1,7 @@
 ---
 show_page: true
 title: Videos
-subtitle: Esto es una descripcion opcional en aleman 2
+subtitle: Interpretaciones en video, de Mozart al repertorio latinoamericano.
 gallery_videos:
   - enabled: true
     title: "D`Ambrosio - Canzonetta op.6 - Carlos Johnson - violin"
@@ -30,5 +30,29 @@ gallery_videos:
       Violin: Carlos Johnson
       Piano: Rieko Yoshizumi
       Compositor: Luis Di Matteo
+  - enabled: true
+    title: "Mozart - Concierto para violín n.º 3 en Sol mayor, K. 216"
+    youtube_id: kspHlinWdgk
+    body: |-
+      Wolfgang Amadeus Mozart (1756-1791)
+
+      Concierto para violín n.º 3 en Sol mayor, K. 216
+
+      Carlos Johnson - violín solista
+
+      Grabado en el Atlantic Grand Hotel Travemünde
+  - enabled: true
+    title: "Schubert - Serenata (Ständchen)"
+    youtube_id: w-LncYncuGc
+    body: |-
+      Franz Schubert (1797-1828)
+
+      Serenata (Ständchen)
+
+      Carlos Johnson - violín
+
+      Patricia García - piano
+
+      Recital en la sede histórica de la Universidad Nacional de Música, Lima
 ---
 
