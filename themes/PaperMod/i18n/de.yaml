@@ -169,3 +169,59 @@
 
 - id: analytics_consent_manage
   translation: "Datenschutzeinstellungen"
+
+# --- Textos de interfaz (antes escritos a mano en los layouts) ---
+
+- id: footer_nav_label
+  translation: "Fußnavigation"
+
+- id: footer_social_label
+  translation: "Soziale Netzwerke"
+
+- id: menu_more_options
+  translation: "Weitere Menüpunkte"
+
+- id: menu_open
+  translation: "Menü öffnen"
+
+- id: gallery_prev_image
+  translation: "Vorheriges Bild"
+
+- id: gallery_next_image
+  translation: "Nächstes Bild"
+
+- id: gallery_lightbox_label
+  translation: "Vergrösserte Bildansicht"
+
+- id: gallery_empty
+  translation: "In dieser Galerie sind noch keine Bilder veröffentlicht."
+
+- id: videos_back
+  translation: "Zurück zu Videos"
+
+- id: videos_empty
+  translation: "In dieser Galerie sind noch keine Videos veröffentlicht."
+
+- id: video_not_found
+  translation: "Das angeforderte Video wurde nicht gefunden."
+
+- id: audios_featured_title
+  translation: "Empfohlene Aufnahmen"
+
+- id: audios_featured_copy
+  translation: "Bis eigenständige Audios veröffentlicht werden, bündelt diese Bibliothek bereits verfügbare Interpretationen aus dem bestehenden Medienarchiv."
+
+- id: audios_format_title
+  translation: "Format"
+
+- id: audios_format_copy
+  translation: "Jeder Eintrag verlinkt auf die veröffentlichte Aufnahme und auf die vollständige Werkseite mit weiteren Details."
+
+- id: audios_card_kicker
+  translation: "Veröffentlichte Aufnahme"
+
+- id: audios_listen
+  translation: "Anhören"
+
+- id: audios_empty
+  translation: "Derzeit sind noch keine Aufnahmen verfügbar."

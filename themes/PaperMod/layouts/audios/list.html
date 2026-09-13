@@ -31,12 +31,12 @@
 
 <section class="audio-intro-grid">
   <article class="audio-intro-card">
-    <h2>{{ if eq .Site.Language.Lang "es" }}Escucha destacada{{ else }}Empfohlene Aufnahmen{{ end }}</h2>
-    <p>{{ if eq .Site.Language.Lang "es" }}Mientras se publican pistas dedicadas, esta biblioteca reúne interpretaciones disponibles para escucha inmediata desde el archivo audiovisual existente.{{ else }}Bis eigenständige Audios veröffentlicht werden, bündelt diese Bibliothek bereits verfügbare Interpretationen aus dem bestehenden Medienarchiv.{{ end }}</p>
+    <h2>{{ i18n "audios_featured_title" }}</h2>
+    <p>{{ i18n "audios_featured_copy" }}</p>
   </article>
   <article class="audio-intro-card">
-    <h2>{{ if eq .Site.Language.Lang "es" }}Formato{{ else }}Format{{ end }}</h2>
-    <p>{{ if eq .Site.Language.Lang "es" }}Cada ficha enlaza a la grabación publicada y a la página completa de la obra para ampliar información.{{ else }}Jeder Eintrag verlinkt auf die veröffentlichte Aufnahme und auf die vollständige Werkseite mit weiteren Details.{{ end }}</p>
+    <h2>{{ i18n "audios_format_title" }}</h2>
+    <p>{{ i18n "audios_format_copy" }}</p>
   </article>
 </section>
 
@@ -50,7 +50,7 @@
   {{- $summary := (.body | default "" | markdownify | plainify | htmlUnescape | strings.TrimSpace) -}}
   <article class="audio-card">
     <div class="audio-card-body">
-      <p class="audio-card-kicker">{{ if eq $.Site.Language.Lang "es" }}Grabación publicada{{ else }}Veröffentlichte Aufnahme{{ end }}</p>
+      <p class="audio-card-kicker">{{ i18n "audios_card_kicker" }}</p>
       <h2>{{ .title }}</h2>
       {{- if $summary }}
       <p>{{ $summary | truncate 180 }}</p>
@@ -60,7 +60,7 @@
       {{- end }}
       <div class="audio-card-actions">
         {{- if $external }}
-        <a class="button-like" href="{{ $external }}" target="_blank" rel="noopener">{{ if eq $.Site.Language.Lang "es" }}Escuchar{{ else }}Anhören{{ end }}</a>
+        <a class="button-like" href="{{ $external }}" target="_blank" rel="noopener">{{ i18n "audios_listen" }}</a>
         {{- end }}
       </div>
     </div>
@@ -69,7 +69,7 @@
 </section>
 {{- else }}
 <section class="media-empty-state">
-  <p>{{ if eq .Site.Language.Lang "es" }}Todavía no hay grabaciones disponibles.{{ else }}Derzeit sind noch keine Aufnahmen verfügbar.{{ end }}</p>
+  <p>{{ i18n "audios_empty" }}</p>
 </section>
 {{- end }}
 {{- end }}

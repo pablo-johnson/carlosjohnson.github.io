@@ -162,9 +162,9 @@ El tema está copiado dentro del repo y **todas las customizaciones viven ahí d
 
 ### Traducciones
 
-Las claves propias se añadieron a `themes/PaperMod/i18n/de.yaml` y `es.yaml`. El directorio `i18n/` de la raíz está vacío. Familias de claves: `contact_form_*`, `teaching_*`, `analytics_consent_*`, `upcoming_events`, `past_events`, `more_info`, `view_all_events`, `featured_video`, `developed_by`, `privacy_page_link`.
+Las claves propias se añadieron a `themes/PaperMod/i18n/de.yaml`, `es.yaml` y `en.yaml`. El directorio `i18n/` de la raíz está vacío. Familias de claves: `contact_form_*`, `teaching_*`, `analytics_consent_*`, `gallery_*`, `videos_*`, `audios_*`, `menu_*`, `footer_*`, `upcoming_events`, `past_events`, `more_info`, `view_all_events`, `featured_video`, `developed_by`, `privacy_page_link`.
 
-> Quedan algunos textos escritos a mano (alemán/español) dentro de `videos/single.html` en lugar de pasar por i18n.
+**Ningún layout contiene texto en un idioma concreto**: todo pasa por `i18n`, incluidos los `aria-label`, los estados vacíos de las galerías y el pie. Añadir un idioma nuevo a un sitio es crear su `.yaml` y declararlo en `hugo.toml`; no hay que tocar plantillas. El inglés está traducido aunque este sitio no lo use, como base para los próximos.
 
 ---
 
@@ -202,6 +202,35 @@ Detalles de comportamiento:
 Efecto típico: `cj-violin.jpg` pesa 589 KB; un móvil ahora descarga la variante de 600 px en WebP, de ~22 KB.
 
 Consecuencia práctica: **no hace falta optimizar a mano** antes de subir una imagen desde el CMS. Lo único que sigue importando es subirla con resolución suficiente y en la proporción correcta (ver [user-manual.md](user-manual.md)).
+
+---
+
+## Reutilizar la plantilla en otro sitio
+
+Los layouts no contienen datos del cliente. Todo lo específico de un sitio vive en configuración:
+
+| Dónde | Qué |
+|---|---|
+| `hugo.toml` | `baseURL`, `title` por idioma, idiomas y menús, ID de GA4, `copyright_name`, `[params.developer]` |
+| `data/site_settings.yml` | Email de booking y redes sociales (editable desde el CMS) |
+| `static/admin/config.yml` | `backend.repo` y `branch` del repositorio destino |
+| `static/admin/index.html` | Título de la pestaña del panel (HTML estático, no pasa por Hugo) |
+| `content/` + `assets/images/` | Textos e imágenes del músico |
+
+Parámetros del pie:
+
+```toml
+[params]
+  # Titular del copyright. Si se omite, se usa el title del sitio.
+  copyright_name = 'Carlos Johnson'
+
+  # Crédito del desarrollador. Borra el bloque entero para ocultarlo.
+  [params.developer]
+    name = 'Pablo Johnson'
+    url = 'https://github.com/pablo-johnson'
+```
+
+Si se borra `[params.developer]`, el crédito desaparece junto con su separador, sin dejar restos en el pie.
 
 ---
 
@@ -274,6 +303,6 @@ El `baseURL` de `hugo.toml` apunta a la URL de project page, pero el workflow lo
 
 - **Actualizar PaperMod** implica merge manual: el tema está vendorizado y modificado in situ.
 - **El detalle de video es client-side**: `videos/single.html` renderiza todos los videos ocultos y JavaScript muestra el seleccionado. No genera una URL propia por video.
-- **Los menús se definen en `hugo.toml`**, no son editables desde el CMS. El cliente solo puede ocultar secciones vía `show_page`.
-- **Datos específicos del cliente hardcodeados**: el `© Carlos Johnson` del footer y el par de idiomas `de`/`es`.
+- **Los menús se definen en `hugo.toml`**, no son editables desde el CMS. El cliente solo puede ocultar secciones vía `show_page`. Es config por sitio, no un hardcodeo de layout, pero sigue siendo un archivo que hay que tocar a mano en cada alta.
+- **El footer del tema** (`themes/PaperMod/layouts/partials/footer.html`) es código muerto: el override de `layouts/` siempre gana. Conserva el crédito modificado de PaperMod.
 - Al mover el media, `static/images/` quedó como carpeta vacía en el disco local: se puede borrar, git no la trackea.

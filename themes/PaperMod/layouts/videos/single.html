@@ -9,12 +9,13 @@
   <header class="post-header">
     {{- partial "breadcrumbs.html" . }}
     <p style="margin-bottom: 1rem;">
-      <a href="{{ "videos/" | relLangURL }}" aria-label="{{ if eq .Site.Language.Lang "es" }}Volver a videos{{ else if eq .Site.Language.Lang "de" }}Zurück zu Videos{{ else }}Back to videos{{ end }}">&larr; {{ if eq .Site.Language.Lang "es" }}Volver a videos{{ else if eq .Site.Language.Lang "de" }}Zurück zu Videos{{ else }}Back to videos{{ end }}</a>
+      {{- $backLabel := i18n "videos_back" }}
+      <a href="{{ "videos/" | relLangURL }}" aria-label="{{ $backLabel }}">&larr; {{ $backLabel }}</a>
     </p>
   </header>
 
   <div id="video-detail-empty" class="media-empty-state" hidden>
-    <p>{{ if eq .Site.Language.Lang "es" }}No se encontró el video solicitado.{{ else }}Das angeforderte Video wurde nicht gefunden.{{ end }}</p>
+    <p>{{ i18n "video_not_found" }}</p>
   </div>
 
   <div id="video-detail-list">

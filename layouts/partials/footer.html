@@ -10,8 +10,10 @@
     "instagram" ($siteSettings.social_links.instagram | default "#")
     "youtube" ($siteSettings.social_links.youtube | default "#")
 -}}
-{{- $footerNavLabel := cond (eq .Lang "es") "Navegación del pie" "Fußnavigation" -}}
-{{- $socialLabel := cond (eq .Lang "es") "Redes sociales" "Soziale Netzwerke" -}}
+{{- $footerNavLabel := i18n "footer_nav_label" -}}
+{{- $socialLabel := i18n "footer_social_label" -}}
+{{- $copyrightName := site.Params.copyright_name | default site.Title -}}
+{{- $developer := site.Params.developer -}}
 
 <footer class="footer">
     <div class="footer-inner">
@@ -98,7 +100,7 @@
             </ul>
         </nav>
         <div class="footer-meta">
-            <span>&copy; Carlos Johnson {{ now.Year }} · {{ i18n "developed_by" }} <a href="https://github.com/pablo-johnson" rel="noopener noreferrer" target="_blank">Pablo Johnson</a>{{ with $privacyPage }} · <a href="{{ .RelPermalink }}">{{ i18n "privacy_page_link" | default "Privacy" }}</a>{{ end }}</span>
+            <span>&copy; {{ $copyrightName }} {{ now.Year }}{{ with $developer }} · {{ i18n "developed_by" }} <a href="{{ .url }}" rel="noopener noreferrer" target="_blank">{{ .name }}</a>{{ end }}{{ with $privacyPage }} · <a href="{{ .RelPermalink }}">{{ i18n "privacy_page_link" | default "Privacy" }}</a>{{ end }}</span>
         </div>
     </div>
 </footer>

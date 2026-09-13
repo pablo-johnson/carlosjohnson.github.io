@@ -31,3 +31,59 @@
 
 - id: code_copied
   translation: "copied!"
+
+# --- Textos de interfaz (antes escritos a mano en los layouts) ---
+
+- id: footer_nav_label
+  translation: "Footer navigation"
+
+- id: footer_social_label
+  translation: "Social networks"
+
+- id: menu_more_options
+  translation: "More options"
+
+- id: menu_open
+  translation: "Open menu"
+
+- id: gallery_prev_image
+  translation: "Previous image"
+
+- id: gallery_next_image
+  translation: "Next image"
+
+- id: gallery_lightbox_label
+  translation: "Enlarged image view"
+
+- id: gallery_empty
+  translation: "No images have been published in this gallery yet."
+
+- id: videos_back
+  translation: "Back to videos"
+
+- id: videos_empty
+  translation: "No videos have been published in this gallery yet."
+
+- id: video_not_found
+  translation: "The requested video was not found."
+
+- id: audios_featured_title
+  translation: "Featured listening"
+
+- id: audios_featured_copy
+  translation: "Until dedicated audio tracks are published, this library gathers performances already available in the existing media archive."
+
+- id: audios_format_title
+  translation: "Format"
+
+- id: audios_format_copy
+  translation: "Each entry links to the published recording and to the full work page with further details."
+
+- id: audios_card_kicker
+  translation: "Published recording"
+
+- id: audios_listen
+  translation: "Listen"
+
+- id: audios_empty
+  translation: "No recordings are available yet."

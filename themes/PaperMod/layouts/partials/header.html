@@ -86,8 +86,8 @@
         </div>
         {{- $currentPage := . }}
         {{- $page_url:= $currentPage.RelPermalink }}
-        {{- $overflow_label := cond (eq .Lang "es") "Más opciones" "Weitere Menüpunkte" }}
-        {{- $menu_label := cond (eq .Lang "es") "Abrir menú" "Menü öffnen" }}
+        {{- $overflow_label := i18n "menu_more_options" }}
+        {{- $menu_label := i18n "menu_open" }}
         <button id="menu-toggle" class="menu-toggle" type="button" aria-expanded="false" aria-controls="menu" aria-label="{{ $menu_label }}" title="{{ $menu_label }}">
             <span></span>
             <span></span>

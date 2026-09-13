@@ -30,8 +30,8 @@
 
 {{- $gallery := where (.Params.gallery_items | default (slice)) "enabled" "!=" false -}}
 {{- $pageTitle := .Title -}}
-{{- $prevLabel := cond (eq .Site.Language.Lang "es") "Imagen anterior" "Vorheriges Bild" -}}
-{{- $nextLabel := cond (eq .Site.Language.Lang "es") "Imagen siguiente" "Nächstes Bild" -}}
+{{- $prevLabel := i18n "gallery_prev_image" -}}
+{{- $nextLabel := i18n "gallery_next_image" -}}
 
 {{- if gt (len $gallery) 0 }}
 <section class="image-gallery" data-image-gallery>
@@ -58,7 +58,7 @@
   </figure>
   {{- end }}
 </section>
-<dialog class="image-lightbox" id="image-lightbox" aria-label="{{ if eq .Site.Language.Lang "es" }}Vista ampliada de imagen{{ else }}Vergrösserte Bildansicht{{ end }}">
+<dialog class="image-lightbox" id="image-lightbox" aria-label="{{ i18n "gallery_lightbox_label" }}">
   <div class="image-lightbox-frame">
     <button class="image-lightbox-nav image-lightbox-nav--prev" type="button" aria-label="{{ $prevLabel }}">&#10094;</button>
     <div class="image-lightbox-content">
@@ -82,7 +82,7 @@
 {{- end }}
 {{- else }}
 <section class="media-empty-state">
-  <p>{{ if eq .Site.Language.Lang "es" }}Todavía no hay imágenes publicadas en esta galería.{{ else }}In dieser Galerie sind noch keine Bilder veröffentlicht.{{ end }}</p>
+  <p>{{ i18n "gallery_empty" }}</p>
 </section>
 {{- end }}
 {{- end }}

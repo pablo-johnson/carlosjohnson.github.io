@@ -31,8 +31,14 @@ defaultContentLanguage = 'de'
   defaultTheme = 'light'
   ShowShareButtons = false
   ShowReadingTime = false
+  # Titular del copyright del pie. Si se omite, se usa el title del sitio.
+  copyright_name = 'Carlos Johnson'
   [params.profileMode]
     enabled = true
+  # Credito del desarrollador en el pie. Borra este bloque para ocultarlo.
+  [params.developer]
+    name = 'Pablo Johnson'
+    url = 'https://github.com/pablo-johnson'
 
 # --- MENUS ---
 [languages.de.menu]
