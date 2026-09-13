@@ -10,7 +10,7 @@ public_folder: "/images"
 # i18n configuration
 i18n:
   structure: multiple_files
-  locales: [de, es]
+  locales: [de, es, en]
   default_locale: de
   omit_default_locale_from_filename : true
 

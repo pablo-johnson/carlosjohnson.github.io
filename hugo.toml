@@ -1,14 +1,15 @@
 baseURL = 'https://pablo-johnson.github.io/carlosjohnson.github.io/'
 theme = 'PaperMod'
+# Multilingüe: alemán por defecto (sirve en la raíz), español e inglés en subcarpeta.
+# Esta clave DEBE ir antes de cualquier [tabla]: dentro de una, TOML la trata como
+# clave de esa tabla y Hugo la ignora, cayendo silenciosamente a 'en'.
+defaultContentLanguage = 'de'
 # canonifyURLs = false
 buildFuture = true
 
 [services]
   [services.googleAnalytics]
     id = 'G-FHH7XVEBFG'
-
-# Configuracion Multilingue: Alemán por defecto
-defaultContentLanguage = 'de'
 
 [languages]
   [languages.de]
@@ -26,6 +27,14 @@ defaultContentLanguage = 'de'
     title = 'Carlos Johnson'
     [languages.es.params]
       description = 'Violinista Clásico y Profesor'
+
+  [languages.en]
+    languageCode = 'en-GB'
+    languageName = 'English'
+    weight = 3
+    title = 'Carlos Johnson'
+    [languages.en.params]
+      description = 'Classical Violinist, Conductor and Teacher'
 
 [params]
   defaultTheme = 'light'
@@ -118,5 +127,42 @@ defaultContentLanguage = 'de'
     weight = 2
   [[languages.es.menu.main]]
     name = "Contacto"
+    url = "contact/"
+    weight = 5
+
+[languages.en.menu]
+  [[languages.en.menu.main]]
+    name = "Biography"
+    url = "about/"
+    weight = 1
+  [[languages.en.menu.main]]
+    identifier = "multimedia"
+    name = "Multimedia"
+    weight = 4
+  [[languages.en.menu.main]]
+    name = "Images"
+    url = "images/"
+    parent = "multimedia"
+    weight = 1
+  [[languages.en.menu.main]]
+    name = "Videos"
+    url = "videos/"
+    parent = "multimedia"
+    weight = 2
+  [[languages.en.menu.main]]
+    name = "Audio"
+    url = "audios/"
+    parent = "multimedia"
+    weight = 3
+  [[languages.en.menu.main]]
+    name = "Concerts"
+    url = "concerts/"
+    weight = 3
+  [[languages.en.menu.main]]
+    name = "Teaching"
+    url = "teaching/"
+    weight = 2
+  [[languages.en.menu.main]]
+    name = "Contact"
     url = "contact/"
     weight = 5

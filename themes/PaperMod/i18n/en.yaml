@@ -90,3 +90,144 @@
 
 - id: language_switcher
   translation: "Language"
+
+
+# --- Claves propias del sitio (paridad con de.yaml y es.yaml) ---
+
+- id: upcoming_events
+  translation: "Upcoming Concerts"
+
+- id: past_events
+  translation: "Past Concerts"
+
+- id: city
+  translation: "City"
+
+- id: venue
+  translation: "Venue"
+
+- id: repertoire
+  translation: "Repertoire"
+
+- id: buy_tickets
+  translation: "Buy Tickets"
+
+- id: more_info
+  translation: "More Information"
+
+- id: view_all_events
+  translation: "View all concerts"
+
+- id: featured_video
+  translation: "Featured Video"
+
+- id: developed_by
+  translation: "Developed by"
+
+- id: back_to_concerts
+  translation: "Back to concerts"
+
+- id: contact_info
+  translation: "Contact Information"
+
+- id: email
+  translation: "Email"
+
+- id: phone
+  translation: "Phone"
+
+- id: contact_form_name
+  translation: "Name"
+
+- id: contact_form_website
+  translation: "Website"
+
+- id: contact_form_phone
+  translation: "Phone"
+
+- id: contact_form_message
+  translation: "Message"
+
+- id: contact_form_submit
+  translation: "Send message"
+
+- id: contact_form_missing_email
+  translation: "The booking email address has not been configured yet. Please add it in the site settings."
+
+- id: contact_form_intro
+  translation: "For concert enquiries and booking, send your message here."
+
+- id: contact_form_sending
+  translation: "Sending..."
+
+- id: contact_form_success
+  translation: "Your message has been sent successfully."
+
+- id: contact_form_error
+  translation: "The message could not be sent. Please try again."
+
+- id: teaching_germany_chair
+  translation: "Chair in Germany"
+
+- id: teaching_peru_chair
+  translation: "Chair in Peru"
+
+- id: teaching_masterclasses
+  translation: "Masterclasses"
+
+- id: teaching_resources
+  translation: "Student Resources"
+
+- id: teaching_admissions
+  translation: "Admission"
+
+- id: teaching_auditions
+  translation: "Auditions"
+
+- id: teaching_projects
+  translation: "Talent development"
+
+- id: teaching_calendar
+  translation: "Calendar"
+
+- id: teaching_private_area
+  translation: "Private area"
+
+- id: teaching_institution_website
+  translation: "Visit institution"
+
+- id: teaching_available_soon
+  translation: "More details coming soon."
+
+- id: teaching_date
+  translation: "Date"
+
+- id: teaching_location
+  translation: "Location"
+
+- id: teaching_access_note
+  translation: "Access"
+
+- id: privacy_page_link
+  translation: "Privacy"
+
+- id: analytics_consent_eyebrow
+  translation: "Analytics"
+
+- id: analytics_consent_title
+  translation: "Help improve this site"
+
+- id: analytics_consent_copy
+  translation: "We use Google Analytics 4 to understand visits and improve the site. Analytics stays switched off until you accept."
+
+- id: analytics_consent_accept
+  translation: "Accept analytics"
+
+- id: analytics_consent_reject
+  translation: "Decline"
+
+- id: analytics_consent_privacy
+  translation: "Privacy details"
+
+- id: analytics_consent_manage
+  translation: "Privacy settings"

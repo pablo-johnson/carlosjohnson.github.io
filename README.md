@@ -20,7 +20,7 @@ Forma parte del proyecto **profi-web**: páginas web para músicos con plantilla
 | Hosting | **GitHub Pages** | Deploy vía GitHub Actions |
 | Formulario | **formsubmit.co** | Envío AJAX, sin backend propio |
 | Analítica | **Google Analytics 4** | Con banner de consentimiento propio (Consent Mode) |
-| Idiomas | `de` (por defecto) + `es` | `i18n.structure: multiple_files` |
+| Idiomas | `de` (por defecto) + `es` + `en` | `i18n.structure: multiple_files` |
 
 ---
 
@@ -61,14 +61,22 @@ Forma parte del proyecto **profi-web**: páginas web para músicos con plantilla
 
 ### Multilingüe
 
-Alemán es el idioma por defecto y **omite el sufijo** en el nombre de archivo; español lo lleva explícito:
+Alemán es el idioma por defecto y **omite el sufijo** en el nombre de archivo; español e inglés lo llevan explícito:
 
 ```
 content/about.md       → alemán  (/about/)
 content/about.es.md    → español (/es/about/)
+content/about.en.md    → inglés  (/en/about/)
 ```
 
-Toda página nueva debe crearse en **ambos** idiomas.
+Toda página nueva debe crearse en **los tres** idiomas.
+
+> **Trampa de TOML que costó un rato:** `defaultContentLanguage` tiene que estar
+> antes de cualquier cabecera `[tabla]` en `hugo.toml`. Estaba escrita después de
+> `[services.googleAnalytics]`, así que TOML la trataba como clave de esa tabla y
+> Hugo caía en silencio a `en`. Con solo dos idiomas no se notaba, porque el
+> alemán ganaba la raíz por peso; al añadir el inglés, los archivos sin sufijo
+> pasaron a considerarse ingleses y el sitio alemán se vació.
 
 ### Páginas y secciones
 
@@ -130,7 +138,7 @@ La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month
 
 - **Backend:** `github`, repo `pablo-johnson/carlosjohnson.github.io`, branch `main`.
 - **Media:** se sube a `assets/images` (así pasa por el pipeline de imágenes) y se referencia como `/images/...`.
-- **i18n:** `multiple_files`, locales `[de, es]`, default `de`, omitiendo el locale por defecto del nombre de archivo.
+- **i18n:** `multiple_files`, locales `[de, es, en]`, default `de`, omitiendo el locale por defecto del nombre de archivo.
 - Cada campo declara su comportamiento multilingüe: `i18n: true` (traducible) o `i18n: duplicate` (valor compartido entre idiomas, típico de imágenes, fechas, IDs de YouTube y URLs).
 
 ### Colecciones
@@ -176,7 +184,7 @@ El tema está copiado dentro del repo y **todas las customizaciones viven ahí d
 
 ### Traducciones
 
-Las claves propias se añadieron a `themes/PaperMod/i18n/de.yaml`, `es.yaml` y `en.yaml`. El directorio `i18n/` de la raíz está vacío. Familias de claves: `contact_form_*`, `teaching_*`, `analytics_consent_*`, `gallery_*`, `videos_*`, `audios_*`, `menu_*`, `footer_*`, `upcoming_events`, `past_events`, `more_info`, `view_all_events`, `featured_video`, `developed_by`, `privacy_page_link`.
+Las claves propias se añadieron a `themes/PaperMod/i18n/de.yaml`, `es.yaml` y `en.yaml`, los tres con las mismas 75 claves. El directorio `i18n/` de la raíz está vacío. Familias de claves: `contact_form_*`, `teaching_*`, `analytics_consent_*`, `gallery_*`, `videos_*`, `audios_*`, `menu_*`, `footer_*`, `upcoming_events`, `past_events`, `more_info`, `view_all_events`, `featured_video`, `developed_by`, `privacy_page_link`.
 
 **Ningún layout contiene texto en un idioma concreto**: todo pasa por `i18n`, incluidos los `aria-label`, los estados vacíos de las galerías y el pie. Añadir un idioma nuevo a un sitio es crear su `.yaml` y declararlo en `hugo.toml`; no hay que tocar plantillas. El inglés está traducido aunque este sitio no lo use, como base para los próximos.
 

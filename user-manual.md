@@ -11,14 +11,14 @@ Este manual explica cómo agregar imágenes a la galería de imágenes y videos 
 
 - Ten listas las imágenes con buena resolución. No hace falta optimizarlas ni comprimirlas a mano: el sitio genera automáticamente versiones ligeras (WebP) para cada tamaño de pantalla.
 - Si vas a publicar un video, ten a mano el enlace de YouTube.
-- Revisa siempre los dos idiomas. El sitio usa alemán y español, así que el título, la descripción y los textos visibles deben actualizarse en ambas versiones.
+- Revisa siempre los tres idiomas. El sitio está en alemán, español e inglés, así que el título, la descripción y los textos visibles deben actualizarse en las tres versiones.
 
 ## Cómo agregar una imagen a la galería de imágenes
 
 1. Entra a `/admin`.
 2. Abre `Multimedia / Resources`.
 3. Entra en `Images Gallery`.
-4. Edita primero una versión de idioma y luego la otra.
+4. Edita una versión de idioma y luego las demás.
 5. Busca la lista `Gallery Images`.
 6. Haz clic en `Add Gallery Images` o en el botón para agregar un nuevo elemento.
 7. Completa los campos.
@@ -44,7 +44,7 @@ Este manual explica cómo agregar imágenes a la galería de imágenes y videos 
 1. Entra a `/admin`.
 2. Abre `Multimedia / Resources`.
 3. Entra en `Videos Gallery`.
-4. Edita primero una versión de idioma y luego la otra.
+4. Edita una versión de idioma y luego las demás.
 5. Busca la lista `Gallery Videos`.
 6. Agrega un nuevo elemento.
 7. Completa los campos.
@@ -115,7 +115,7 @@ La portada muestra un bloque de citas de crítica. Se edita en `/admin` -> `Home
 - En `Source` conviene poner medio y año, por ejemplo `Lübeckische Blätter, 2022`.
 - Si borras todas las citas, el bloque entero desaparece de la portada.
 
-Recuerda revisar los dos idiomas.
+Recuerda revisar los tres idiomas.
 
 ## Bloque de cierre de la portada
 
@@ -144,7 +144,7 @@ Para mostrarla:
 3. Activa `Show Concert Schedule`.
 4. Guarda o publica los cambios.
 
-Este interruptor es común a los dos idiomas: lo activas una vez y se aplica al alemán y al español.
+Este interruptor es común a los tres idiomas: lo activas una vez y se aplica al alemán, al español y al inglés.
 
 Para volver a ocultarla, desactívalo. **No se borra nada**: los conciertos cargados siguen guardados y vuelven a aparecer cuando la actives de nuevo.
 

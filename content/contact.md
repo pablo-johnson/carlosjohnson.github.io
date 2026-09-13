@@ -4,4 +4,4 @@ slug: "contact"
 type: "contact"
 ---
 
-Nutzen Sie dieses Formular für Konzertanfragen, Einladungen und Booking.
+Für Konzertanfragen, Einladungen, Meisterkurse und Booking nutzen Sie bitte dieses Formular.

@@ -1,7 +1,7 @@
 ---
 show_page: true
 title: Videos
-subtitle: Dies ist eine optionale Beschreibung auf Deutsch 2
+subtitle: Aufnahmen auf Video, von Mozart bis zum lateinamerikanischen Repertoire.
 gallery_videos:
   - enabled: true
     title: "D`Ambrosio - Canzonetta op.6 - Carlos Johnson - violin"
@@ -33,5 +33,29 @@ gallery_videos:
       Interpretin: Rieko Yoshizumi
 
       Komponist: Luis Di Matteo
+  - enabled: true
+    title: "Mozart - Violinkonzert Nr. 3 G-Dur, KV 216"
+    youtube_id: kspHlinWdgk
+    body: |-
+      Wolfgang Amadeus Mozart (1756-1791)
+
+      Violinkonzert Nr. 3 G-Dur, KV 216
+
+      Carlos Johnson - Violine solo
+
+      Aufgenommen im Atlantic Grand Hotel Travemünde
+  - enabled: true
+    title: "Schubert - Ständchen"
+    youtube_id: w-LncYncuGc
+    body: |-
+      Franz Schubert (1797-1828)
+
+      Ständchen
+
+      Carlos Johnson - Violine
+
+      Patricia García - Klavier
+
+      Konzert am historischen Sitz der Universidad Nacional de Música, Lima
 ---
 
