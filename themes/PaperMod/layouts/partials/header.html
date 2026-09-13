@@ -62,22 +62,19 @@
                     {{- if not $translations }}
                         {{- $translations = site.Home.AllTranslations }}
                     {{- end }}
+                    {{- /* Se muestran los dos idiomas con el activo marcado: un unico
+                           "De" suelto junto al icono de tema se leia como un error. */ -}}
                     {{- with $translations }}
-                    <ul class="lang-switch">
-                        {{- if $separator }}<li>|</li>{{ end }}
+                    <ul class="lang-switch" aria-label="{{ i18n "language_switcher" }}">
                         {{- range . -}}
-                        {{- if ne $lang .Lang }}
                         <li>
+                            {{- if eq $lang .Lang }}
+                            <span class="lang-switch__current" aria-current="true" title="{{ .Language.LanguageName | default (.Lang | title) }}">{{ .Lang | upper }}</span>
+                            {{- else }}
                             <a href="{{- .RelPermalink -}}" title="{{ .Language.Params.languageAltTitle | default (.Language.LanguageName | emojify) | default (.Lang | title) }}"
-                                aria-label="{{ .Language.LanguageName | default (.Lang | title) }}">
-                                {{- if (and site.Params.displayFullLangName (.Language.LanguageName)) }}
-                                {{- .Language.LanguageName | emojify -}}
-                                {{- else }}
-                                {{- .Lang | title -}}
-                                {{- end -}}
-                            </a>
+                                aria-label="{{ .Language.LanguageName | default (.Lang | title) }}">{{ .Lang | upper }}</a>
+                            {{- end }}
                         </li>
-                        {{- end -}}
                         {{- end}}
                     </ul>
                     {{- end }}

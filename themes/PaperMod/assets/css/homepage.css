@@ -579,3 +579,276 @@
     transition: none;
   }
 }
+/* ===========================================================================
+   Rediseño de portada
+   Bloque final a propósito: sobrescribe las reglas anteriores del archivo sin
+   reescribirlas, para que el diff se lea como lo que es.
+   =========================================================================== */
+
+/* El hero era una caja negra con esquinas redondeadas flotando sobre fondo
+   claro: se leía como un widget, no como la portada de un artista. A sangre. */
+.home-hero {
+  border-radius: 0;
+}
+
+/* La foto llega hasta el borde y ocupa toda la altura, en vez de ser un
+   panelito recortado con su propio radio. */
+.home-hero__media {
+  top: 0;
+  right: 0;
+  bottom: 0;
+  width: clamp(340px, 48vw, 820px);
+  border-radius: 0;
+  opacity: 1;
+}
+
+/* Degradado horizontal: el retrato se funde con el negro donde empieza el
+   texto, sin necesidad de oscurecer la foto entera. */
+.home-hero__media::before {
+  background:
+    linear-gradient(90deg, #020202 0%, rgba(2, 2, 2, 0.92) 14%, rgba(2, 2, 2, 0.5) 40%, rgba(2, 2, 2, 0.08) 72%, rgba(2, 2, 2, 0) 100%),
+    linear-gradient(180deg, rgba(2, 2, 2, 0) 55%, rgba(2, 2, 2, 0.35) 100%);
+}
+
+.home-hero__slides {
+  border-radius: 0;
+}
+
+.home-hero__slide img {
+  filter: brightness(0.92) saturate(1);
+  object-position: center 22%;
+}
+
+.home-hero__title {
+  font-family: var(--font-display);
+  font-size: clamp(2.9rem, 6.6vw, 5rem);
+  line-height: 1.02;
+  letter-spacing: -0.02em;
+}
+
+.home-hero__eyebrow {
+  font-family: var(--font-body);
+  letter-spacing: 0.26em;
+}
+
+.home-hero__subtitle {
+  font-family: var(--font-body);
+}
+
+/* El número de cada faceta lleva el acento: es el único punto de color del
+   hero. */
+.home-brief__number {
+  font-family: var(--font-body);
+  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
+  color: color-mix(in srgb, var(--accent) 82%, white);
+}
+
+.home-brief h2 {
+  font-family: var(--font-display);
+  letter-spacing: -0.01em;
+}
+
+/* El bloque de video: fuera el doble marco crema, que era lo más "plantilla
+   de 2015" de la página. El video manda; el título baja un escalón para no
+   competir con el nombre del artista. */
+.home-video {
+  border-radius: 0;
+}
+
+.home-video__title {
+  font-family: var(--font-display);
+  font-size: clamp(1.4rem, 2.4vw, 2.05rem);
+  line-height: 1.2;
+  letter-spacing: -0.01em;
+  max-width: 46rem;
+}
+
+.home-video__frame,
+:root[data-theme="light"] .home-video__frame {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  box-shadow: 0 24px 60px rgba(0, 0, 0, 0.28);
+}
+
+.home-video__embed {
+  border-radius: 6px;
+}
+
+@media (max-width: 960px) {
+  .home-video {
+    border-radius: 0;
+  }
+}
+
+@media (max-width: 768px) {
+  /* En móvil la foto es el fondo del hero: sube de opacidad y el texto se
+     apoya en un velo inferior sólido en vez de pelearse con la imagen. */
+  .home-hero__media {
+    width: auto;
+    left: 0;
+    opacity: 0.78;
+  }
+
+  .home-hero__media::before {
+    background:
+      linear-gradient(180deg, rgba(2, 2, 2, 0.35) 0%, rgba(2, 2, 2, 0.55) 45%, rgba(2, 2, 2, 0.88) 100%);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-hero {
+    border-radius: 0;
+  }
+
+  .home-hero__media {
+    opacity: 0.75;
+  }
+}
+
+/* --- Prensa y cierre ------------------------------------------------------ */
+
+.home-press {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding: clamp(56px, 8vw, 104px) clamp(28px, 5vw, 64px) clamp(40px, 6vw, 72px);
+}
+
+.home-press__title {
+  margin: 0 0 clamp(28px, 4vw, 44px);
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3vw, 2.3rem);
+  letter-spacing: -0.02em;
+  color: var(--primary);
+}
+
+.home-press__grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 20rem), 1fr));
+  gap: clamp(28px, 4vw, 48px);
+  max-width: 78rem;
+}
+
+.home-quote {
+  margin: 0;
+  padding-top: 1.25rem;
+  border-top: 2px solid var(--accent);
+}
+
+.home-quote blockquote {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
+  line-height: 1.5;
+  color: var(--primary);
+}
+
+.home-quote blockquote::before {
+  content: "\201C";
+}
+
+.home-quote blockquote::after {
+  content: "\201D";
+}
+
+.home-quote figcaption {
+  margin-top: 1rem;
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--secondary);
+}
+
+.home-quote figcaption a {
+  color: inherit;
+  text-decoration: underline;
+  text-underline-offset: 0.25em;
+}
+
+.home-quote figcaption a:hover {
+  color: var(--accent);
+}
+
+.home-cta {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  padding: clamp(56px, 8vw, 96px) clamp(28px, 5vw, 64px);
+  background: var(--accent);
+  color: var(--accent-contrast);
+}
+
+.home-cta__inner {
+  max-width: 46rem;
+}
+
+.home-cta__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.7rem, 3.4vw, 2.6rem);
+  line-height: 1.15;
+  letter-spacing: -0.02em;
+  color: inherit;
+}
+
+.home-cta__text {
+  margin: 1rem 0 0;
+  font-size: 1.05rem;
+  line-height: 1.7;
+  color: color-mix(in srgb, var(--accent-contrast) 88%, transparent);
+}
+
+.home-cta__button {
+  display: inline-flex;
+  align-items: center;
+  min-height: 52px;
+  margin-top: 2rem;
+  padding: 0 2rem;
+  border: 1px solid color-mix(in srgb, var(--accent-contrast) 45%, transparent);
+  border-radius: 999px;
+  background: transparent;
+  color: inherit;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+.home-cta__button:hover {
+  background: var(--accent-contrast);
+  color: var(--accent);
+}
+
+/* La foto ya no vive dentro del bloque de texto, asi que se posiciona contra
+   el hero completo: ocupa toda la altura y llega al borde derecho. */
+.home-hero__media {
+  z-index: 1;
+  top: 0;
+  bottom: 0;
+  height: auto;
+}
+
+/* El velo general se aclara por la derecha para no apagar el retrato; el
+   degradado propio de la foto ya resuelve la legibilidad del texto. */
+.home-hero__overlay {
+  background:
+    linear-gradient(180deg, rgba(0, 0, 0, 0.04) 0%, rgba(0, 0, 0, 0.1) 55%, rgba(0, 0, 0, 0.3) 100%),
+    linear-gradient(110deg, rgba(0, 0, 0, 0.45) 0%, rgba(0, 0, 0, 0.05) 52%, rgba(0, 0, 0, 0) 100%);
+}
+
+/* Las tres tarjetas alineaban por abajo (align-items:end), asi que con textos
+   de distinto largo empezaban a alturas distintas. */
+.home-hero__briefs {
+  align-items: stretch;
+}
+
+.home-brief {
+  display: flex;
+  flex-direction: column;
+}
+
+.home-brief p {
+  margin-top: auto;
+}

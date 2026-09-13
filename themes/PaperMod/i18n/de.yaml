@@ -225,3 +225,6 @@
 
 - id: audios_empty
   translation: "Derzeit sind noch keine Aufnahmen verfügbar."
+
+- id: language_switcher
+  translation: "Sprache"

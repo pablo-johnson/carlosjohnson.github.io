@@ -157,6 +157,47 @@ collections:
                   required: false,
                   hint: "Example: MGreSb1NjtA",
                 }
+          - label: "Press Quotes"
+            name: "home_press"
+            widget: "object"
+            i18n: true
+            required: false
+            fields:
+              - {
+                  label: "Section Title",
+                  name: "title",
+                  widget: "string",
+                  i18n: true,
+                  required: false,
+                  hint: "Heading shown above the quotes, e.g. 'Press'.",
+                }
+              - label: "Quotes"
+                name: "quotes"
+                widget: "list"
+                i18n: true
+                required: false
+                summary: "{{fields.source}}"
+                hint: "Short excerpts from reviews. Leave empty to hide the whole section."
+                fields:
+                  - { label: "Quote", name: "quote", widget: "text", i18n: true }
+                  - { label: "Source", name: "source", widget: "string", i18n: true, hint: "Publication and date, e.g. 'Lübeckische Blätter, 2022'." }
+                  - { label: "Link (optional)", name: "url", widget: "string", i18n: duplicate, required: false }
+          - label: "Closing Call to Action"
+            name: "home_cta"
+            widget: "object"
+            i18n: true
+            required: false
+            fields:
+              - {
+                  label: "Title",
+                  name: "title",
+                  widget: "string",
+                  i18n: true,
+                  required: false,
+                  hint: "Leave empty to hide the closing block.",
+                }
+              - { label: "Text", name: "text", widget: "text", i18n: true, required: false }
+              - { label: "Button Label", name: "button_label", widget: "string", i18n: true, required: false, hint: "The button always links to the contact page." }
   - name: "pages"
     label: "Pages (Biography, etc.)"
     i18n: true
@@ -167,6 +208,14 @@ collections:
         i18n: true
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }
+          - label: "Portrait (optional)"
+            name: "portrait"
+            widget: "object"
+            required: false
+            i18n: true
+            fields:
+              - { label: "Image", name: "image", widget: "image", required: false, i18n: duplicate, hint: "Shown at the top of the biography. Landscape or square works best here." }
+              - { label: "Alt Text", name: "alt", widget: "string", required: false, i18n: true }
           - {
               label: "Friendly URL (slug)",
               name: "slug",

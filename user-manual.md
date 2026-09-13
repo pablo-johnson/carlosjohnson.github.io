@@ -105,6 +105,34 @@ Estas recomendaciones aplican al carrusel principal de la home.
 
 Si solo sigues una regla, exporta cada imagen del hero en `1600 x 2400 px` y verifica que siga funcionando bien con recorte centrado.
 
+## Citas de prensa en la portada
+
+La portada muestra un bloque de citas de crítica. Se edita en `/admin` -> `Homepage` -> `Press Quotes`.
+
+- `Section Title`: el título del bloque, por ejemplo `Prensa`.
+- Cada cita tiene el texto (`Quote`), el medio (`Source`) y un enlace opcional (`Link`).
+- Escribe la cita **sin comillas**: el sitio las pone solas.
+- En `Source` conviene poner medio y año, por ejemplo `Lübeckische Blätter, 2022`.
+- Si borras todas las citas, el bloque entero desaparece de la portada.
+
+Recuerda revisar los dos idiomas.
+
+## Bloque de cierre de la portada
+
+Debajo de todo hay un bloque en color con una invitación a escribir. Se edita en `Homepage` -> `Closing Call to Action`.
+
+- `Title`: la pregunta o frase principal.
+- `Text`: una línea de contexto.
+- `Button Label`: el texto del botón, que siempre lleva a la página de contacto.
+- Si dejas el `Title` vacío, el bloque no se muestra.
+
+## Retrato de la biografía
+
+La biografía puede abrir con una foto. Se edita en `/admin` -> `Pages (Biography, etc.)` -> `Biography` -> `Portrait`.
+
+- Funciona mejor una foto **apaisada**: se recorta a formato panorámico.
+- Si no subes ninguna, la página simplemente empieza por el texto.
+
 ## Cómo mostrar u ocultar la agenda de conciertos
 
 La agenda de conciertos **viene oculta**. Mientras esté oculta no aparece en el menú, ni en el pie, ni en la portada, aunque ya tengas conciertos cargados.

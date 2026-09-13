@@ -1,17 +1,18 @@
 .image-gallery {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 1.2rem;
-  margin-top: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 2rem 1.5rem;
+  margin-top: 2.5rem;
 }
 
+/* Rejilla editorial: proporcion unica 4:5 y sin marco de tarjeta, para que
+   manden las fotos y no el contenedor. */
 .gallery-card {
   margin: 0;
-  padding: 0.8rem;
-  background: var(--entry);
-  border: 1px solid var(--border);
-  border-radius: 18px;
-  box-shadow: 0 10px 28px rgba(0, 0, 0, 0.06);
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
 }
 
 .gallery-lightbox-trigger {
@@ -21,26 +22,39 @@
   background: transparent;
   border: 0;
   cursor: zoom-in;
+  overflow: hidden;
+  border-radius: 4px;
 }
 
 .gallery-card img {
   display: block;
   width: 100%;
-  height: 260px;
+  aspect-ratio: 4 / 5;
+  height: auto;
   object-fit: cover;
-  border-radius: 12px;
+  border-radius: 4px;
+  transition: transform 0.5s cubic-bezier(0.2, 0.6, 0.2, 1);
+}
+
+.gallery-lightbox-trigger:hover img,
+.gallery-lightbox-trigger:focus-visible img {
+  transform: scale(1.04);
 }
 
 .gallery-card figcaption {
-  margin-top: 0.75rem;
-  font-size: 0.95rem;
+  margin-top: 0.9rem;
+  font-size: 0.9rem;
   color: var(--secondary);
 }
 
 .gallery-card figcaption strong {
   display: block;
+  margin-bottom: 0.3rem;
   color: var(--primary);
-  font-size: 1rem;
+  font-family: var(--font-display, inherit);
+  font-size: 1.05rem;
+  font-weight: 600;
+  letter-spacing: 0.01em;
 }
 
 .gallery-card figcaption p {
@@ -174,5 +188,14 @@
 
   .image-lightbox-frame img {
     max-height: 62vh;
+  }
+}
+/* La galería se sale del ancho de lectura (720px): con dos columnas las fotos
+   quedaban pequeñas para lo que es la página. */
+@media (min-width: 900px) {
+  .image-gallery {
+    width: min(1140px, calc(100vw - 3rem));
+    margin-left: 50%;
+    transform: translateX(-50%);
   }
 }

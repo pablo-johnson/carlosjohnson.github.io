@@ -31,6 +31,12 @@ defaultContentLanguage = 'de'
   defaultTheme = 'light'
   ShowShareButtons = false
   ShowReadingTime = false
+  # Imagen por defecto al compartir el sitio (WhatsApp, Facebook, LinkedIn...)
+  images = ['og-default.jpg']
+  [params.assets]
+    favicon = 'favicon.svg'
+    theme_color = '#8a2b34'
+    msapplication_TileColor = '#8a2b34'
   # Titular del copyright del pie. Si se omite, se usa el title del sitio.
   copyright_name = 'Carlos Johnson'
   [params.profileMode]

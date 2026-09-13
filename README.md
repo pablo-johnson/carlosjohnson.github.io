@@ -33,6 +33,7 @@ Forma parte del proyecto **profi-web**: páginas web para músicos con plantilla
 ├── archetypes/                    # Plantillas de front matter (concerts.md, default.md)
 ├── assets/
 │   ├── css/extended/              # CSS extra a nivel de proyecto (footer-menu.css)
+│   ├── fonts/                     # Tipografías autoalojadas (woff2)
 │   └── images/                    # Media del CMS (pasa por el pipeline de imágenes)
 ├── content/                       # Contenido en .md, un archivo por idioma
 ├── data/site_settings.yml         # Ajustes globales editables desde el CMS
@@ -42,9 +43,12 @@ Forma parte del proyecto **profi-web**: páginas web para músicos con plantilla
 │   ├── partials/responsive-image.html   # Pipeline de imágenes (srcset + WebP)
 │   ├── partials/image-url.html          # URL de una imagen procesada
 │   ├── partials/section-visible.html    # Regla de visibilidad de secciones
+│   ├── partials/extend_head.html        # @font-face de las fuentes autoalojadas
 │   └── shortcodes/analytics-consent-manage.html
 ├── static/
-│   └── admin/                     # Sveltia CMS (index.html + config.yml)
+│   ├── admin/                     # Sveltia CMS (index.html + config.yml)
+│   ├── favicon.svg                # Monograma CJ sobre el color de acento
+│   └── og-default.jpg             # Imagen 1200x630 al compartir el sitio
 ├── themes/PaperMod/               # Tema + TODAS las customizaciones
 └── user-manual.md                 # Manual de uso para el cliente
 ```
@@ -134,8 +138,8 @@ La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month
 | Colección | Qué edita |
 |---|---|
 | **Site Settings** | Email de booking + Facebook / Instagram / YouTube |
-| **Homepage** | Hero (eyebrow, título, subtítulo máx. 500 caracteres, carrusel con mín. 3 slides, 3 "profile briefs", segundos de autoplay 3–5) y video destacado |
-| **Pages** | Biografía y Docencia (cátedra en Alemania, cátedra en Perú, masterclasses y recursos para alumnos) |
+| **Homepage** | Hero (eyebrow, título, subtítulo máx. 500 caracteres, carrusel con mín. 3 slides, 3 "profile briefs", segundos de autoplay 3–5), video destacado, citas de prensa y bloque de cierre |
+| **Pages** | Biografía (con retrato de cabecera opcional) y Docencia (cátedra en Alemania, cátedra en Perú, masterclasses y recursos para alumnos) |
 | **Multimedia / Resources** | Galerías de imágenes, videos y audios |
 | **Concert Schedule – List Page** | Interruptor `Show Concert Schedule` (apagado por defecto) y textos de la página de agenda |
 | **Concert Schedule / Events** | Alta y edición de conciertos (`create: true`) |
@@ -175,6 +179,40 @@ El tema está copiado dentro del repo y **todas las customizaciones viven ahí d
 Las claves propias se añadieron a `themes/PaperMod/i18n/de.yaml`, `es.yaml` y `en.yaml`. El directorio `i18n/` de la raíz está vacío. Familias de claves: `contact_form_*`, `teaching_*`, `analytics_consent_*`, `gallery_*`, `videos_*`, `audios_*`, `menu_*`, `footer_*`, `upcoming_events`, `past_events`, `more_info`, `view_all_events`, `featured_video`, `developed_by`, `privacy_page_link`.
 
 **Ningún layout contiene texto en un idioma concreto**: todo pasa por `i18n`, incluidos los `aria-label`, los estados vacíos de las galerías y el pie. Añadir un idioma nuevo a un sitio es crear su `.yaml` y declararlo en `hugo.toml`; no hay que tocar plantillas. El inglés está traducido aunque este sitio no lo use, como base para los próximos.
+
+---
+
+## Diseño: tipografía y color
+
+### Pareja tipográfica
+
+**Playfair Display** (serif de display) en titulares e **Inter** en el cuerpo. El contraste serif/sans es el lenguaje visual de salas de concierto y sellos clásicos; la sans del sistema que traía PaperMod dejaba el sitio con aspecto de plantilla sin marcar.
+
+Las fuentes están **autoalojadas** en `assets/fonts` y se declaran en `layouts/partials/extend_head.html`, no se piden a Google. Cargarlas desde los servidores de Google transmite la IP del visitante a un tercero: exactamente lo que el banner de consentimiento intenta evitar, y lo que los tribunales alemanes han considerado problemático. Los archivos son los mismos `woff2` oficiales, obtenidos del paquete `@fontsource`.
+
+Cada familia se sirve en los subconjuntos `latin` y `latin-ext` con su `unicode-range`, así que el segundo solo se descarga si la página usa algún glifo de ese rango. Las dos fuentes de primer uso van con `<link rel="preload">`.
+
+### Color de acento
+
+Un único acento, granate de telón, definido como token en `extended/typography.css`:
+
+```css
+--accent: #8a2b34;          /* claro */
+--accent: #d08a92;          /* oscuro, en :root[data-theme="dark"] */
+```
+
+Se usa con cuentagotas: enlaces del contenido, subrayado del menú activo, numeración de las tarjetas del hero, filete de las citas y fondo del bloque de cierre. También alimenta el `theme_color` del navegador y el favicon.
+
+### Dónde está cada cosa
+
+| Archivo | Qué define |
+|---|---|
+| `extended/typography.css` | Familias, escala fluida, acento, citas, retrato de página |
+| `layouts/partials/extend_head.html` | `@font-face` y `preload` con URLs resueltas por Hugo |
+| `homepage.css` (bloque final) | Rediseño de portada: hero a sangre, prensa, cierre |
+| `extended/analytics-consent.css` | Barra inferior de consentimiento |
+
+> Un detalle que cuesta depurar: `responsive-image.html` emite los atributos `width`/`height` del HTML, y esa altura es **definitiva**. Cualquier regla que recorte con `aspect-ratio` necesita también `height: auto`, o el `aspect-ratio` se ignora en silencio.
 
 ---
 

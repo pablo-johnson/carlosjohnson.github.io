@@ -87,3 +87,6 @@
 
 - id: audios_empty
   translation: "No recordings are available yet."
+
+- id: language_switcher
+  translation: "Language"

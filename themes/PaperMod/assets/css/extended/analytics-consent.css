@@ -1,19 +1,44 @@
+/* Barra inferior a ancho completo: nunca debe solaparse con el contenido.
+   Antes era una tarjeta flotante abajo a la derecha que tapaba texto y tarjetas. */
 .analytics-consent {
   position: fixed;
-  right: 20px;
-  bottom: 20px;
+  left: 0;
+  right: 0;
+  bottom: 0;
   z-index: 120;
-  width: min(460px, calc(100vw - 32px));
-  padding: 20px;
-  border: 1px solid var(--border);
-  border-radius: 22px;
-  background: color-mix(in srgb, var(--entry) 92%, white 8%);
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.16);
+  width: 100%;
+  padding: 16px 24px;
+  border: 0;
+  border-top: 1px solid var(--border);
+  border-radius: 0;
+  background: color-mix(in srgb, var(--entry) 96%, var(--primary) 4%);
+  box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.12);
 }
 
 .analytics-consent__content {
   display: grid;
-  gap: 10px;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 10px 32px;
+  width: 100%;
+  max-width: var(--nav-width);
+  margin: 0 auto;
+}
+
+.analytics-consent__eyebrow,
+.analytics-consent__title,
+.analytics-consent__copy {
+  grid-column: 1;
+}
+
+.analytics-consent__actions {
+  grid-column: 2;
+  grid-row: 1 / span 3;
+  justify-content: flex-end;
+}
+
+.analytics-consent__copy {
+  max-width: 68ch;
 }
 
 .analytics-consent__eyebrow {
@@ -93,13 +118,21 @@
   box-shadow: none;
 }
 
+@media (max-width: 860px) {
+  .analytics-consent__content {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .analytics-consent__actions {
+    grid-column: 1;
+    grid-row: auto;
+    justify-content: flex-start;
+  }
+}
+
 @media (max-width: 640px) {
   .analytics-consent {
-    right: 16px;
-    bottom: 16px;
-    left: 16px;
-    width: auto;
-    padding: 18px;
+    padding: 16px;
   }
 
   .analytics-consent__actions {
@@ -112,5 +145,17 @@
   .analytics-consent__manage {
     width: 100%;
     text-align: center;
+  }
+}
+/* Mientras la barra esta en pantalla, el contenido reserva su altura: asi no
+   tapa nada aunque el visitante no la conteste. Si el navegador no soporta
+   :has, la barra se comporta como cualquier barra de cookies. */
+body:has(.analytics-consent) {
+  padding-bottom: 152px;
+}
+
+@media (max-width: 860px) {
+  body:has(.analytics-consent) {
+    padding-bottom: 232px;
   }
 }

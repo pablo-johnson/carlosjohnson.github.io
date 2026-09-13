@@ -45,18 +45,30 @@
 
 .teaching-card-header {
   display: flex;
+  flex-wrap: wrap;
   justify-content: space-between;
   gap: 1rem;
   align-items: flex-start;
   margin-bottom: 1rem;
 }
 
+/* El bloque de titulo necesita ancho propio: con nombres largos y reales
+   ("Musikhochschule Lübeck") el boton lo estrujaba y las palabras se partian. */
+.teaching-card-header > div {
+  flex: 1 1 18rem;
+  min-width: 0;
+}
+
 .teaching-card-header h2,
 .teaching-card-header h3 {
   margin: 0;
+  overflow-wrap: break-word;
+  word-break: normal;
+  hyphens: none;
 }
 
 .teaching-badge {
+  white-space: nowrap;
   display: inline-flex;
   align-items: center;
   padding: 0.35rem 0.7rem;
@@ -77,6 +89,7 @@
 }
 
 .teaching-link {
+  flex: 0 0 auto;
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -203,4 +216,23 @@
     opacity: 1;
     transform: translateY(0);
   }
+}
+/* Las dos cátedras iban en dos columnas dentro de un ancho de 720px: cada
+   tarjeta quedaba en ~340px y dentro aún se partía en dos sublistas, con una
+   palabra por línea. Una cátedra por fila; las sublistas colapsan solas. */
+.teaching-grid {
+  grid-template-columns: 1fr;
+}
+
+.teaching-columns {
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, 16rem), 1fr));
+}
+
+.teaching-card h3 {
+  margin-top: 1.6rem;
+}
+
+.teaching-columns h3:first-child,
+.teaching-card > h3:first-child {
+  margin-top: 0;
 }

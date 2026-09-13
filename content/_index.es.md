@@ -33,6 +33,29 @@ home_hero:
       brief: >-
         Profesor de violín y música de cámara en la Musikhochschule Lübeck desde
         2008 y docente de la Universidad Nacional de Música de Lima.
+home_press:
+  title: Prensa
+  quotes:
+    - quote: >-
+        El primer violín de Carlos Johnson se eleva en un vuelo lírico y ligero,
+        y el tono se vuelve más esperanzador, aunque aún conoce el dolor.
+      source: Der Opernfreund
+      url: ''
+    - quote: >-
+        Cantable y competente en el violín; lideró de manera atmosférica y con
+        exquisito gusto los episodios mágicos de la obra.
+      source: Lübeckische Blätter
+      url: ''
+    - quote: >-
+        Toda la música está interpretada con un elevado gusto y calidad musical,
+        con un alto nivel técnico de grabación.
+      source: Revista Chasqui
+      url: ''
+home_cta:
+  title: ¿Un concierto, una clase magistral, una colaboración?
+  text: >-
+    Consultas de programación, booking y docencia. Las respondo personalmente.
+  button_label: Escríbeme
 home_featured_video:
   title: D`Ambrosio - Canzonetta op.6 - Carlos Johnson - violin
   description: |-

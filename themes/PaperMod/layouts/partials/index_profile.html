@@ -14,6 +14,12 @@
 {{- $upcomingEvents := where $concertPages "Date" ">=" now -}}
 {{- $concertsListPage := .Site.GetPage "section" "concerts" -}}
 {{- $featuredVideo := .Params.home_featured_video -}}
+{{- $press := .Params.home_press -}}
+{{- $cta := .Params.home_cta -}}
+{{- $contactPage := "" -}}
+{{- range site.RegularPages -}}
+{{- if eq .Type "contact" -}}{{- $contactPage = . -}}{{- end -}}
+{{- end -}}
 {{- $featuredVideoId := "" -}}
 {{- with $featuredVideo.youtube_id -}}
 {{- $featuredVideoId = . | strings.TrimSpace -}}
@@ -28,6 +34,23 @@
 
 <section class="home-hero" data-home-carousel data-interval-ms="{{ $autoplayMs }}">
     <div class="home-hero__backdrop"></div>
+    {{- if gt (len $slides) 0 }}
+    <div class="home-hero__media">
+        <div class="home-hero__slides" aria-hidden="true">
+            {{- range $index, $slide := $slides }}
+            <figure class="home-hero__slide{{ if eq $index 0 }} is-active{{ end }}" data-slide>
+                {{ partial "responsive-image.html" (dict
+                    "src" $slide.image
+                    "alt" ($slide.alt | default site.Title)
+                    "sizes" "(max-width: 768px) 100vw, 50vw"
+                    "widths" (slice 600 900 1200 1600)
+                    "loading" (cond (eq $index 0) "eager" "lazy")
+                    "fetchpriority" (cond (eq $index 0) "high" "")) }}
+            </figure>
+            {{- end }}
+        </div>
+    </div>
+    {{- end }}
     <div class="home-hero__overlay"></div>
 
     <div class="home-hero__content">
@@ -42,23 +65,6 @@
                 {{- end }}
             </div>
 
-            {{- if gt (len $slides) 0 }}
-            <div class="home-hero__media">
-                <div class="home-hero__slides" aria-hidden="true">
-                    {{- range $index, $slide := $slides }}
-                    <figure class="home-hero__slide{{ if eq $index 0 }} is-active{{ end }}" data-slide>
-                        {{ partial "responsive-image.html" (dict
-                            "src" $slide.image
-                            "alt" ($slide.alt | default site.Title)
-                            "sizes" "(max-width: 768px) 100vw, 50vw"
-                            "widths" (slice 600 900 1200 1600)
-                            "loading" (cond (eq $index 0) "eager" "lazy")
-                            "fetchpriority" (cond (eq $index 0) "high" "")) }}
-                    </figure>
-                    {{- end }}
-                </div>
-            </div>
-            {{- end }}
         </div>
 
         {{- if gt (len $profiles) 0 }}
@@ -141,6 +147,52 @@
         </div>
     </div>
 </section>
+{{- end }}
+
+{{- /* Prensa: en un sitio de musico las citas de critica son la prueba social
+       mas valiosa, y valen mas que cualquier adjetivo escrito por uno mismo. */ -}}
+{{- with $press }}
+{{- $quotes := where (.quotes | default (slice)) "quote" "!=" "" -}}
+{{- if gt (len $quotes) 0 }}
+<section class="home-press" aria-labelledby="home-press-title">
+    {{- with .title }}
+    <h2 id="home-press-title" class="home-press__title">{{ . }}</h2>
+    {{- end }}
+    <div class="home-press__grid">
+        {{- range $quotes }}
+        {{- $q := . }}
+        <figure class="home-quote">
+            <blockquote>{{ $q.quote }}</blockquote>
+            {{- with $q.source }}
+            <figcaption>
+                {{- with $q.url }}<a href="{{ . }}" rel="noopener noreferrer" target="_blank">{{ end }}
+                {{- $q.source -}}
+                {{- with $q.url }}</a>{{ end }}
+            </figcaption>
+            {{- end }}
+        </figure>
+        {{- end }}
+    </div>
+</section>
+{{- end }}
+{{- end }}
+
+{{- /* Cierre: la portada terminaba en seco despues del video, sin ninguna
+       salida hacia el contacto. */ -}}
+{{- with $cta }}
+{{- if .title }}
+<section class="home-cta" aria-labelledby="home-cta-title">
+    <div class="home-cta__inner">
+        <h2 id="home-cta-title" class="home-cta__title">{{ .title }}</h2>
+        {{- with .text }}
+        <p class="home-cta__text">{{ . }}</p>
+        {{- end }}
+        {{- with $contactPage }}
+        <a class="home-cta__button" href="{{ .RelPermalink }}" data-analytics-event="select_content" data-analytics-location="home_cta" data-analytics-type="contact">{{ $cta.button_label | default .Title }}</a>
+        {{- end }}
+    </div>
+</section>
+{{- end }}
 {{- end }}
 
 {{- if gt (len $slides) 1 }}

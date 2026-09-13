@@ -344,3 +344,44 @@
         transition: none;
     }
 }
+/* Selector de idioma: los dos códigos visibles, el activo marcado y una
+   separación real respecto al interruptor de tema. */
+.lang-switch {
+  display: flex;
+  align-items: center;
+  gap: 0.1rem;
+  margin-inline-start: 0.9rem;
+  padding-inline-start: 0.9rem;
+  border-inline-start: 1px solid var(--border);
+  list-style: none;
+}
+
+.lang-switch li + li::before {
+  content: "·";
+  margin: 0 0.35rem;
+  color: var(--secondary);
+}
+
+.lang-switch li {
+  display: inline-flex;
+  align-items: center;
+}
+
+.lang-switch a,
+.lang-switch__current {
+  font-size: 0.82rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.lang-switch__current {
+  color: var(--primary);
+}
+
+.lang-switch a {
+  color: var(--secondary);
+}
+
+.lang-switch a:hover {
+  color: var(--accent);
+}

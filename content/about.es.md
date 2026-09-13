@@ -1,6 +1,9 @@
 ---
 title: Biografía
 hideTranslationList: true
+portrait:
+  image: /images/cj-violin.jpg
+  alt: Carlos Johnson interpretando con su violín
 ---
 
 Carlos Johnson es violinista, director y docente. Nacido en Lima en el seno de una familia de músicos, reside en Alemania desde hace más de tres décadas: es primer concertino de la Orquesta Filarmónica de la Ciudad Hanseática de Lübeck desde el año 2000 y profesor de violín y música de cámara en la Musikhochschule Lübeck desde 2008.

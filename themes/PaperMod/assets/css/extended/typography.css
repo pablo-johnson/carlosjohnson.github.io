@@ -1,0 +1,145 @@
+/* ---------------------------------------------------------------------------
+   Tipografía y color de acento del sitio.
+
+   Pareja tipográfica: Playfair Display (serif de display) para titulares e
+   Inter para el cuerpo. El contraste serif/sans es el lenguaje visual habitual
+   de salas de concierto y sellos clásicos; la sans del sistema dejaba el sitio
+   con aspecto de plantilla sin marcar.
+
+   Las @font-face las emite layouts/partials/extend_head.html con las fuentes
+   autoalojadas.
+   --------------------------------------------------------------------------- */
+
+:root {
+  --font-display: 'Playfair Display', Georgia, 'Times New Roman', serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
+
+  /* Acento único: granate de telón. Se usa con cuentagotas, solo en
+     enlaces, estados activos y detalles editoriales. */
+  --accent: #8a2b34;
+  --accent-strong: #6f222a;
+  --accent-contrast: #ffffff;
+}
+
+:root[data-theme="dark"] {
+  --accent: #d08a92;
+  --accent-strong: #e0a5ac;
+  --accent-contrast: #1d1e20;
+}
+
+body {
+  font-family: var(--font-body);
+  font-size: 1rem;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3, h4,
+.post-title,
+.page-header h1,
+.entry-header h2 {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.012em;
+  line-height: 1.18;
+}
+
+/* Escala tipográfica fluida: antes los saltos eran bruscos y el titular de
+   una sección competía con el nombre del artista. */
+.post-title,
+.page-header h1 {
+  font-size: clamp(2.1rem, 1.5rem + 2.2vw, 3.1rem);
+  letter-spacing: -0.02em;
+}
+
+.post-content h2 {
+  margin-top: 2.4em;
+  font-size: clamp(1.45rem, 1.2rem + 0.9vw, 1.9rem);
+}
+
+.post-content h3 {
+  margin-top: 1.8em;
+  font-size: clamp(1.2rem, 1.05rem + 0.5vw, 1.4rem);
+}
+
+.post-content p {
+  margin-bottom: 1.15em;
+}
+
+.post-subtitle,
+.page-header .post-description {
+  font-family: var(--font-body);
+  font-size: 1.05rem;
+  color: var(--secondary);
+}
+
+/* El nombre del artista en la cabecera: es la firma del sitio, no un logotipo
+   de producto. */
+.logo a {
+  font-family: var(--font-display);
+  font-weight: 600;
+  letter-spacing: -0.01em;
+}
+
+#menu a,
+.footer-menu a,
+.footer-menu summary {
+  font-family: var(--font-body);
+  font-size: 0.95rem;
+  letter-spacing: 0.01em;
+}
+
+/* --- Acento --- */
+
+.post-content a,
+.post-content a:visited {
+  color: var(--accent);
+  text-decoration-color: color-mix(in srgb, var(--accent) 45%, transparent);
+  text-underline-offset: 0.22em;
+}
+
+.post-content a:hover {
+  color: var(--accent-strong);
+  text-decoration-color: currentColor;
+}
+
+#menu .active {
+  text-decoration-color: var(--accent);
+  text-decoration-thickness: 2px;
+  text-underline-offset: 0.4em;
+}
+
+/* Citas: en un sitio de músico las citas de crítica son el material más
+   valioso de la página, así que dejan de parecer un bloque de código. */
+.post-content blockquote {
+  margin: 2.2em 0;
+  padding: 0 0 0 1.4rem;
+  border-inline-start: 2px solid var(--accent);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: clamp(1.15rem, 1.05rem + 0.5vw, 1.45rem);
+  line-height: 1.45;
+  color: var(--primary);
+}
+
+.post-content blockquote p {
+  margin-bottom: 0.4em;
+}
+
+/* Retrato de cabecera en páginas sueltas (biografía). */
+.page-portrait {
+  margin: 1.8rem 0 2.4rem;
+}
+
+/* height:auto es obligatorio: el partial emite los atributos width/height del
+   HTML y, sin esto, esa altura es definitiva y el aspect-ratio se ignora. */
+.page-portrait img {
+  display: block;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 9;
+  object-fit: cover;
+  object-position: center 25%;
+  border-radius: 4px;
+}
