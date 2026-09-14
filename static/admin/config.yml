@@ -227,6 +227,13 @@ collections:
         i18n: true
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }
+          - {
+              label: "Hide translation list",
+              name: "hideTranslationList",
+              widget: "hidden",
+              default: true,
+              i18n: duplicate,
+            }
           - label: "Portrait (optional)"
             name: "portrait"
             widget: "object"
@@ -241,6 +248,50 @@ collections:
               widget: "string",
               i18n: true,
             }
+          - { label: "Content", name: "body", widget: "markdown", i18n: true }
+      - label: "Violinist"
+        name: "violin"
+        file: "content/violin.{{locale}}.md"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - {
+              label: "Hide translation list",
+              name: "hideTranslationList",
+              widget: "hidden",
+              default: true,
+              i18n: duplicate,
+            }
+          - label: "Portrait (optional)"
+            name: "portrait"
+            widget: "object"
+            required: false
+            i18n: true
+            fields:
+              - { label: "Image", name: "image", widget: "image", required: false, i18n: duplicate, hint: "Se muestra arriba de la página. Funciona mejor una foto apaisada." }
+              - { label: "Alt Text", name: "alt", widget: "string", required: false, i18n: true }
+          - { label: "Content", name: "body", widget: "markdown", i18n: true }
+      - label: "Conductor"
+        name: "conducting"
+        file: "content/conducting.{{locale}}.md"
+        i18n: true
+        fields:
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - {
+              label: "Hide translation list",
+              name: "hideTranslationList",
+              widget: "hidden",
+              default: true,
+              i18n: duplicate,
+            }
+          - label: "Portrait (optional)"
+            name: "portrait"
+            widget: "object"
+            required: false
+            i18n: true
+            fields:
+              - { label: "Image", name: "image", widget: "image", required: false, i18n: duplicate, hint: "Se muestra arriba de la página. Funciona mejor una foto apaisada." }
+              - { label: "Alt Text", name: "alt", widget: "string", required: false, i18n: true }
           - { label: "Content", name: "body", widget: "markdown", i18n: true }
       - label: "Teaching"
         name: "teaching"

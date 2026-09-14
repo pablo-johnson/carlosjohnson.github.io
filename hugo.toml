@@ -77,9 +77,9 @@ buildFuture = true
   [[languages.de.menu.main]]
     identifier = "multimedia"
     name = "Multimedia"
-    weight = 4
+    weight = 6
   [[languages.de.menu.main]]
-    name = "Imágenes"
+    name = "Bilder"
     url = "images/"
     parent = "multimedia"
     weight = 1
@@ -96,15 +96,23 @@ buildFuture = true
   [[languages.de.menu.main]]
     name = "Konzerte"
     url = "concerts/"
-    weight = 3
+    weight = 5
   [[languages.de.menu.main]]
     name = "Lehre"
     url = "teaching/"
-    weight = 2
+    weight = 4
   [[languages.de.menu.main]]
     name = "Kontakt"
     url = "contact/"
-    weight = 5
+    weight = 7
+  [[languages.de.menu.main]]
+    name = "Geiger"
+    url = "violin/"
+    weight = 2
+  [[languages.de.menu.main]]
+    name = "Dirigent"
+    url = "conducting/"
+    weight = 3
 
 [languages.es.menu]
   [[languages.es.menu.main]]
@@ -114,7 +122,7 @@ buildFuture = true
   [[languages.es.menu.main]]
     identifier = "multimedia"
     name = "Multimedia"
-    weight = 4
+    weight = 6
   [[languages.es.menu.main]]
     name = "Imágenes"
     url = "images/"
@@ -133,15 +141,23 @@ buildFuture = true
   [[languages.es.menu.main]]
     name = "Conciertos"
     url = "concerts/"
-    weight = 3
+    weight = 5
   [[languages.es.menu.main]]
     name = "Docencia"
     url = "teaching/"
-    weight = 2
+    weight = 4
   [[languages.es.menu.main]]
     name = "Contacto"
     url = "contact/"
-    weight = 5
+    weight = 7
+  [[languages.es.menu.main]]
+    name = "Violinista"
+    url = "violin/"
+    weight = 2
+  [[languages.es.menu.main]]
+    name = "Director"
+    url = "conducting/"
+    weight = 3
 
 [languages.en.menu]
   [[languages.en.menu.main]]
@@ -151,7 +167,7 @@ buildFuture = true
   [[languages.en.menu.main]]
     identifier = "multimedia"
     name = "Multimedia"
-    weight = 4
+    weight = 6
   [[languages.en.menu.main]]
     name = "Images"
     url = "images/"
@@ -170,12 +186,20 @@ buildFuture = true
   [[languages.en.menu.main]]
     name = "Concerts"
     url = "concerts/"
-    weight = 3
+    weight = 5
   [[languages.en.menu.main]]
     name = "Teaching"
     url = "teaching/"
-    weight = 2
+    weight = 4
   [[languages.en.menu.main]]
     name = "Contact"
     url = "contact/"
-    weight = 5
+    weight = 7
+  [[languages.en.menu.main]]
+    name = "Violinist"
+    url = "violin/"
+    weight = 2
+  [[languages.en.menu.main]]
+    name = "Conductor"
+    url = "conducting/"
+    weight = 3

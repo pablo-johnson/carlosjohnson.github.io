@@ -87,6 +87,8 @@ Toda página nueva debe crearse en **los tres** idiomas.
 | `content/home/press.md` | Citas de prensa de la home | leído por `index_profile.html` |
 | `content/home/cta.md` | Bloque de cierre de la home | leído por `index_profile.html` |
 | `content/about.md` | Biografía | `_default/single.html` |
+| `content/violin.md` | Violinista | `_default/single.html` |
+| `content/conducting.md` | Director | `_default/single.html` |
 | `content/teaching/_index.md` | Docencia | `teaching/list.html` |
 | `content/concerts/` | Conciertos | `concerts/list.html` + `concerts/single.html` |
 | `content/images/_index.md` | Galería de imágenes | `images/list.html` |
@@ -174,7 +176,7 @@ La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month
 |---|---|
 | **Site Settings** | Email de booking + Facebook / Instagram / YouTube |
 | **Homepage** | Hero (eyebrow, título, subtítulo máx. 500 caracteres, carrusel con mín. 3 slides, 3 "profile briefs", segundos de autoplay 3–5), video destacado, citas de prensa y bloque de cierre |
-| **Pages** | Biografía (con retrato de cabecera opcional) y Docencia (cátedra en Alemania, cátedra en Perú, masterclasses y recursos para alumnos) |
+| **Pages** | Biografía, Violinista y Director (las tres con retrato de cabecera opcional) y Docencia (cátedra en Alemania, cátedra en Perú, masterclasses y recursos para alumnos) |
 | **Multimedia / Resources** | Galerías de imágenes, videos y audios |
 | **Concert Schedule – List Page** | Interruptor `Show Concert Schedule` (apagado por defecto) y textos de la página de agenda |
 | **Concert Schedule / Events** | Alta y edición de conciertos (`create: true`) |
