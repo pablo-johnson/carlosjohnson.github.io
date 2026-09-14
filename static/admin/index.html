@@ -6,6 +6,10 @@
     <title>Admin Panel | Carlos Johnson</title>
   </head>
   <body>
-    <script src="https://unpkg.com/@sveltia/cms/dist/sveltia-cms.js"></script>
+    <!-- Versión fijada a propósito: sin el @0.212.0 esto carga "latest" en cada
+         visita, y una versión incompatible rompería el panel del cliente sin que
+         nadie haya tocado el repo. Para actualizar: subir el número, entrar al
+         panel y comprobar que las colecciones cargan y que se puede publicar. -->
+    <script src="https://unpkg.com/@sveltia/cms@0.212.0/dist/sveltia-cms.js"></script>
   </body>
 </html>

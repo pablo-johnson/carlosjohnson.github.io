@@ -2,6 +2,10 @@ backend:
   name: github
   repo: pablo-johnson/carlosjohnson.github.io # The repo
   branch: main
+  # Sin base_url, Sveltia usa por defecto el relay OAuth compartido de Netlify
+  # (api.netlify.com/auth), que no es nuestro y puede desaparecer sin aviso.
+  # Descomenta esta línea EN CUANTO el worker esté desplegado y responda:
+  # base_url: https://cms-auth.<tu-subdominio>.workers.dev
 
 # Media files configuration
 media_folder: "assets/images"

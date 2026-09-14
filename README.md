@@ -152,7 +152,29 @@ La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month
 | **Concert Schedule – List Page** | Interruptor `Show Concert Schedule` (apagado por defecto) y textos de la página de agenda |
 | **Concert Schedule / Events** | Alta y edición de conciertos (`create: true`) |
 
-> **Autenticación:** el `config.yml` no declara `base_url` ni `auth_endpoint`. Antes de replicar el setup en otro sitio conviene documentar/definir cómo se resuelve el login OAuth de GitHub (proxy propio tipo `sveltia-cms-auth`), ya que además exige que el cliente tenga cuenta de GitHub con acceso al repo.
+### Autenticación
+
+El CMS corre entero en el navegador, así que para escribir en el repo necesita un token de GitHub, y para obtenerlo hace falta canjear un código con el *client secret* de una aplicación OAuth. Ese secreto no puede vivir en el navegador: hace falta una pieza mínima de servidor.
+
+**Estado actual:** sin `base_url`, Sveltia cae por defecto en `https://api.netlify.com/auth`, el relay OAuth **compartido** de Netlify, usando su aplicación y no una nuestra. Funciona hoy, pero es un servicio ajeno que puede cerrarse sin aviso y se llevaría por delante el acceso de todos los clientes a la vez.
+
+**A dónde va:** un único Cloudflare Worker (`sveltia-cms-auth`) para todos los sitios de profi-web, con una aplicación OAuth propia en la organización de GitHub. Cuando esté desplegado, se descomenta el `base_url` de `static/admin/config.yml` y este sitio deja de depender de Netlify. El worker y sus instrucciones viven en su propio repo, `profi-web/cms-auth`.
+
+Cómo comprobar por cuál de los dos está entrando un sitio: abre `/admin`, pulsa "Entrar con GitHub" y mira a dónde va la ventana emergente. Si va a `github.com`, está usando el worker; si va a `api.netlify.com`, sigue en el relay compartido.
+
+> La versión de Sveltia está **fijada** en `static/admin/index.html`. Sin fijarla, el panel carga `latest` en cada visita y una versión incompatible lo rompería sin que nadie haya tocado el repo.
+
+### Alta de un músico nuevo
+
+1. Crear el repo en la organización `profi-web`, a partir de esta plantilla.
+2. Añadir al músico como colaborador **solo de su repo**.
+3. Añadir su dominio a `ALLOWED_DOMAINS` en el repo `cms-auth` y redesplegar el worker.
+4. Ajustar en su `config.yml`: `backend.repo` y `base_url`.
+5. Ajustar en su `hugo.toml`: `baseURL`, idiomas, menús, `copyright_name`, ID de GA4.
+6. Registrar el dominio **a nombre del músico**.
+7. Entregar: acceso a `/admin`, el [manual de uso](user-manual.md) y el compromiso de transferir el repo a su cuenta cuando lo pida (GitHub lo hace en un clic y conserva el historial).
+
+El repo vive en la organización y no en la cuenta del músico para que el alta sea simple; la propiedad real se garantiza con el dominio a su nombre y la cláusula de transferencia.
 
 ---
 
