@@ -2,7 +2,7 @@
 title: Carlos Johnson
 hideFooter: true
 home_hero:
-  eyebrow: Violín · Dirección · Docencia Hola
+  eyebrow: Violín · Dirección · Docencia
   title: Carlos Johnson
   subtitle: Violinista peruano radicado en Alemania. Primer concertino de la Orquesta Filarmónica de Lübeck desde el año 2000 y profesor de violín y música de cámara en la Musikhochschule Lübeck. Su trabajo une el repertorio europeo con el rescate de la música peruana y latinoamericana, que investiga, graba y lleva a los escenarios de Europa, Asia y América.
   autoplay_seconds: 4
