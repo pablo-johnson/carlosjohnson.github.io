@@ -729,7 +729,12 @@
   max-width: 78rem;
 }
 
+/* Columna flexible para poder anclar el pie abajo: si no, el nombre del medio
+   queda a la altura que le toque segun lo larga que sea cada cita. */
 .home-quote {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
   margin: 0;
   padding-top: 1.25rem;
   border-top: 2px solid var(--accent);
@@ -755,7 +760,8 @@
 }
 
 .home-quote figcaption {
-  margin-top: 1rem;
+  margin-top: auto;
+  padding-top: 1rem;
   font-size: 0.82rem;
   font-weight: 600;
   letter-spacing: 0.14em;
