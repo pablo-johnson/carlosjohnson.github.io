@@ -16,8 +16,11 @@ home_hero:
   profiles:
     - title: Violin
       brief: First Concertmaster of the Lübeck Philharmonic since 2000, after six seasons with the WDR Symphony Orchestra Cologne. Soloist and chamber musician across Europe, Asia and the Americas.
+      link: violin/
     - title: Conducting
       brief: Conductor since 2017, trained with Ludwig Pflanz. In 2024 he led the National Symphony Orchestra of Colombia while also taking the solo violin part.
+      link: conducting/
     - title: Teaching
       brief: Professor of Violin and Chamber Music at the Musikhochschule Lübeck since 2008 and teacher at the Universidad Nacional de Música in Lima.
+      link: teaching/
 ---

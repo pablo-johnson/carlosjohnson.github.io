@@ -131,6 +131,14 @@ collections:
                 fields:
                   - { label: "Title", name: "title", widget: "string", i18n: true }
                   - { label: "Brief", name: "brief", widget: "text", i18n: true }
+                  - {
+                      label: "Link (optional)",
+                      name: "link",
+                      widget: "string",
+                      i18n: duplicate,
+                      required: false,
+                      hint: "Section this card opens, without the language prefix: violin/, conducting/, teaching/. Leave empty and the card is plain text.",
+                    }
       - label: "Featured Video"
         name: "home_video"
         file: "content/home/video.{{locale}}.md"

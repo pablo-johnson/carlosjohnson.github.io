@@ -858,3 +858,58 @@
 .home-brief p {
   margin-top: auto;
 }
+
+/* --- Tarjetas del hero enlazadas ------------------------------------------ */
+
+/* El enlace vive en el <h2> por accesibilidad, pero se estira sobre la tarjeta
+   entera con un ::after posicionado, que es lo que espera quien navega con el
+   ratón. El texto sigue siendo seleccionable. */
+.home-brief--linked {
+  position: relative;
+  transition: border-color 0.25s ease, transform 0.25s ease;
+}
+
+.home-brief--linked h2 a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.home-brief--linked h2 a::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+}
+
+/* La flecha es la única señal de que la tarjeta lleva a algún sitio: sin ella
+   el usuario no tiene motivo para hacer clic. */
+.home-brief--linked h2 a::before {
+  content: "→";
+  float: right;
+  margin-left: 0.5rem;
+  color: var(--accent-on-dark);
+  transition: transform 0.25s ease;
+}
+
+.home-brief--linked:hover,
+.home-brief--linked:focus-within {
+  border-color: color-mix(in srgb, var(--accent-on-dark) 45%, transparent);
+  transform: translateY(-2px);
+}
+
+.home-brief--linked:hover h2 a::before,
+.home-brief--linked:focus-within h2 a::before {
+  transform: translateX(3px);
+}
+
+.home-brief--linked h2 a:focus-visible::after {
+  outline: 2px solid var(--accent-on-dark);
+  outline-offset: 3px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .home-brief--linked,
+  .home-brief--linked h2 a::before {
+    transition: none;
+  }
+}

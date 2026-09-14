@@ -16,8 +16,11 @@ home_hero:
   profiles:
     - title: Violine
       brief: Seit 2000 Erster Konzertmeister der Lübecker Philharmoniker, nach sechs Spielzeiten im WDR Sinfonieorchester Köln. Solist und Kammermusiker in Europa, Asien und Amerika.
+      link: violin/
     - title: Dirigieren
       brief: Dirigent seit 2017, ausgebildet bei Ludwig Pflanz. 2024 leitete er das Nationale Sinfonieorchester Kolumbiens und übernahm zugleich den Solopart.
+      link: conducting/
     - title: Lehre
       brief: Seit 2008 Professor für Violine und Kammermusik an der Musikhochschule Lübeck und Dozent an der Universidad Nacional de Música in Lima.
+      link: teaching/
 ---

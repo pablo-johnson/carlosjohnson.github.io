@@ -175,7 +175,7 @@ La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month
 | Colección | Qué edita |
 |---|---|
 | **Site Settings** | Email de booking + Facebook / Instagram / YouTube |
-| **Homepage** | Hero (eyebrow, título, subtítulo máx. 500 caracteres, carrusel con mín. 3 slides, 3 "profile briefs", segundos de autoplay 3–5), video destacado, citas de prensa y bloque de cierre |
+| **Homepage** | Hero (eyebrow, título, subtítulo máx. 500 caracteres, carrusel con mín. 3 slides, 3 "profile briefs" con enlace opcional a su sección, segundos de autoplay 3–5), video destacado, citas de prensa y bloque de cierre |
 | **Pages** | Biografía, Violinista y Director (las tres con retrato de cabecera opcional) y Docencia (cátedra en Alemania, cátedra en Perú, masterclasses y recursos para alumnos) |
 | **Multimedia / Resources** | Galerías de imágenes, videos y audios |
 | **Concert Schedule – List Page** | Interruptor `Show Concert Schedule` (apagado por defecto) y textos de la página de agenda |
