@@ -61,7 +61,7 @@ collections:
     label: "Homepage"
     i18n: true
     files:
-      - label: "Homepage Hero"
+      - label: "Hero"
         name: "homepage"
         file: "content/_index.{{locale}}.md"
         i18n: true
@@ -131,6 +131,11 @@ collections:
                 fields:
                   - { label: "Title", name: "title", widget: "string", i18n: true }
                   - { label: "Brief", name: "brief", widget: "text", i18n: true }
+      - label: "Featured Video"
+        name: "home_video"
+        file: "content/home/video.{{locale}}.md"
+        i18n: true
+        fields:
           - label: "Featured Video"
             name: "home_featured_video"
             widget: "object"
@@ -161,6 +166,11 @@ collections:
                   required: false,
                   hint: "Example: MGreSb1NjtA",
                 }
+      - label: "Press Quotes"
+        name: "home_press"
+        file: "content/home/press.{{locale}}.md"
+        i18n: true
+        fields:
           - label: "Press Quotes"
             name: "home_press"
             widget: "object"
@@ -186,6 +196,11 @@ collections:
                   - { label: "Quote", name: "quote", widget: "text", i18n: true }
                   - { label: "Source", name: "source", widget: "string", i18n: true, hint: "Publication and date, e.g. 'Lübeckische Blätter, 2022'." }
                   - { label: "Link (optional)", name: "url", widget: "string", i18n: duplicate, required: false }
+      - label: "Closing Call to Action"
+        name: "home_cta"
+        file: "content/home/cta.{{locale}}.md"
+        i18n: true
+        fields:
           - label: "Closing Call to Action"
             name: "home_cta"
             widget: "object"

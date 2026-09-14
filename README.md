@@ -82,7 +82,10 @@ Toda página nueva debe crearse en **los tres** idiomas.
 
 | Ruta | Tipo | Layout que la renderiza |
 |---|---|---|
-| `content/_index.md` | Home | `partials/index_profile.html` |
+| `content/_index.md` | Home (hero) | `partials/index_profile.html` |
+| `content/home/video.md` | Video destacado de la home | leído por `index_profile.html` |
+| `content/home/press.md` | Citas de prensa de la home | leído por `index_profile.html` |
+| `content/home/cta.md` | Bloque de cierre de la home | leído por `index_profile.html` |
 | `content/about.md` | Biografía | `_default/single.html` |
 | `content/teaching/_index.md` | Docencia | `teaching/list.html` |
 | `content/concerts/` | Conciertos | `concerts/list.html` + `concerts/single.html` |
@@ -92,6 +95,30 @@ Toda página nueva debe crearse en **los tres** idiomas.
 | `content/audios/_index.md` | Galería de audios | `audios/list.html` |
 | `content/contact.md` | Contacto (`type: contact`) | `contact/single.html` |
 | `content/privacy.md` | Política de privacidad | `_default/single.html` |
+
+### Patrón clave: la portada partida en fragmentos
+
+La home no es un solo archivo. El hero vive en `content/_index.{lang}.md`, que es la página real, y cada uno de los demás bloques —video destacado, citas de prensa, bloque de cierre— tiene su propio archivo en `content/home/`.
+
+El motivo es el CMS: **cada entrada del panel corresponde a un archivo**, así que meter todo en `_index.md` obligaba al músico a bajar por un formulario kilométrico. Partido, la colección Homepage muestra cuatro apartados independientes.
+
+Esos archivos son fragmentos, no páginas. `hugo.toml` les aplica `build.render = never` con un cascade:
+
+```toml
+[[cascade]]
+  [cascade.build]
+    render = 'never'
+    list = 'never'
+  [cascade._target]
+    path = '{/home,/home/**}'
+```
+
+Dos detalles que costaron una vuelta cada uno:
+
+- El cascade va en `hugo.toml` y no en el front matter de cada archivo **a propósito**: el CMS borra al guardar cualquier clave que no esté declarada en su configuración, y se llevaría por delante el `build`.
+- El target necesita `{/home,/home/**}`, no solo `/home/**`: con el segundo, las páginas hijas no se publican pero la **página de sección** `/home/` sí, con su listado y su RSS.
+
+El layout las lee con `site.GetPage` y, si falta el archivo o está vacío, el bloque simplemente no se pinta.
 
 ### Patrón clave: galerías como listas en el front matter
 

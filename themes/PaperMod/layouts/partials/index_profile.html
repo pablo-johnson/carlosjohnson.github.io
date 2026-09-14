@@ -13,9 +13,15 @@
 {{- $concertPages := where .Site.RegularPages "Section" "concerts" -}}
 {{- $upcomingEvents := where $concertPages "Date" ">=" now -}}
 {{- $concertsListPage := .Site.GetPage "section" "concerts" -}}
-{{- $featuredVideo := .Params.home_featured_video -}}
-{{- $press := .Params.home_press -}}
-{{- $cta := .Params.home_cta -}}
+{{- /* Cada bloque de la portada vive en su propio archivo bajo content/home/,
+       para que en el CMS sea un apartado independiente. Si falta el archivo o
+       está vacío, el bloque simplemente no se pinta. */ -}}
+{{- $featuredVideo := dict -}}
+{{- with site.GetPage "/home/video" }}{{ with .Params.home_featured_video }}{{ $featuredVideo = . }}{{ end }}{{ end -}}
+{{- $press := dict -}}
+{{- with site.GetPage "/home/press" }}{{ with .Params.home_press }}{{ $press = . }}{{ end }}{{ end -}}
+{{- $cta := dict -}}
+{{- with site.GetPage "/home/cta" }}{{ with .Params.home_cta }}{{ $cta = . }}{{ end }}{{ end -}}
 {{- $contactPage := "" -}}
 {{- range site.RegularPages -}}
 {{- if eq .Type "contact" -}}{{- $contactPage = . -}}{{- end -}}

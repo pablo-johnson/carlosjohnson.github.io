@@ -7,6 +7,17 @@ defaultContentLanguage = 'de'
 # canonifyURLs = false
 buildFuture = true
 
+# Las secciones de la portada (content/home/*) son fragmentos de contenido, no
+# páginas: existen para que el CMS pueda editarlas por separado, y el layout de
+# la home las lee con site.GetPage. El cascade vive aquí y no en el front matter
+# para que el CMS no pueda borrarlo al guardar.
+[[cascade]]
+  [cascade.build]
+    render = 'never'
+    list = 'never'
+  [cascade._target]
+    path = '{/home,/home/**}'
+
 [services]
   [services.googleAnalytics]
     id = 'G-FHH7XVEBFG'
