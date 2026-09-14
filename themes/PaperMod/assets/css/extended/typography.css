@@ -15,16 +15,29 @@
   --font-body: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', sans-serif;
 
   /* Acento único: granate de telón. Se usa con cuentagotas, solo en
-     enlaces, estados activos y detalles editoriales. */
+     enlaces, estados activos y detalles editoriales.
+
+     Dos familias distintas a propósito:
+       --accent / --accent-strong  = TINTA (texto, filetes, subrayados)
+       --accent-surface            = SUPERFICIE (rellenos grandes)
+     En modo oscuro la tinta tiene que aclararse para leerse sobre negro,
+     pero una superficie con ese mismo rosa claro se convierte en una plancha
+     pálida enorme. Por eso la superficie se oscurece en vez de aclararse.
+
+     --accent-on-dark es para los bloques que son negros en ambos temas
+     (el hero): ahí el color no debe cambiar con el tema. */
   --accent: #8a2b34;
   --accent-strong: #6f222a;
-  --accent-contrast: #ffffff;
+  --accent-surface: #8a2b34;
+  --on-accent-surface: #fdf8f2;
+  --accent-on-dark: #d98f97;
 }
 
 :root[data-theme="dark"] {
   --accent: #d08a92;
   --accent-strong: #e0a5ac;
-  --accent-contrast: #1d1e20;
+  --accent-surface: #5e1d24;
+  --on-accent-surface: #f7e7e9;
 }
 
 body {

@@ -204,10 +204,15 @@ Cada familia se sirve en los subconjuntos `latin` y `latin-ext` con su `unicode-
 
 Un único acento, granate de telón, definido como token en `extended/typography.css`:
 
-```css
---accent: #8a2b34;          /* claro */
---accent: #d08a92;          /* oscuro, en :root[data-theme="dark"] */
-```
+Hay **tres familias de tokens**, y la distinción importa:
+
+| Token | Para qué | Claro | Oscuro |
+|---|---|---|---|
+| `--accent` / `--accent-strong` | Tinta: enlaces, filetes, subrayados | `#8a2b34` | `#d08a92` |
+| `--accent-surface` / `--on-accent-surface` | Rellenos grandes y su texto | `#8a2b34` sobre `#fdf8f2` | `#5e1d24` sobre `#f7e7e9` |
+| `--accent-on-dark` | Bloques negros en ambos temas (el hero) | `#d98f97` | `#d98f97` |
+
+La razón de separarlos: en modo oscuro la **tinta** tiene que aclararse para leerse sobre negro, pero usar ese mismo rosa claro como **superficie** convierte el bloque de cierre en una plancha rosa pálida enorme. La superficie se oscurece donde la tinta se aclara. Y el hero es negro en los dos temas, así que su acento no debe seguir al tema en absoluto.
 
 Se usa con cuentagotas: enlaces del contenido, subrayado del menú activo, numeración de las tarjetas del hero, filete de las citas y fondo del bloque de cierre. También alimenta el `theme_color` del navegador y el favicon.
 
@@ -221,6 +226,10 @@ Se usa con cuentagotas: enlaces del contenido, subrayado del menú activo, numer
 | `extended/analytics-consent.css` | Barra inferior de consentimiento |
 
 > Un detalle que cuesta depurar: `responsive-image.html` emite los atributos `width`/`height` del HTML, y esa altura es **definitiva**. Cualquier regla que recorte con `aspect-ratio` necesita también `height: auto`, o el `aspect-ratio` se ignora en silencio.
+
+### Modo oscuro
+
+El tema se activa con el interruptor de la cabecera (`defaultTheme = 'light'`, así que nadie lo ve sin pedirlo) y se guarda en `localStorage`. Al revisar un cambio de color conviene mirarlo en los dos temas: PaperMod define `--primary` como **casi negro en claro y gris claro en oscuro**, de modo que cualquier botón con `background: var(--primary)` necesita `color: var(--theme)` y no un blanco fijo como `--primary-light-text`; con blanco fijo el botón queda blanco sobre gris claro.
 
 ---
 

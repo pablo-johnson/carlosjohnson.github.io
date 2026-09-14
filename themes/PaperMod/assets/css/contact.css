@@ -84,7 +84,7 @@
 
 [data-theme="dark"] .contact-booking-submit:hover {
   background: var(--primary);
-  color: var(--primary-light-text, #fff);
+  color: var(--theme);
   opacity: 1;
 }
 

@@ -5,7 +5,7 @@
   display: inline-block;
   padding: 0.5rem 1rem;
   background-color: var(--primary);
-  color: var(--primary-light-text);
+  color: var(--theme);
   border-radius: 5px;
   text-decoration: none;
   font-weight: 600;
@@ -23,7 +23,7 @@
 /* Dark mode button styling */
 [data-theme="dark"] .concert-actions a {
   background-color: var(--primary);
-  color: var(--primary-light-text);
+  color: var(--theme);
 }
 
 [data-theme="dark"] .concert-actions a:hover {
@@ -65,7 +65,7 @@
 }
 
 [data-theme="dark"] .concert-actions a {
-  color: var(--primary-light-text);
+  color: var(--theme);
 }
 
 /* Concert contact info styling */

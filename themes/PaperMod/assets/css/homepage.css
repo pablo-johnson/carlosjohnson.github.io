@@ -639,8 +639,8 @@
    hero. */
 .home-brief__number {
   font-family: var(--font-body);
-  border-color: color-mix(in srgb, var(--accent) 55%, transparent);
-  color: color-mix(in srgb, var(--accent) 82%, white);
+  border-color: color-mix(in srgb, var(--accent-on-dark) 60%, transparent);
+  color: var(--accent-on-dark);
 }
 
 .home-brief h2 {
@@ -777,8 +777,8 @@
   width: 100vw;
   margin-inline: calc(50% - 50vw);
   padding: clamp(56px, 8vw, 96px) clamp(28px, 5vw, 64px);
-  background: var(--accent);
-  color: var(--accent-contrast);
+  background: var(--accent-surface);
+  color: var(--on-accent-surface);
 }
 
 .home-cta__inner {
@@ -798,7 +798,7 @@
   margin: 1rem 0 0;
   font-size: 1.05rem;
   line-height: 1.7;
-  color: color-mix(in srgb, var(--accent-contrast) 88%, transparent);
+  color: color-mix(in srgb, var(--on-accent-surface) 88%, transparent);
 }
 
 .home-cta__button {
@@ -807,7 +807,7 @@
   min-height: 52px;
   margin-top: 2rem;
   padding: 0 2rem;
-  border: 1px solid color-mix(in srgb, var(--accent-contrast) 45%, transparent);
+  border: 1px solid color-mix(in srgb, var(--on-accent-surface) 45%, transparent);
   border-radius: 999px;
   background: transparent;
   color: inherit;
@@ -817,8 +817,8 @@
 }
 
 .home-cta__button:hover {
-  background: var(--accent-contrast);
-  color: var(--accent);
+  background: var(--on-accent-surface);
+  color: var(--accent-surface);
 }
 
 /* La foto ya no vive dentro del bloque de texto, asi que se posiciona contra
