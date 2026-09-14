@@ -75,10 +75,9 @@
 
         {{- if gt (len $profiles) 0 }}
         <div class="home-hero__briefs">
-            {{- range $index, $profile := first 3 $profiles }}
+            {{- range $profile := first 3 $profiles }}
             {{- $link := $profile.link | default "" }}
             <article class="home-brief{{ if $link }} home-brief--linked{{ end }}">
-                <span class="home-brief__number">{{ printf "%02d" (add $index 1) }}</span>
                 {{- /* El enlace va en el título, no envolviendo la tarjeta: así el
                        nombre accesible del enlace es el de la sección. El CSS lo
                        estira después para que toda la tarjeta sea pulsable. */}}

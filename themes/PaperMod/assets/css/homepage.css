@@ -170,20 +170,6 @@
   box-shadow: none;
 }
 
-.home-brief__number {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  width: 2.25rem;
-  height: 2.25rem;
-  margin-bottom: 18px;
-  border-radius: 999px;
-  border: 1px solid rgba(255, 255, 255, 0.18);
-  color: rgba(246, 242, 234, 0.7);
-  font-size: 0.84rem;
-  letter-spacing: 0.08em;
-}
-
 .home-brief h2 {
   margin: 0 0 10px;
   font-size: clamp(1.2rem, 2vw, 1.45rem);
@@ -585,12 +571,6 @@
 
 /* El número de cada faceta lleva el acento: es el único punto de color del
    hero. */
-.home-brief__number {
-  font-family: var(--font-body);
-  border-color: color-mix(in srgb, var(--accent-on-dark) 60%, transparent);
-  color: var(--accent-on-dark);
-}
-
 .home-brief h2 {
   font-family: var(--font-display);
   letter-spacing: -0.01em;
