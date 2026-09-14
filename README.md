@@ -229,7 +229,15 @@ Se usa con cuentagotas: enlaces del contenido, subrayado del menú activo, numer
 
 ### Modo oscuro
 
-El tema se activa con el interruptor de la cabecera (`defaultTheme = 'light'`, así que nadie lo ve sin pedirlo) y se guarda en `localStorage`. Al revisar un cambio de color conviene mirarlo en los dos temas: PaperMod define `--primary` como **casi negro en claro y gris claro en oscuro**, de modo que cualquier botón con `background: var(--primary)` necesita `color: var(--theme)` y no un blanco fijo como `--primary-light-text`; con blanco fijo el botón queda blanco sobre gris claro.
+`defaultTheme = 'auto'`: el sitio arranca con la preferencia del sistema del visitante, el interruptor de la cabecera la sobrescribe y la elección se guarda en `localStorage`.
+
+Lo que hace que `auto` sea manejable es que **el script de PaperMod resuelve siempre a un `data-theme` concreto** (`light` o `dark`) antes de pintar, en las cuatro ramas: preferencia guardada, y si no la hay, `prefers-color-scheme`. Por eso todo el CSS del sitio puede seguir escribiéndose contra el atributo, que es una sola señal, en vez de duplicar cada regla en una media query.
+
+La excepción es **sin JavaScript**: ahí el atributo se queda en `auto`, PaperMod aplica sus variables oscuras por `prefers-color-scheme` y cualquier token propio definido solo bajo `[data-theme="dark"]` se quedaría en su versión clara. Por eso los tokens de acento llevan también un bloque `@media (prefers-color-scheme: dark)` con `:root:not([data-theme="light"])`. Si añades tokens de color nuevos, duplícalos igual.
+
+Al revisar un cambio de color conviene mirarlo en los dos temas: PaperMod define `--primary` como **casi negro en claro y gris claro en oscuro**, de modo que cualquier botón con `background: var(--primary)` necesita `color: var(--theme)` y no un blanco fijo como `--primary-light-text`; con blanco fijo el botón queda blanco sobre gris claro.
+
+Escenarios verificados: sistema claro y sistema oscuro sin elección previa, elección explícita contraria al sistema en ambos sentidos, y los dos casos anteriores sin JavaScript.
 
 ---
 

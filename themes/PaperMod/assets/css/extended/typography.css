@@ -40,6 +40,24 @@
   --on-accent-surface: #f7e7e9;
 }
 
+/* Red de seguridad para el modo automático sin JavaScript.
+
+   Con defaultTheme = 'auto', el script de PaperMod resuelve la preferencia del
+   sistema a un data-theme concreto, así que el bloque de arriba basta en el
+   99 % de los casos. Pero ese script no corre sin JS: entonces PaperMod aplica
+   sus variables oscuras por prefers-color-scheme y el atributo se queda en
+   "auto", con lo que estos acentos se quedarían en su versión clara — tinta
+   granate sobre fondo negro. El :not() deja que una elección explícita de tema
+   claro siga mandando. */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --accent: #d08a92;
+    --accent-strong: #e0a5ac;
+    --accent-surface: #5e1d24;
+    --on-accent-surface: #f7e7e9;
+  }
+}
+
 body {
   font-family: var(--font-body);
   font-size: 1rem;

@@ -37,7 +37,9 @@ buildFuture = true
       description = 'Classical Violinist, Conductor and Teacher'
 
 [params]
-  defaultTheme = 'light'
+  # 'auto' respeta la preferencia del sistema; el interruptor de la cabecera la
+  # sobrescribe y la elección queda guardada en localStorage.
+  defaultTheme = 'auto'
   ShowShareButtons = false
   ShowReadingTime = false
   # Imagen por defecto al compartir el sitio (WhatsApp, Facebook, LinkedIn...)
