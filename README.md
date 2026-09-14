@@ -156,9 +156,13 @@ La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month
 
 El CMS corre entero en el navegador, así que para escribir en el repo necesita un token de GitHub, y para obtenerlo hace falta canjear un código con el *client secret* de una aplicación OAuth. Ese secreto no puede vivir en el navegador: hace falta una pieza mínima de servidor.
 
-**Estado actual:** sin `base_url`, Sveltia cae por defecto en `https://api.netlify.com/auth`, el relay OAuth **compartido** de Netlify, usando su aplicación y no una nuestra. Funciona hoy, pero es un servicio ajeno que puede cerrarse sin aviso y se llevaría por delante el acceso de todos los clientes a la vez.
+**Cómo está resuelto:** un único Cloudflare Worker para todos los sitios de profi-web, con una aplicación OAuth propia en la organización `profi-web-de` de GitHub. El sitio lo declara en `static/admin/config.yml`:
 
-**A dónde va:** un único Cloudflare Worker (`sveltia-cms-auth`) para todos los sitios de profi-web, con una aplicación OAuth propia en la organización de GitHub. Cuando esté desplegado, se descomenta el `base_url` de `static/admin/config.yml` y este sitio deja de depender de Netlify. El worker y sus instrucciones viven en su propio repo, `profi-web/cms-auth`.
+```yaml
+base_url: https://cms-auth.profi-web.workers.dev
+```
+
+Sin esa línea, Sveltia cae por defecto en `https://api.netlify.com/auth`, el relay OAuth **compartido** de Netlify, usando su aplicación y no la nuestra: un servicio ajeno que puede cerrarse sin aviso y llevarse por delante el acceso de todos los clientes a la vez. El worker y sus instrucciones viven en su propio repo, `profi-web-de/cms-auth`.
 
 Cómo comprobar por cuál de los dos está entrando un sitio: abre `/admin`, pulsa "Entrar con GitHub" y mira a dónde va la ventana emergente. Si va a `github.com`, está usando el worker; si va a `api.netlify.com`, sigue en el relay compartido.
 
