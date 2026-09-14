@@ -4,8 +4,8 @@ Sitio web bilingüe (alemán / español) del violinista **Carlos Johnson**, cons
 
 Forma parte del proyecto **profi-web**: páginas web para músicos con plantillas reutilizables y un panel de administración para que ellos mismos mantengan el contenido.
 
-- **Producción:** https://pablo-johnson.github.io/carlosjohnson.github.io/
-- **Panel de administración:** `/admin` (por ejemplo, https://pablo-johnson.github.io/carlosjohnson.github.io/admin/)
+- **Producción:** https://profi-web-de.github.io/carlos-johnson/
+- **Panel de administración:** `/admin` (por ejemplo, https://profi-web-de.github.io/carlos-johnson/admin/)
 - **Manual para el cliente:** [user-manual.md](user-manual.md)
 
 ---
@@ -136,7 +136,7 @@ La home muestra los **3 próximos** eventos. Slug automático: `{{year}}-{{month
 
 `static/admin/config.yml` (≈380 líneas) define:
 
-- **Backend:** `github`, repo `pablo-johnson/carlosjohnson.github.io`, branch `main`.
+- **Backend:** `github`, repo `profi-web-de/carlos-johnson`, branch `main`.
 - **Media:** se sube a `assets/images` (así pasa por el pipeline de imágenes) y se referencia como `/images/...`.
 - **i18n:** `multiple_files`, locales `[de, es, en]`, default `de`, omitiendo el locale por defecto del nombre de archivo.
 - Cada campo declara su comportamiento multilingüe: `i18n: true` (traducible) o `i18n: duplicate` (valor compartido entre idiomas, típico de imágenes, fechas, IDs de YouTube y URLs).

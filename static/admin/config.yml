@@ -1,6 +1,6 @@
 backend:
   name: github
-  repo: pablo-johnson/carlosjohnson.github.io # The repo
+  repo: profi-web-de/carlos-johnson # The repo
   branch: main
   # Relay OAuth propio (Cloudflare Worker del repo profi-web-de/cms-auth).
   # Sin esta línea, Sveltia cae por defecto en api.netlify.com/auth, el relay

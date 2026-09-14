@@ -1,4 +1,4 @@
-baseURL = 'https://pablo-johnson.github.io/carlosjohnson.github.io/'
+baseURL = 'https://profi-web-de.github.io/carlos-johnson/'
 theme = 'PaperMod'
 # Multilingüe: alemán por defecto (sirve en la raíz), español e inglés en subcarpeta.
 # Esta clave DEBE ir antes de cualquier [tabla]: dentro de una, TOML la trata como
