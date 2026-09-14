@@ -2,7 +2,7 @@
 title: Carlos Johnson
 hideFooter: true
 home_hero:
-  eyebrow: Violine · Dirigieren · LehreDE
+  eyebrow: Violine · Dirigieren · Lehre
   title: Carlos Johnson
   subtitle: Peruanischer Geiger in Deutschland. Seit 2000 Erster Konzertmeister des Philharmonischen Orchesters der Hansestadt Lübeck und seit 2008 Professor für Violine und Kammermusik an der Musikhochschule Lübeck. Seine Arbeit verbindet das europäische Repertoire mit der Wiederentdeckung peruanischer und lateinamerikanischer Musik, die er erforscht, einspielt und auf die Bühnen Europas, Asiens und Amerikas bringt.
   autoplay_seconds: 4
