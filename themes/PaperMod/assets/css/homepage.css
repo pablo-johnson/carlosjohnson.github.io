@@ -197,10 +197,7 @@
 }
 
 .home-events {
-  width: 100vw;
-  margin: clamp(48px, 7vw, 92px) 0 0;
-  margin-inline: calc(50% - 50vw);
-  padding: 0 clamp(28px, 5vw, 64px) clamp(16px, 3vw, 28px);
+  padding: clamp(48px, 7vw, 92px) clamp(28px, 5vw, 64px);
 }
 
 .home-events__header {
@@ -217,7 +214,7 @@
   font-size: 0.78rem;
   letter-spacing: 0.18em;
   text-transform: uppercase;
-  color: rgba(246, 242, 234, 0.58);
+  color: var(--band-muted);
 }
 
 .home-events__title {
@@ -225,7 +222,7 @@
   font-size: clamp(1.8rem, 4vw, 2.8rem);
   line-height: 1;
   letter-spacing: -0.04em;
-  color: var(--primary);
+  color: var(--band-fg);
 }
 
 .home-events__grid {
@@ -248,10 +245,10 @@
   justify-content: center;
   min-height: 48px;
   padding: 0 22px;
-  border: 1px solid rgba(255, 255, 255, 0.12);
+  border: 1px solid var(--band-hairline);
   border-radius: 999px;
-  background: rgba(11, 11, 11, 0.82);
-  color: #fffaf2;
+  background: var(--band-card);
+  color: var(--band-fg);
   font-weight: 600;
   letter-spacing: 0.02em;
   transition: transform 0.2s ease, border-color 0.2s ease, background-color 0.2s ease;
@@ -260,19 +257,14 @@
 .home-events__link:hover,
 .home-events__link:focus-visible {
   transform: translateY(-1px);
-  border-color: rgba(255, 255, 255, 0.24);
-  background: rgba(18, 18, 18, 0.92);
+  border-color: var(--band-accent);
+  background: var(--band-card-strong);
 }
 
 .home-video {
   position: relative;
-  width: 100vw;
-  margin: clamp(36px, 6vw, 72px) 0 0;
-  margin-inline: calc(50% - 50vw);
   overflow: hidden;
   border-radius: clamp(20px, 3vw, 32px);
-  background: #020202;
-  color: #f6f2ea;
   isolation: isolate;
 }
 
@@ -311,7 +303,7 @@
   font-size: clamp(1.9rem, 4vw, 3rem);
   line-height: 1.02;
   letter-spacing: -0.04em;
-  color: #fffaf2;
+  color: var(--band-fg);
   text-align: center;
 }
 
@@ -319,12 +311,10 @@
   position: relative;
   width: min(100%, 920px);
   padding: clamp(12px, 2vw, 18px);
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--band-hairline);
   border-radius: 28px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
-    rgba(9, 9, 9, 0.72);
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.16);
+  background: var(--band-card);
+  box-shadow: var(--band-card-shadow);
 }
 
 .home-video__embed {
@@ -352,12 +342,10 @@
   min-height: 100%;
   width: 100%;
   padding: 24px;
-  border: 1px solid rgba(255, 255, 255, 0.08);
+  border: 1px solid var(--band-hairline);
   border-radius: 24px;
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.03), rgba(255, 255, 255, 0.015)),
-    rgba(9, 9, 9, 0.72);
-  box-shadow: 0 22px 70px rgba(0, 0, 0, 0.16);
+  background: var(--band-card);
+  box-shadow: var(--band-card-shadow);
 }
 
 .home-event-card__date {
@@ -365,14 +353,14 @@
   font-size: 0.84rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--secondary);
+  color: var(--band-muted);
 }
 
 .home-event-card__title {
   margin: 0;
   font-size: clamp(1.2rem, 2vw, 1.55rem);
   line-height: 1.2;
-  color: var(--primary);
+  color: var(--band-fg);
 }
 
 .home-event-card__meta {
@@ -391,19 +379,19 @@
   font-size: 0.82rem;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  color: var(--secondary);
+  color: var(--band-muted);
 }
 
 .home-event-card__meta dd {
   margin: 0;
-  color: var(--primary);
+  color: var(--band-fg);
 }
 
 .home-event-card__summary {
   margin: 0;
   font-size: 0.95rem;
   line-height: 1.68;
-  color: var(--secondary);
+  color: var(--band-muted);
 }
 
 .home-event-card__link {
@@ -445,45 +433,6 @@
 
 :root[data-theme="light"] .home-hero__media {
   background: transparent;
-}
-
-:root[data-theme="light"] .home-events__eyebrow {
-  color: rgba(58, 46, 34, 0.58);
-}
-
-:root[data-theme="light"] .home-event-card {
-  border-color: rgba(46, 35, 22, 0.08);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(252, 247, 240, 0.94)),
-    #fff;
-  box-shadow: 0 20px 56px rgba(63, 43, 18, 0.08);
-}
-
-:root[data-theme="light"] .home-events__link {
-  border-color: rgba(46, 35, 22, 0.12);
-  background: rgba(255, 250, 242, 0.96);
-  color: #2e2316;
-}
-
-:root[data-theme="light"] .home-events__link:hover,
-:root[data-theme="light"] .home-events__link:focus-visible {
-  border-color: rgba(46, 35, 22, 0.2);
-  background: #fff;
-}
-
-:root[data-theme="light"] .home-video__backdrop {
-  background:
-    radial-gradient(circle at top left, rgba(255, 248, 236, 0.2), transparent 30%),
-    radial-gradient(circle at top right, rgba(168, 125, 72, 0.18), transparent 24%),
-    linear-gradient(140deg, rgba(0, 0, 0, 0.08), rgba(0, 0, 0, 0.64));
-}
-
-:root[data-theme="light"] .home-video__frame {
-  border-color: rgba(46, 35, 22, 0.08);
-  background:
-    linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(252, 247, 240, 0.94)),
-    #fff;
-  box-shadow: 0 20px 56px rgba(63, 43, 18, 0.08);
 }
 
 @media (max-width: 960px) {
@@ -564,7 +513,6 @@
   }
 
   .home-events {
-    margin-top: 40px;
     padding-inline: 22px;
   }
 
@@ -709,9 +657,7 @@
 /* --- Prensa y cierre ------------------------------------------------------ */
 
 .home-press {
-  width: 100vw;
-  margin-inline: calc(50% - 50vw);
-  padding: clamp(56px, 8vw, 104px) clamp(28px, 5vw, 64px) clamp(40px, 6vw, 72px);
+  padding: clamp(56px, 8vw, 104px) clamp(28px, 5vw, 64px) clamp(56px, 7vw, 92px);
 }
 
 .home-press__title {
@@ -719,7 +665,7 @@
   font-family: var(--font-display);
   font-size: clamp(1.6rem, 3vw, 2.3rem);
   letter-spacing: -0.02em;
-  color: var(--primary);
+  color: var(--band-fg);
 }
 
 .home-press__grid {
@@ -737,7 +683,7 @@
   height: 100%;
   margin: 0;
   padding-top: 1.25rem;
-  border-top: 2px solid var(--accent);
+  border-top: 2px solid var(--band-accent);
 }
 
 .home-quote blockquote {
@@ -748,7 +694,7 @@
   font-style: italic;
   font-size: clamp(1.1rem, 1rem + 0.5vw, 1.35rem);
   line-height: 1.5;
-  color: var(--primary);
+  color: var(--band-fg);
 }
 
 .home-quote blockquote::before {
@@ -766,7 +712,7 @@
   font-weight: 600;
   letter-spacing: 0.14em;
   text-transform: uppercase;
-  color: var(--secondary);
+  color: var(--band-muted);
 }
 
 .home-quote figcaption a {
@@ -776,7 +722,7 @@
 }
 
 .home-quote figcaption a:hover {
-  color: var(--accent);
+  color: var(--band-accent);
 }
 
 .home-cta {
@@ -912,4 +858,86 @@
   .home-brief--linked h2 a::before {
     transition: none;
   }
+}
+
+/* ===========================================================================
+   Ritmo de bandas de la portada
+
+   Antes cada seccion fijaba su propio fondo (.home-video era negro siempre) y
+   se separaba de la anterior con un margen. Con los conciertos ocultos, hero y
+   video quedaban pegados y el margen entre dos bandas negras se veia como una
+   franja clara suelta a mitad de la portada.
+
+   Ahora el tono no lo decide la seccion sino su POSICION: la plantilla numera
+   las bandas que realmente se renderizan y les pone home-band--base o
+   home-band--ink alternadamente. Da igual que se oculten los conciertos, la
+   prensa o el video: la alternancia se recalcula sola. El hero (foto) y el
+   cierre (acento) quedan fuera del ciclo porque su color es su identidad.
+
+   Cada banda expone sus propios tokens --band-* y las piezas de dentro
+   (tarjetas, filetes, textos secundarios) los leen. Por eso ya no hay reglas
+   :root[data-theme="light"] para estas piezas: el contraste lo fija la banda,
+   no el tema.
+   =========================================================================== */
+
+.home-band {
+  width: 100vw;
+  margin-inline: calc(50% - 50vw);
+  margin-block: 0;
+}
+
+/* Banda clara: es el fondo de la pagina, sea cual sea el tema. */
+.home-band--base {
+  background: var(--theme);
+  color: var(--primary);
+
+  --band-fg: var(--primary);
+  --band-muted: var(--secondary);
+  --band-accent: var(--accent);
+  --band-hairline: var(--border);
+  --band-card: var(--entry);
+  --band-card-strong: var(--entry);
+  --band-card-shadow: 0 20px 56px rgba(63, 43, 18, 0.08);
+}
+
+/* Banda de tinta: casi negra en ambos temas, como el hero. El acento cambia a
+   su variante clara porque el granate oscuro no se lee sobre negro. */
+.home-band--ink {
+  background: var(--band-ink-surface);
+  color: var(--band-ink-fg);
+
+  --band-fg: var(--band-ink-fg);
+  --band-muted: rgba(246, 242, 234, 0.62);
+  --band-accent: var(--accent-on-dark);
+  --band-hairline: rgba(255, 255, 255, 0.12);
+  --band-card: rgba(255, 255, 255, 0.05);
+  --band-card-strong: rgba(255, 255, 255, 0.1);
+  --band-card-shadow: 0 22px 70px rgba(0, 0, 0, 0.3);
+}
+
+:root {
+  --band-ink-surface: #0c0c0d;
+  --band-ink-fg: #f6f2ea;
+}
+
+/* En oscuro la tinta se separa del fondo de pagina por poco: dos negros
+   distintos bastan para marcar el ritmo sin que la portada parpadee. */
+:root[data-theme="dark"] {
+  --band-ink-surface: #0e0f11;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --band-ink-surface: #0e0f11;
+  }
+}
+
+/* Los degradados decorativos del video son ropa de banda oscura. */
+.home-band--base .home-video__backdrop,
+.home-band--base .home-video__overlay {
+  display: none;
+}
+
+.home-band--base .home-video__embed {
+  background: var(--tertiary);
 }

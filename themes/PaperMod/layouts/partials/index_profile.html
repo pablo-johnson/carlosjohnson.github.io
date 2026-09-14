@@ -94,9 +94,18 @@
     </div>
 </section>
 
+{{- /* Ritmo de bandas: el tono de fondo no lo fija cada seccion sino el orden
+       en que aparecen las que realmente se renderizan. Asi la alternancia
+       clara/oscura se mantiene aunque los conciertos, la prensa o el video
+       esten ocultos. El hero y el cierre quedan fuera: su color es su
+       identidad, no su posicion. */ -}}
+{{- $band := 0 -}}
+{{- $tone := "" -}}
+
 {{- $concertsVisible := partial "section-visible.html" $concertsListPage }}
 {{- if and $concertsVisible (gt (len $upcomingEvents) 0) }}
-<section class="home-events" aria-labelledby="home-events-title">
+{{- $band = add $band 1 }}{{ $tone = cond (eq (mod $band 2) 1) "base" "ink" }}
+<section class="home-band home-band--{{ $tone }} home-events" aria-labelledby="home-events-title">
     <div class="home-events__header">
         <h2 id="home-events-title" class="home-events__title">{{ i18n "upcoming_events" }}</h2>
     </div>
@@ -140,7 +149,8 @@
 {{- end }}
 
 {{- if $featuredVideoId }}
-<section class="home-video" aria-labelledby="home-video-title">
+{{- $band = add $band 1 }}{{ $tone = cond (eq (mod $band 2) 1) "base" "ink" }}
+<section class="home-band home-band--{{ $tone }} home-video" aria-labelledby="home-video-title">
     <div class="home-video__backdrop"></div>
     <div class="home-video__overlay"></div>
 
@@ -167,7 +177,8 @@
 {{- with $press }}
 {{- $quotes := where (.quotes | default (slice)) "quote" "!=" "" -}}
 {{- if gt (len $quotes) 0 }}
-<section class="home-press" aria-labelledby="home-press-title">
+{{- $band = add $band 1 }}{{ $tone = cond (eq (mod $band 2) 1) "base" "ink" }}
+<section class="home-band home-band--{{ $tone }} home-press" aria-labelledby="home-press-title">
     {{- with .title }}
     <h2 id="home-press-title" class="home-press__title">{{ . }}</h2>
     {{- end }}

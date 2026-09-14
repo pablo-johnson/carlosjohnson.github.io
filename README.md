@@ -122,6 +122,21 @@ Dos detalles que costaron una vuelta cada uno:
 
 El layout las lee con `site.GetPage` y, si falta el archivo o está vacío, el bloque simplemente no se pinta.
 
+### Patrón clave: el ritmo de bandas de la portada
+
+Como cualquier bloque de la portada puede no renderizarse (conciertos ocultos, sin video, sin citas de prensa), **el tono de fondo no lo fija la sección sino su posición**. `index_profile.html` lleva un contador de las bandas que realmente se pintan y les asigna `home-band--base` (fondo de página) o `home-band--ink` (casi negro) de forma alternada:
+
+```go-html-template
+{{- $band = add $band 1 }}{{ $tone = cond (eq (mod $band 2) 1) "base" "ink" }}
+<section class="home-band home-band--{{ $tone }} home-video" …>
+```
+
+El hero (foto a sangre) y el bloque de cierre (superficie de acento) quedan fuera del ciclo: ahí el color es identidad, no posición.
+
+Cada banda expone sus propios tokens —`--band-fg`, `--band-muted`, `--band-accent`, `--band-hairline`, `--band-card`, `--band-card-shadow`— y las piezas de dentro (tarjetas de evento, marco del video, filetes de las citas) los leen. Por eso **no** hay reglas `:root[data-theme="light"] .home-event-card` y similares: el contraste lo decide la banda, no el tema.
+
+Las bandas van pegadas, sin márgenes entre ellas. Un margen entre dos bandas del mismo tono dejaba ver el fondo de la página como una franja clara suelta en mitad de la portada —que es justo lo que pasaba al ocultar los conciertos—.
+
 ### Patrón clave: galerías como listas en el front matter
 
 Las galerías **no** son carpetas de páginas: son arrays dentro del front matter del `_index` de cada sección (`gallery_items`, `gallery_videos`, `gallery_audios`). Esto permite reordenarlas por drag & drop desde el CMS y ocultar elementos sin borrarlos.
@@ -277,7 +292,7 @@ Se usa con cuentagotas: enlaces del contenido, subrayado del menú activo, numer
 |---|---|
 | `extended/typography.css` | Familias, escala fluida, acento, citas, retrato de página |
 | `layouts/partials/extend_head.html` | `@font-face` y `preload` con URLs resueltas por Hugo |
-| `homepage.css` (bloque final) | Rediseño de portada: hero a sangre, prensa, cierre |
+| `homepage.css` (bloque final) | Rediseño de portada: hero a sangre, prensa, cierre, ritmo de bandas |
 | `extended/analytics-consent.css` | Barra inferior de consentimiento |
 
 > Un detalle que cuesta depurar: `responsive-image.html` emite los atributos `width`/`height` del HTML, y esa altura es **definitiva**. Cualquier regla que recorte con `aspect-ratio` necesita también `height: auto`, o el `aspect-ratio` se ignora en silencio.
