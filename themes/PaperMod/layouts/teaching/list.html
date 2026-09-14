@@ -5,183 +5,142 @@
 <style>{{ $styles.Content | safeCSS }}</style>
 {{- end }}
 
-<section class="teaching-page">
-  <header class="page-header teaching-hero">
+{{- /* Docencia es la unica seccion cuyos datos vienen en campos estructurados
+       del CMS (catedras, clases magistrales, recursos) en lugar de prosa. Aun
+       asi se pinta con la misma envoltura que Biografia, Violinista y Director
+       -- post-single > post-header > retrato > post-content -- para que la
+       navegacion entre secciones no cambie de lenguaje visual. */ -}}
+<article class="post-single teaching-page">
+  <header class="post-header">
     {{- partial "breadcrumbs.html" . }}
-    <h1>{{ .Title }}</h1>
+    <h1 class="post-title">{{ .Title }}</h1>
     {{- with .Params.subtitle }}
-    <p class="teaching-subtitle">{{ . }}</p>
-    {{- end }}
-    {{- if .Content }}
-    <div class="post-content teaching-intro">{{ .Content }}</div>
+    <p class="post-subtitle">{{ . }}</p>
     {{- end }}
   </header>
 
-  <div class="teaching-grid">
+  {{- with .Params.portrait }}
+  {{- with .image }}
+  <figure class="page-portrait">
+    {{ partial "responsive-image.html" (dict
+        "src" .
+        "alt" ($.Params.portrait.alt | default $.Title)
+        "sizes" "(max-width: 900px) 100vw, 760px"
+        "widths" (slice 600 900 1200 1600)
+        "loading" "eager") }}
+  </figure>
+  {{- end }}
+  {{- end }}
+
+  <div class="post-content">
+    {{- with .Content }}{{ . }}{{ end }}
+
+    {{- /* --- Catedra en Alemania --- */ -}}
     {{- with .Params.germany_chair }}
-    <article class="teaching-card">
-      <div class="teaching-card-header">
-        <div>
-          <span class="teaching-badge">{{ i18n "teaching_germany_chair" }}</span>
-          <h2>{{ .university_name }}</h2>
-          {{- with .appointment_title }}
-          <span class="teaching-kicker">{{ . }}</span>
-          {{- end }}
-        </div>
-        {{- with .university_url }}
-        <a class="teaching-link" href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "teaching_institution_website" }}</a>
-        {{- end }}
-      </div>
-
+    <section class="teaching-block">
+      <p class="teaching-eyebrow">{{ i18n "teaching_germany_chair" }}</p>
+      <h2>{{ .university_name }}</h2>
+      {{- with .appointment_title }}
+      <p class="teaching-kicker">{{ . }}</p>
+      {{- end }}
       {{- with .description }}
       <p>{{ . }}</p>
       {{- end }}
-
-      <div class="teaching-columns">
-        <div>
-          <h3>{{ i18n "teaching_admissions" }}</h3>
-          {{- with .admissions }}
-          <ul class="teaching-list">
-            {{- range . }}
-            <li>{{ . }}</li>
-            {{- end }}
-          </ul>
-          {{- else }}
-          <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
-          {{- end }}
-        </div>
-        <div>
-          <h3>{{ i18n "teaching_auditions" }}</h3>
-          {{- with .auditions }}
-          <ul class="teaching-list">
-            {{- range . }}
-            <li>{{ . }}</li>
-            {{- end }}
-          </ul>
-          {{- else }}
-          <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
-          {{- end }}
-        </div>
-      </div>
-    </article>
+      {{- with .admissions }}
+      <h3>{{ i18n "teaching_admissions" }}</h3>
+      <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      {{- end }}
+      {{- with .auditions }}
+      <h3>{{ i18n "teaching_auditions" }}</h3>
+      <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
+      {{- end }}
+      {{- with .university_url }}
+      <p class="teaching-more"><a href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "teaching_institution_website" }}</a></p>
+      {{- end }}
+    </section>
     {{- end }}
 
+    {{- /* --- Catedra en Peru --- */ -}}
     {{- with .Params.peru_chair }}
-    <article class="teaching-card">
-      <div class="teaching-card-header">
-        <div>
-          <span class="teaching-badge">{{ i18n "teaching_peru_chair" }}</span>
-          <h2>{{ .institution_name }}</h2>
-          {{- with .appointment_title }}
-          <span class="teaching-kicker">{{ . }}</span>
-          {{- end }}
-        </div>
-        {{- with .institution_url }}
-        <a class="teaching-link" href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "teaching_institution_website" }}</a>
-        {{- end }}
-      </div>
-
+    <section class="teaching-block">
+      <p class="teaching-eyebrow">{{ i18n "teaching_peru_chair" }}</p>
+      <h2>{{ .institution_name }}</h2>
+      {{- with .appointment_title }}
+      <p class="teaching-kicker">{{ . }}</p>
+      {{- end }}
       {{- with .description }}
       <p>{{ . }}</p>
       {{- end }}
-
-      <h3>{{ i18n "teaching_projects" }}</h3>
       {{- with .initiatives }}
-      <ul class="teaching-list">
-        {{- range . }}
-        <li>{{ . }}</li>
-        {{- end }}
-      </ul>
-      {{- else }}
-      <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
+      <h3>{{ i18n "teaching_projects" }}</h3>
+      <ul>{{ range . }}<li>{{ . }}</li>{{ end }}</ul>
       {{- end }}
-    </article>
+      {{- with .institution_url }}
+      <p class="teaching-more"><a href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "teaching_institution_website" }}</a></p>
+      {{- end }}
+    </section>
     {{- end }}
 
+    {{- /* --- Clases magistrales --- */ -}}
     {{- with .Params.masterclasses }}
-    <article class="teaching-card teaching-card--wide">
-      <div class="teaching-card-header">
-        <div>
-          <span class="teaching-badge">{{ i18n "teaching_masterclasses" }}</span>
-          <h2>{{ i18n "teaching_calendar" }}</h2>
-        </div>
-      </div>
-
+    <section class="teaching-block">
+      <p class="teaching-eyebrow">{{ i18n "teaching_masterclasses" }}</p>
+      <h2>{{ i18n "teaching_calendar" }}</h2>
       {{- with .description }}
       <p>{{ . }}</p>
       {{- end }}
-
       {{- with .events }}
-      <ul class="teaching-event-list">
-        {{- range . }}
-        <li class="teaching-event">
-          <h3>{{ .title }}</h3>
-          <div class="teaching-meta">
-            {{- with .date }}
-            <span><strong>{{ i18n "teaching_date" }}:</strong> {{ . }}</span>
-            {{- end }}
-            {{- with .location }}
-            <span><strong>{{ i18n "teaching_location" }}:</strong> {{ . }}</span>
-            {{- end }}
-          </div>
-          {{- with .details }}
-          <p>{{ . }}</p>
-          {{- end }}
-          {{- with .link }}
-          <a class="teaching-link" href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "more_info" }}</a>
-          {{- end }}
-        </li>
+      {{- range . }}
+      <div class="teaching-entry">
+        <h3>{{ .title }}</h3>
+        {{- $meta := slice }}
+        {{- with .date }}{{ $meta = $meta | append . }}{{ end }}
+        {{- with .location }}{{ $meta = $meta | append . }}{{ end }}
+        {{- with $meta }}
+        <p class="teaching-meta">{{ delimit . " · " }}</p>
         {{- end }}
-      </ul>
+        {{- with .details }}
+        <p>{{ . }}</p>
+        {{- end }}
+        {{- with .link }}
+        <p class="teaching-more"><a href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "more_info" }}</a></p>
+        {{- end }}
+      </div>
+      {{- end }}
       {{- else }}
       <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
       {{- end }}
-    </article>
+    </section>
     {{- end }}
 
+    {{- /* --- Recursos para estudiantes --- */ -}}
     {{- with .Params.resources }}
     {{- if .enabled }}
-    <article class="teaching-card teaching-card--wide">
-      <div class="teaching-card-header">
-        <div>
-          <span class="teaching-badge">{{ i18n "teaching_resources" }}</span>
-          <h2>{{ i18n "teaching_resources" }}</h2>
-        </div>
-        {{- if .private_area }}
-        <span class="teaching-badge">{{ i18n "teaching_private_area" }}</span>
-        {{- end }}
-      </div>
-
+    <section class="teaching-block">
+      <p class="teaching-eyebrow">{{ if .private_area }}{{ i18n "teaching_private_area" }}{{ else }}{{ i18n "teaching_resources" }}{{ end }}</p>
+      <h2>{{ i18n "teaching_resources" }}</h2>
       {{- with .description }}
       <p>{{ . }}</p>
       {{- end }}
-
       {{- with .items }}
-      <ul class="teaching-resource-list">
-        {{- range . }}
-        <li class="teaching-resource">
-          <h3>{{ .title }}</h3>
-          {{- with .description }}
-          <p>{{ . }}</p>
-          {{- end }}
-          {{- with .link }}
-          <a class="teaching-link" href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "more_info" }}</a>
-          {{- end }}
-        </li>
+      {{- range . }}
+      <div class="teaching-entry">
+        <h3>{{ .title }}</h3>
+        {{- with .description }}
+        <p>{{ . }}</p>
         {{- end }}
-      </ul>
-      {{- else }}
-      <p class="teaching-muted">{{ i18n "teaching_available_soon" }}</p>
-      {{- end }}
-
-      {{- with .access_note }}
-      <div class="teaching-private">
-        <strong>{{ i18n "teaching_access_note" }}:</strong> {{ . }}
+        {{- with .link }}
+        <p class="teaching-more"><a href="{{ . }}" target="_blank" rel="noreferrer">{{ i18n "more_info" }}</a></p>
+        {{- end }}
       </div>
       {{- end }}
-    </article>
+      {{- end }}
+      {{- with .access_note }}
+      <p class="teaching-note">{{ . }}</p>
+      {{- end }}
+    </section>
     {{- end }}
     {{- end }}
   </div>
-</section>
+</article>
 {{- end }}

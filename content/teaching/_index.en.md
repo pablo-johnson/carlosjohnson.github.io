@@ -1,6 +1,9 @@
 ---
 title: "Teaching"
 subtitle: "A chair at the Musikhochschule Lübeck and teaching at the Universidad Nacional de Música in Lima"
+portrait:
+  image: /images/cj-professor-1.jpg
+  alt: "Carlos Johnson in an institutional portrait."
 germany_chair:
   university_name: "Musikhochschule Lübeck"
   university_url: "https://www.mh-luebeck.de/"

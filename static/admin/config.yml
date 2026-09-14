@@ -308,6 +308,14 @@ collections:
         fields:
           - { label: "Title", name: "title", widget: "string", i18n: true }
           - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
+          - label: "Portrait (optional)"
+            name: "portrait"
+            widget: "object"
+            required: false
+            i18n: true
+            fields:
+              - { label: "Image", name: "image", widget: "image", required: false, i18n: duplicate, hint: "Se muestra arriba de la página. Funciona mejor una foto apaisada." }
+              - { label: "Alt Text", name: "alt", widget: "string", required: false, i18n: true }
           - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }
           - label: "Chair in Germany"
             name: "germany_chair"

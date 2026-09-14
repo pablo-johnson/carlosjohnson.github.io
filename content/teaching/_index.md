@@ -1,6 +1,9 @@
 ---
 title: "Lehre"
 subtitle: "Professur an der Musikhochschule Lübeck und Lehrtätigkeit an der Universidad Nacional de Música in Lima"
+portrait:
+  image: /images/cj-professor-1.jpg
+  alt: "Carlos Johnson in einem Hochschulporträt."
 germany_chair:
   university_name: "Musikhochschule Lübeck"
   university_url: "https://www.mh-luebeck.de/"

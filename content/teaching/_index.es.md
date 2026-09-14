@@ -1,6 +1,9 @@
 ---
 title: "Docencia"
 subtitle: "Cátedra en la Musikhochschule Lübeck y docencia en la Universidad Nacional de Música de Lima"
+portrait:
+  image: /images/cj-professor-1.jpg
+  alt: "Carlos Johnson en un retrato institucional."
 germany_chair:
   university_name: "Musikhochschule Lübeck"
   university_url: "https://www.mh-luebeck.de/"
