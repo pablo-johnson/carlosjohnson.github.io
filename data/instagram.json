@@ -1,0 +1,55 @@
+{
+  "demo": true,
+  "profile": {
+    "handle": "carlosjohnsonviolinista",
+    "permalink": "https://www.instagram.com/carlosjohnsonviolinista/"
+  },
+  "synced_at": "",
+  "posts": [
+    {
+      "id": "demo-1",
+      "media_type": "IMAGE",
+      "is_video": false,
+      "image": "/images/cj-violin.jpg",
+      "permalink": "https://www.instagram.com/carlosjohnsonviolinista/",
+      "timestamp": "2026-09-02T18:40:00+0000",
+      "caption": "Ensayo general de esta semana. El Abendsegen de Humperdinck sigue pidiendo el mismo silencio de siempre antes de entrar."
+    },
+    {
+      "id": "demo-2",
+      "media_type": "VIDEO",
+      "is_video": true,
+      "image": "/images/cj-direktor.jpg",
+      "permalink": "https://www.instagram.com/carlosjohnsonviolinista/",
+      "timestamp": "2026-08-21T11:05:00+0000",
+      "caption": "Un fragmento del segundo movimiento, desde el atril. Gracias a la orquesta por la paciencia con la cámara."
+    },
+    {
+      "id": "demo-3",
+      "media_type": "CAROUSEL_ALBUM",
+      "is_video": false,
+      "image": "/images/cj-professor-1.jpg",
+      "permalink": "https://www.instagram.com/carlosjohnsonviolinista/",
+      "timestamp": "2026-08-04T16:20:00+0000",
+      "caption": "Cuatro días de clases magistrales en Lima. Hay una generación de cuerdas en el Perú que no se imagina lo lejos que puede llegar."
+    },
+    {
+      "id": "demo-4",
+      "media_type": "IMAGE",
+      "is_video": false,
+      "image": "/images/cj-professor.jpg",
+      "permalink": "https://www.instagram.com/carlosjohnsonviolinista/",
+      "timestamp": "2026-07-15T09:10:00+0000",
+      "caption": "Clase en Lübeck. Lo primero no es el sonido: es leer bien lo que el compositor escribió."
+    },
+    {
+      "id": "demo-5",
+      "media_type": "IMAGE",
+      "is_video": false,
+      "image": "/images/carlos-profile.jpg",
+      "permalink": "https://www.instagram.com/carlosjohnsonviolinista/",
+      "timestamp": "2026-06-28T20:00:00+0000",
+      "caption": "Antes de salir a escena."
+    }
+  ]
+}

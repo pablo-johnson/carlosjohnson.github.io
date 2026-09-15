@@ -231,3 +231,18 @@
 
 - id: analytics_consent_manage
   translation: "Privacy settings"
+
+- id: instagram_post_alt
+  translation: "Instagram post"
+
+- id: instagram_view_post
+  translation: "View on Instagram"
+
+- id: instagram_follow
+  translation: "Follow on Instagram"
+
+- id: instagram_video
+  translation: "Video"
+
+- id: instagram_empty
+  translation: "No posts have been synced yet."

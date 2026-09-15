@@ -150,6 +150,36 @@ Para volver a ocultarla, desactívalo. **No se borra nada**: los conciertos carg
 
 Conviene activarla solo cuando haya fechas confirmadas, y volver a ocultarla si la agenda se queda sin próximos conciertos durante una temporada.
 
+## La sección de Instagram
+
+La sección de Instagram se llena sola: una vez al día el sitio consulta la cuenta, **se descarga las fotos y las leyendas** y las publica. No hay que copiar ni pegar nada.
+
+Como las fotos quedan guardadas en el sitio, si un día Instagram falla o la conexión caduca, lo último que se sincronizó sigue publicado. La página no se rompe nunca.
+
+### Qué se puede editar y qué no
+
+Las publicaciones **no se editan a mano**. Si cambias una leyenda desde el panel, la siguiente sincronización la vuelve a pisar con la de Instagram. Lo que sí controlas está en `/admin` → `Instagram Feed`:
+
+- **Show Page in Submenu**: muestra u oculta la sección entera. Viene oculta.
+- **Title** y **Subtitle**: el titular de la página, en cada idioma.
+- **Posts to Show**: cuántas publicaciones se ven (hasta 12).
+- **Show Captions**: si se muestran las leyendas o solo las fotos.
+- **Caption Language**: el idioma en el que escribes en Instagram. Instagram da una sola leyenda por publicación, así que se muestra tal cual en las tres versiones del sitio; este campo sirve para que los lectores de pantalla la pronuncien bien.
+- **Per-post Exceptions**: para **ocultar una publicación concreta** o corregirle el texto alternativo. Necesitas el identificador de la publicación, que aparece en `data/instagram.json`.
+
+### Qué hace falta para activarla
+
+Dos cosas que no dependen del sitio:
+
+1. Que la cuenta de Instagram sea **Creator o Business**. Es gratis, se cambia desde la propia aplicación y se puede volver atrás.
+2. Que el desarrollador conecte la cuenta una vez para autorizar el acceso.
+
+Hasta entonces la sección queda oculta y con publicaciones de ejemplo.
+
+### Una advertencia
+
+La autorización de Instagram **caduca cada 60 días**. Está previsto que se renueve sola, pero si algún día la sección deja de actualizarse, ese suele ser el motivo: avisa al desarrollador.
+
 ## Configuración de Google Analytics 4
 
 La integración de GA4 quedó implementada en el tema para que, en usos futuros, solo haya que configurar el ID.

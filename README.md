@@ -410,6 +410,50 @@ Comportamiento:
 
 ---
 
+## Sincronización con Instagram
+
+Instagram no tiene RSS y la Basic Display API murió el 4 de diciembre de 2024. La única vía es la **Instagram API with Instagram Login**, que exige cuenta Creator o Business y un token de 60 días.
+
+El feed **no se consulta desde el navegador**. Un workflow programado lo trae al repositorio:
+
+```
+.github/workflows/instagram-sync.yml   cron diario + workflow_dispatch
+scripts/sync_instagram.py              descarga y escribe los datos
+data/instagram.json                    lo escribe la maquina, NO se edita a mano
+assets/images/instagram/               las fotos, servidas desde /images/instagram/
+content/instagram/_index.{lang}.md     lo editable: ajustes y excepciones
+layouts/instagram/list.html            render
+```
+
+Tres decisiones que conviene no deshacer:
+
+- **Las imágenes se descargan, no se enlazan.** Las URL que devuelve la API son de un CDN firmado y caducan a los pocos días: enlazadas en caliente, el feed se rompe solo. Descargadas, además pasan por `responsive-image.html` como el resto del sitio y no hay ninguna petición a un tercero en tiempo de carga.
+- **El script nunca falla el build.** Sin token, con la API caída o con el token caducado, avisa y sale con código 0 sin tocar nada: la última instantánea buena sigue publicada.
+- **Un fichero, un dueño.** `data/instagram.json` es de la máquina; el CMS solo edita `content/instagram/_index.*.md`. Mezclar los dos significa que la siguiente sincronización se come lo que escribió el músico —es la misma lección del front matter que el CMS borraba—.
+
+### Secrets
+
+| Secret | Obligatorio | Para qué |
+|---|---|---|
+| `IG_ACCESS_TOKEN` | sí | Token de larga duración de la cuenta |
+| `IG_TOKEN_WRITER_PAT` | no | PAT con permiso de escritura sobre los secrets, para renovar el token solo |
+
+Sin `IG_TOKEN_WRITER_PAT` el paso de renovación se salta y **hay que renovar el token a mano antes de los 60 días**. El refresco devuelve un token nuevo pero el viejo sigue valido hasta caducar, así que refrescar sin guardar no sirve de nada.
+
+### Por qué la sincronización invoca al despliegue
+
+Un commit hecho con el `GITHUB_TOKEN` **no dispara otros workflows** —es la protección de bucles de GitHub—. Por eso `hugo.yml` expone `workflow_call` y `instagram-sync.yml` lo invoca cuando hubo cambios, en vez de confiar en el `push`.
+
+### Puesta en marcha
+
+1. La cuenta del músico pasa a Creator o Business (gratis y reversible).
+2. App en el panel de Meta, producto *Instagram*, permiso `instagram_business_basic`.
+3. Con el músico como tester basta para un sitio. **Para varios clientes hace falta App Review de Meta.**
+4. Se obtiene el token de larga duración y se guarda como `IG_ACCESS_TOKEN`.
+5. Se activa `Show Page in Submenu` en la entrada `Instagram Feed` del CMS.
+
+Mientras no haya token, `data/instagram.json` lleva publicaciones de ejemplo y la sección viene **oculta**, igual que la agenda de conciertos.
+
 ## Desarrollo local
 
 Requisitos: **Hugo extended** `0.159.x` y **Dart Sass**.

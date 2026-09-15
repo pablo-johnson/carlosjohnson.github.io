@@ -228,3 +228,18 @@
 
 - id: language_switcher
   translation: "Sprache"
+
+- id: instagram_post_alt
+  translation: "Instagram-Beitrag"
+
+- id: instagram_view_post
+  translation: "Auf Instagram ansehen"
+
+- id: instagram_follow
+  translation: "Auf Instagram folgen"
+
+- id: instagram_video
+  translation: "Video"
+
+- id: instagram_empty
+  translation: "Es wurden noch keine Beiträge synchronisiert."

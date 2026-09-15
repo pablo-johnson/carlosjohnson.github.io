@@ -94,6 +94,11 @@ buildFuture = true
     parent = "multimedia"
     weight = 3
   [[languages.de.menu.main]]
+    name = "Instagram"
+    url = "instagram/"
+    parent = "multimedia"
+    weight = 4
+  [[languages.de.menu.main]]
     name = "Konzerte"
     url = "concerts/"
     weight = 5
@@ -139,6 +144,11 @@ buildFuture = true
     parent = "multimedia"
     weight = 3
   [[languages.es.menu.main]]
+    name = "Instagram"
+    url = "instagram/"
+    parent = "multimedia"
+    weight = 4
+  [[languages.es.menu.main]]
     name = "Conciertos"
     url = "concerts/"
     weight = 5
@@ -183,6 +193,11 @@ buildFuture = true
     url = "audios/"
     parent = "multimedia"
     weight = 3
+  [[languages.en.menu.main]]
+    name = "Instagram"
+    url = "instagram/"
+    parent = "multimedia"
+    weight = 4
   [[languages.en.menu.main]]
     name = "Concerts"
     url = "concerts/"

@@ -417,6 +417,48 @@ collections:
               - { label: "Title", name: "title", widget: "string", i18n: true }
               - { label: "Description", name: "description", widget: "text", i18n: true, required: false }
               - { label: "Alt Text", name: "alt", widget: "string", i18n: true, required: false }
+      - label: "Instagram Feed"
+        name: "instagram_feed"
+        file: "content/instagram/_index.{{locale}}.md"
+        i18n: true
+        fields:
+          - { label: "Show Page in Submenu", name: "show_page", widget: "boolean", default: false, i18n: duplicate }
+          - { label: "Title", name: "title", widget: "string", i18n: true }
+          - { label: "Subtitle", name: "subtitle", widget: "string", i18n: true, required: false }
+          - { label: "Intro Content", name: "body", widget: "markdown", i18n: true, required: false }
+          - { label: "Instagram Profile URL", name: "profile_url", widget: "string", required: false, i18n: duplicate }
+          - { label: "Instagram Handle (without @)", name: "profile_handle", widget: "string", required: false, i18n: duplicate }
+          - {
+              label: "Posts to Show",
+              name: "max_items",
+              widget: "number",
+              default: 9,
+              value_type: "int",
+              min: 1,
+              max: 12,
+              i18n: duplicate,
+            }
+          - { label: "Show Captions", name: "show_captions", widget: "boolean", default: true, i18n: duplicate }
+          - {
+              label: "Caption Language",
+              name: "caption_language",
+              widget: "select",
+              options: ["de", "es", "en"],
+              default: "es",
+              i18n: duplicate,
+              hint: "The language the captions are written in. Instagram gives one caption per post, shown as-is in all three site languages.",
+            }
+          - label: "Per-post Exceptions"
+            name: "overrides"
+            widget: "list"
+            required: false
+            i18n: duplicate
+            summary: "{{fields.post_id}}"
+            hint: "The posts themselves are synced automatically and must not be edited by hand: the next sync overwrites them. Use this list to hide one post or fix its alt text."
+            fields:
+              - { label: "Post ID", name: "post_id", widget: "string", i18n: duplicate }
+              - { label: "Hide this post", name: "hidden", widget: "boolean", default: false, i18n: duplicate }
+              - { label: "Alt Text", name: "alt", widget: "string", required: false, i18n: true }
       - label: "Videos Gallery"
         name: "videos_gallery"
         file: "content/videos/_index.{{locale}}.md"

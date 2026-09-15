@@ -228,3 +228,18 @@
 
 - id: language_switcher
   translation: "Idioma"
+
+- id: instagram_post_alt
+  translation: "Publicación de Instagram"
+
+- id: instagram_view_post
+  translation: "Ver en Instagram"
+
+- id: instagram_follow
+  translation: "Seguir en Instagram"
+
+- id: instagram_video
+  translation: "Vídeo"
+
+- id: instagram_empty
+  translation: "Todavía no hay publicaciones sincronizadas."
